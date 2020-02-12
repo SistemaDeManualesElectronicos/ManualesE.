@@ -38,6 +38,8 @@ namespace ManualesElectronicosFInalFinal2.Models
 
                 entity.Property(e => e.Carrera).HasColumnType("varchar(45)");
 
+                entity.Property(e => e.Contraseña).HasColumnType("varchar(45)");
+
                 entity.Property(e => e.Nombre).HasColumnType("varchar(45)");
 
                 entity.Property(e => e.NumeroDeControl).HasColumnType("varchar(45)");

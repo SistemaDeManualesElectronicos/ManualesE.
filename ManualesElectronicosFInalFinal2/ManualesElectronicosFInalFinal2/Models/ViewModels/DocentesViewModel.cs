@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace ManualesElectronicosFInalFinal2.Models
+namespace ManualesElectronicosFInalFinal2.Models.ViewModels
 {
-    public partial class Docentes
+    public class DocentesViewModel
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
