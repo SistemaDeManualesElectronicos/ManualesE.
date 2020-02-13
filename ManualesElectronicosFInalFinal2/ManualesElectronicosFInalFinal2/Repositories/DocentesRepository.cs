@@ -14,6 +14,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             var data = GetAll();
             return data;
         }
+        //awkheg
 
         public void Insert(DocentesViewModel nuevo)
         {
