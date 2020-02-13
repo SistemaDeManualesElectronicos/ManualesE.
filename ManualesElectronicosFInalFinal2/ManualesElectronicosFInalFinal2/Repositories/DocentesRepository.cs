@@ -22,7 +22,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
         }
         public void Update(DocentesViewModel old)
         {
-            Docentes m = new Docentes { Id = old.Id, Nombre = old.Nombre, Carrera = old.Carrera, NumeroDeControl = old.NumeroDeControl, Contraseña =old.Contraseña  };
+            Docentes m = new Docentes { Id = old.Id, Nombre = old.Nombre, Carrera = old.Carrera, NumeroDeControl = old.NumeroDeControl, Contraseña =old.Contraseña   };
         }
     }
 }
