@@ -24,5 +24,11 @@ namespace ManualesElectronicosFInalFinal2.Repositories
         {
             Docentes m = new Docentes { Id = old.Id, Nombre = old.Nombre, Carrera = old.Carrera, NumeroDeControl = old.NumeroDeControl, Contraseña =old.Contraseña   };
         }
+        public Docentes GetMenuById(int id)
+        {
+            return Context.Docentes.FirstOrDefault(x => x.Id == id);
+        }
+
+
     }
 }

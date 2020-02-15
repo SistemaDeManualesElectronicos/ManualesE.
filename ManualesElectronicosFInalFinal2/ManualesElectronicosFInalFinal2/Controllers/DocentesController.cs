@@ -40,6 +40,14 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
         }
 
-
+        public IActionResult Eliminar(int id)
+        {
+           DocentesRepository ss = new DocentesRepository();
+    
+            var clase = ss.GetMenuById(id);
+            ss.Delete(clase);
+            return RedirectToAction("Docente");
+        }
+    }
     }
 }
