@@ -16,7 +16,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             doc = new DocentesRepository();
             return View(doc.GetDocentesxNombre());
         }
-
+        //hjkl
 
         public IActionResult Agregar()
         {
