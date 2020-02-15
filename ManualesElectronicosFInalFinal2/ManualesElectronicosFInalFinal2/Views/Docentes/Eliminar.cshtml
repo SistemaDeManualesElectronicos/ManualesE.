@@ -1,15 +1,22 @@
-﻿
+﻿@model ManualesElectronicosFInalFinal2.Models.Docentes  
 @{
     Layout = null;
 }
 
-<!DOCTYPE html>
+    <form method="post" action="~/Views/Docentes/Eliminar.cshtml">
+        <div>
+            <h1>Eliminar Doncente</h1>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Eliminar</title>
-</head>
-<body>
-</body>
-</html>
+            <input type="hidden" id="id" asp-for="Id" />
+
+            <p>¿Está seguro de eliminar la categoría "<span id="nombreCategoria">@Model.Nombre</span>"?</p>
+
+            <div class="botones">
+                <p id="error">
+                    @Html.ValidationSummary()
+                </p>
+                <input type="submit" value="Si" id="btnSi" />
+                <input onclick="history.back()" type="button" value="No" id="btnNo" formnovalidate="formnovalidate" />
+            </div>
+        </div>
+    </form>
