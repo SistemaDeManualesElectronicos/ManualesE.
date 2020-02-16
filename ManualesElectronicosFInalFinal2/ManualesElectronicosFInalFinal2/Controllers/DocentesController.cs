@@ -46,7 +46,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
     
             var clase = ss.GetMenuById(id);
             ss.Delete(clase);
-            return RedirectToAction("Docente");
+            return RedirectToAction("Docentes");
         }
     }
     }
