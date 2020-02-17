@@ -48,5 +48,10 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             ss.Delete(clase);
             return RedirectToAction("Docentes");
         }
+
+        public IActionResult EditarDocentes()
+        {
+            return View();
+        }
     }
     }
