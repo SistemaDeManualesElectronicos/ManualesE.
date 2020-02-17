@@ -28,6 +28,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             {
                 throw new Exception("el nombre no puede ir vacio");
             }
+            //asd
           
 
             return true;
