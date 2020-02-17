@@ -11,16 +11,23 @@
             </div>
             <label>Nombre:</label>
             <input asp-for="Nombre" type="text" /><br />
-            <label>Precio:</label>
+            <label>Numero De Control</label>
             <input asp-for="NumeroDeControl" type="text" /><br />
-            <label>Descripcion:</label>
+            <label>Carrera:</label>
             <input asp-for="Carrera" type="text" /><br />
+            <label>Contraseña</label><br />
+            <input asp-for="Contraseña" type="password"/>
+            
             
 
             <div class="botones" style="padding:5px">
                 <input type="submit" value="Agregar" />
                 <button asp-action="Docentes">Cancelar</button>
 
+            </div>
+
+            <div>
+                <p>@Html.ValidationSummary()</p>
             </div>
 
 

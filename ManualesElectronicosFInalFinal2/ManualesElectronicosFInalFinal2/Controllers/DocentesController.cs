@@ -26,12 +26,27 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         [HttpPost]
         public IActionResult Agregar(Docentes nuevo)
         {
-            doc = new DocentesRepository();
+          
             if (ModelState.IsValid)
             {
-                doc.Insert(nuevo);
-              
-                return RedirectToAction("Docentes");
+                doc = new DocentesRepository();
+                try
+                {
+                    if (doc.ValidarDocentes(nuevo))
+                    {
+                        doc.Insert(nuevo);
+
+                        return RedirectToAction("Docentes");
+                    }
+                  
+                }
+
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                    return View(nuevo);
+                }
+                return View(nuevo);
             }
             else
             {

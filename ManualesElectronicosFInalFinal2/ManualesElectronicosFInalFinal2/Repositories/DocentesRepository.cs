@@ -3,6 +3,7 @@ using ManualesElectronicosFInalFinal2.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ManualesElectronicosFInalFinal2.Repositories
@@ -13,6 +14,23 @@ namespace ManualesElectronicosFInalFinal2.Repositories
         {
             var data = GetAll();
             return data;
+        }
+
+        Regex NombreConCaracteresEspeciales = new Regex(@"^[a-zA-Z]+$");
+
+        public bool ValidarDocentes(Docentes docente) 
+        {
+            if (!NombreConCaracteresEspeciales.IsMatch(docente.Nombre.ToString()))
+            {
+                throw new Exception("el nombre no puede ir con caracteres especiales poner caracteres especiales");
+            }
+            if (string.IsNullOrWhiteSpace(docente.Nombre.ToString()))
+            {
+                throw new Exception("el nombre no puede ir vacio");
+            }
+          
+
+            return true;
         }
 
         public void Insert(DocentesViewModel nuevo)
