@@ -51,6 +51,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
         public IActionResult EditarDocentes()
         {
+            //akhasgdui
             return View();
         }
     }
