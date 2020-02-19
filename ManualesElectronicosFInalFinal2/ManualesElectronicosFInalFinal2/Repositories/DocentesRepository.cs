@@ -17,6 +17,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
         }
 
         Regex NombreConCaracteresEspeciales = new Regex(@"^[a-zA-Z]+$");
+        Regex NumeroDeControl = new Regex(@"[0-9][0-9][1][GDMTAP][0DC]\d\d\d");
 
         public bool ValidarDocentes(Docentes docente) 
         {
@@ -28,6 +29,12 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             {
                 throw new Exception("el nombre no puede ir vacio");
             }
+            //sad
+            if (!NumeroDeControl.IsMatch(docente.NumeroDeControl.ToString()))
+            {
+                throw new Exception("El patron de numero de control es incorrecto");
+            }
+
             //asd
           
 

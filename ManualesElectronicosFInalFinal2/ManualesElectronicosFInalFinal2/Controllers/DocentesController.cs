@@ -27,9 +27,14 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         public IActionResult Agregar(Docentes nuevo)
         {
           
+
             if (ModelState.IsValid)
             {
-                doc = new DocentesRepository();
+                if (doc == null)
+                {
+
+                    doc = new DocentesRepository();
+                }
                 try
                 {
                     if (doc.ValidarDocentes(nuevo))
