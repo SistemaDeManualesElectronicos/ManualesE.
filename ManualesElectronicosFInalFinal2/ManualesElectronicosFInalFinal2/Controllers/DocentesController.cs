@@ -85,11 +85,11 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         public IActionResult EditarDocentes(int id)
         {
             DocentesRepository ss = new DocentesRepository();
-            var clase = ss.GetMenuById(id);
+            var clase = ss.GetById(id);
             ss.Update(clase);
 
 
-            return View( );
+            return View(clase );
         }
     }
     }

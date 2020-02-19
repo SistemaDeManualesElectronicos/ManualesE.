@@ -1,9 +1,8 @@
 ﻿@model ManualesElectronicosFInalFinal2.Models.Docentes
 @{
-    Layout = "Layout";
+    Layout = null;
 }
 
-<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -58,22 +57,33 @@
             margin: 40px;
         }
     </style>
-    <form method="post" action="~/Docentes/EditarDocentes">
-        <div>
-            <h2>Editar Docente</h2><br />
-            <label>Nombre Docente:</label><br />
-            <input type="text"  id="txtNombre" asp-for="@Model.Nombre"   value="Juan Hernandez" /><br />
-            <label>Numero de control:</label><br />
-            <input type="text"  asp-for="@Model.NumeroDeControl" /><br />
-            <label>Carrera:</label><br />
-            <input type="text"  asp-for="@Model.Carrera" /><br />-
 
-            <label>Curso:</label><br />
-            <input type="text"  /><br />
-            <input type="submit"  id="btnGuardar" value="Agregar" />
-            <input type="submit" value="Cancelar" id="btnCancelar" onclick="history.back()" />
-        </div>
-    </form>
 </body>
+
+
 </html>
+
+<form method="post" action="~/Docentes/EditarDocentes">
+    <div>
+        <h2>Editar Docente</h2><br />
+        <label>Nombre Docente:</label><br />
+
+
+        <input type="hidden" id="id" asp-for="Id" />
+
+        <input type="text" id="nombreDocente" asp-for="@Model.Nombre" required="required" />
+
+
+        <br />
+        <label>Numero de control:</label><br />
+        <input type="text" asp-for="@Model.NumeroDeControl" /><br />
+        <label>Carrera:</label><br />
+        <input type="text" asp-for="@Model.Carrera" /><br />-
+
+        <label>Curso:</label><br />
+        <input type="text" /><br />
+        <input type="submit" id="btnGuardar" value="Agregar" />
+        <input type="submit" value="Cancelar" id="btnCancelar" onclick="history.back()" />
+    </div>
+</form>
 
