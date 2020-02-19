@@ -55,6 +55,16 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
         }
 
+        public IActionResult Eliminar( Docentes d)
+        {
+
+            DocentesRepository ss = new DocentesRepository();
+
+            var clase = ss.GetMenuById(d.Id);
+            return View(clase);
+        }
+
+        [HttpPost]
         public IActionResult Eliminar(int id)
         {
            DocentesRepository ss = new DocentesRepository();
@@ -63,11 +73,18 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             ss.Delete(clase);
             return RedirectToAction("Docentes");
         }
+        
 
-        public IActionResult EditarDocentes()
+
+
+        public IActionResult EditarDocentes(int id)
         {
-            //akhasgdui
-            return View();
+            DocentesRepository ss = new DocentesRepository();
+            var clase = ss.GetMenuById(id);
+            ss.Update(clase);
+
+
+            return View( );
         }
     }
     }
