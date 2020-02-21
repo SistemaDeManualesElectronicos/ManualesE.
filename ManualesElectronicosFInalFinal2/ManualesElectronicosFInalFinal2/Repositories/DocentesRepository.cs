@@ -17,7 +17,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
         }
 
         Regex NombreConCaracteresEspeciales = new Regex(@"^[a-zA-Z]+$");
-        Regex NumeroDeControl = new Regex(@"[0-9][0-9][1][GDMTAP][0DC]\d\d\d");
+        Regex NumeroDeControl = new Regex(@"[0-9][0-9][1][GDMTAP][0DC]\d\d\d+$");
 
         public bool ValidarDocentes(Docentes docente) 
         {
@@ -29,13 +29,14 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             {
                 throw new Exception("el nombre no puede ir vacio");
             }
-            //sad
+            
             if (!NumeroDeControl.IsMatch(docente.NumeroDeControl.ToString()))
             {
                 throw new Exception("El patron de numero de control es incorrecto");
             }
 
-            //asd
+
+            
           
 
             return true;
@@ -46,6 +47,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             Docentes l = new Docentes { Nombre = nuevo.Nombre, Carrera = nuevo.Carrera, NumeroDeControl = nuevo.NumeroDeControl, Contraseña = nuevo.Contraseña, Id = nuevo.Id  };
             Insert(nuevo);
         }
+        ///asd
         public void Update(DocentesViewModel old)
         {
             Docentes m = new Docentes { Id = old.Id, Nombre = old.Nombre, Carrera = old.Carrera, NumeroDeControl = old.NumeroDeControl, Contraseña =old.Contraseña   };
