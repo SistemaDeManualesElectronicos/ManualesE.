@@ -1,5 +1,5 @@
 ﻿using ManualesElectronicosFInalFinal2.Models;
-
+using ManualesElectronicosFInalFinal2.Models.DocentesViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
     {
         public IEnumerable<Docentes> GetDocentesxNombre()
         {
-            var data = GetAll();
+           var data = Context.Docentes.OrderBy(x=>x.Nombre);
             return data;
         }
 
@@ -30,20 +30,17 @@ namespace ManualesElectronicosFInalFinal2.Repositories
                 throw new Exception("el nombre no puede ir vacio");
             }
 
-           
+            
 
-
-
-
-            return true;
+             return true;
         }
 
-        public void Insert(DocentesViewModel nuevo)
+        public void Insert (DocentesViewModel nuevo)
         {
             Docentes l = new Docentes { Nombre = nuevo.Nombre, NumeroDeControl = nuevo.NumeroDeControl };
             Insert(nuevo);
         }
-        ///asd
+        
         public void Update(DocentesViewModel old)
         {
             Docentes m = new Docentes { Nombre = old.Nombre, NumeroDeControl = old.NumeroDeControl };
