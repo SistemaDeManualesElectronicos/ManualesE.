@@ -1,5 +1,5 @@
 ﻿using ManualesElectronicosFInalFinal2.Models;
-using ManualesElectronicosFInalFinal2.Models.ViewModels;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +16,10 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             return data;
         }
 
-        Regex NombreConCaracteresEspeciales = new Regex(@"^[a-zA-Z]+$");
-        Regex NumeroDeControl = new Regex(@"[0-9][0-9][1][GDMTAP][0DC]\d\d\d+$");
+        Regex NombreConCaracteresEspeciales = new Regex(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ.-]+");
+        
 
-        public bool ValidarDocentes(Docentes docente) 
+        public bool ValidarDocentes(Docentes docente)
         {
             if (!NombreConCaracteresEspeciales.IsMatch(docente.Nombre.ToString()))
             {
@@ -29,30 +29,26 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             {
                 throw new Exception("el nombre no puede ir vacio");
             }
-            
-            if (!NumeroDeControl.IsMatch(docente.NumeroDeControl.ToString()))
-            {
-                throw new Exception("El patron de numero de control es incorrecto");
-            }
+
+           
 
 
-            
-          
+
 
             return true;
         }
 
         public void Insert(DocentesViewModel nuevo)
         {
-            Docentes l = new Docentes { Nombre = nuevo.Nombre, Carrera = nuevo.Carrera, NumeroDeControl = nuevo.NumeroDeControl, Contraseña = nuevo.Contraseña, Id = nuevo.Id  };
+            Docentes l = new Docentes { Nombre = nuevo.Nombre, NumeroDeControl = nuevo.NumeroDeControl };
             Insert(nuevo);
         }
         ///asd
         public void Update(DocentesViewModel old)
         {
-            Docentes m = new Docentes { Id = old.Id, Nombre = old.Nombre, Carrera = old.Carrera, NumeroDeControl = old.NumeroDeControl, Contraseña =old.Contraseña   };
+            Docentes m = new Docentes { Nombre = old.Nombre, NumeroDeControl = old.NumeroDeControl };
         }
-        public Docentes GetMenuById(int id)
+        public Docentes GetDocenteById(int id)
         {
             return Context.Docentes.FirstOrDefault(x => x.Id == id);
         }

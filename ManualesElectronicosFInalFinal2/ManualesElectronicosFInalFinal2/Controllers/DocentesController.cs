@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ManualesElectronicosFInalFinal2.Models;
+//using ManualesElectronicosFInalFinal2.Models;
 using ManualesElectronicosFInalFinal2.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +14,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         public IActionResult Docentes()
         {
             doc = new DocentesRepository();
-            return View(doc.GetDocentesxNombre());
+            return View(/*doc.GetDocentesxNombre()*/);
         }
         //hjkl
 
@@ -24,7 +24,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         }
 
         [HttpPost]
-        public IActionResult Agregar(Docentes nuevo)
+        public IActionResult Agregar(string nuevo)
         {
           
 
@@ -37,9 +37,10 @@ namespace ManualesElectronicosFInalFinal2.Controllers
                 }
                 try
                 {
-                    if (doc.ValidarDocentes(nuevo))
-                    {
-                        doc.Insert(nuevo);
+                    { 
+                    //if (doc.ValidarDocentes())
+                    //{
+                    //    doc.Insert(nuevo);
 
                         return RedirectToAction("Docentes");
                     }
@@ -60,13 +61,13 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
         }
 
-        public IActionResult Eliminar( Docentes d)
+        public IActionResult Eliminar()
         {
 
             DocentesRepository ss = new DocentesRepository();
 
-            var clase = ss.GetMenuById(d.Id);
-            return View(clase);
+            //var clase = ss.GetDocenteById(d.Id);
+            return View();
         }
 
         [HttpPost]
@@ -74,8 +75,8 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         {
            DocentesRepository ss = new DocentesRepository();
     
-            var clase = ss.GetMenuById(id);
-            ss.Delete(clase);
+            //var clase = ss.GetDocenteById(id);
+            //ss.Delete(clase);
             return RedirectToAction("Docentes");
         }
         
@@ -85,8 +86,8 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         public IActionResult EditarDocentes(int id)
         {
             DocentesRepository ss = new DocentesRepository();
-            var clase = ss.GetMenuById(id);
-            ss.Update(clase);
+            //var clase = ss.GetDocenteById(id);
+            //ss.Update(clase);
 
 
             return View( );
