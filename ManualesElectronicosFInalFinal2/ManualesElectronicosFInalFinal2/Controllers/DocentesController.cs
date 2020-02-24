@@ -26,7 +26,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         [HttpPost]
         public IActionResult Agregar(Docentes nuevo)
         {
-          
+
 
             if (ModelState.IsValid)
             {

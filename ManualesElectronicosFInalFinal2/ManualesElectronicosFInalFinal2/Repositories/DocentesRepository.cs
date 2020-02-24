@@ -30,16 +30,14 @@ namespace ManualesElectronicosFInalFinal2.Repositories
                 throw new Exception("el nombre no puede ir vacio");
             }
 
-            
-
              return true;
         }
 
-        public void Insert (DocentesViewModel nuevo)
-        {
-            Docentes l = new Docentes { Nombre = nuevo.Nombre, NumeroDeControl = nuevo.NumeroDeControl };
-            Insert(nuevo);
-        }
+        //public void Insert (DocentesViewModel nuevo)
+        //{
+        //    //Docentes l = new Docentes { Nombre = nuevo.Nombre, NumeroDeControl = nuevo.NumeroDeControl  };
+        //    Insert(nuevo);
+        //}
         
         public void Update(DocentesViewModel old)
         {

@@ -7,10 +7,10 @@ namespace ManualesElectronicosFInalFinal2.Models.DocentesViewModels
 {
     public class DocentesViewModel
     {
-
+        public int id { get; set; }
         public string Nombre { get; set; }
         public string NumeroDeControl { get; set; }
-        public  List<Carrera> Carreras { get; set; }
+        public List<Carrera> Carreras { get; set; }
         
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using ManualesElectronicosFInalFinal2.Services;
 
 namespace ManualesElectronicosFInalFinal2
 {
@@ -16,6 +17,7 @@ namespace ManualesElectronicosFInalFinal2
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<DocenteService>();
             services.AddMvc();
         }
 
