@@ -10,10 +10,15 @@ namespace ManualesElectronicosFInalFinal2.Repositories
 {
     public class DocentesRepository:Repository<Docentes>
     {
-        public IEnumerable<Docentes> GetDocentesxNombre()
+        public IEnumerable<Docentes> GetDocentesxNombre( string Nombre )
         {
            var data = Context.Docentes.OrderBy(x=>x.Nombre);
             return data;
+        }
+        public Docentes GetDDocenteByNombre(string nombre)
+        {
+            return Context.Docentes
+                .FirstOrDefault(x => x.Nombre.ToUpper() == nombre.ToUpper());
         }
 
         Regex NombreConCaracteresEspeciales = new Regex(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ.-]+");
