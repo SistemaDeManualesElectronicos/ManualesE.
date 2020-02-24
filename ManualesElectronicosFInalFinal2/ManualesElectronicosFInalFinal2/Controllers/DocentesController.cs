@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ManualesElectronicosFInalFinal2.Models;
+using ManualesElectronicosFInalFinal2.Models.DocentesViewModels;
 using ManualesElectronicosFInalFinal2.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -90,8 +91,50 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             var clase = ss.GetDocenteById(id);
             ss.Update(clase);
 
+            if(clase == null)
+            {
+                return  RedirectToAction("Index");
 
-            return View(clase );
+            }
+            else
+            { 
+            
+                return View(clase);
+            
+            }
+            
+        }
+
+        [HttpPost]
+
+        public IActionResult EditarDocente(DocentesViewModel vi)
+        {
+
+            if (ModelState.IsValid)
+            {
+                DocentesRepository doc = new DocentesRepository();
+                var v = doc.GetDDocenteByNombre(vi.Nombre);
+                if (doc == null)
+                {
+                    doc.Update(vi);
+                    return RedirectToAction("Index");
+                }
+                else if (v.Id == vi.NumeroDeControl)
+                {
+                       v.Nombre= vi.Nombre;
+                      doc.Update(v);
+                    doc.Update(vi);
+                    return RedirectToAction("Index");
+                }
+                else {
+                MdelState.AddModelError("","Ya existe un nombre igual. Porfavor escriba otro nombre");
+                    return view(vi);
+                
+                }
+
+            }
+
+
         }
     }
     }
