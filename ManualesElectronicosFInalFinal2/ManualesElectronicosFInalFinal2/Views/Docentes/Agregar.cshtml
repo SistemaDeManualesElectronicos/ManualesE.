@@ -16,8 +16,7 @@
             <input asp-for="NumeroDeControl" type="text" /><br />
             @*<label>Carrera:</label>
             <input asp-for="Carrera" type="text" /><br />*@
-            <label>Contraseña</label><br />
-            <input asp-for="Contraseña" type="password"/>
+           
 
             <select asp-for="IdCarrera" asp-items="@(new SelectList(service.GetCarreras(),"Id", "Nombre"))"></select>
 

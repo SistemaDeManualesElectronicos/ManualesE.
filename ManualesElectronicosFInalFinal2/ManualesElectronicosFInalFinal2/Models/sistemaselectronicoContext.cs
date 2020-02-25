@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ManualesElectronicosFInalFinal2.Models
 {
-    public partial class sistemaelectronico123Context : DbContext
+    public partial class sistemaselectronicoContext : DbContext
     {
-        public sistemaelectronico123Context()
+        public sistemaselectronicoContext()
         {
         }
 
-        public sistemaelectronico123Context(DbContextOptions<sistemaelectronico123Context> options)
+        public sistemaselectronicoContext(DbContextOptions<sistemaselectronicoContext> options)
             : base(options)
         {
         }
@@ -23,7 +23,7 @@ namespace ManualesElectronicosFInalFinal2.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySql("server=localhost;port=3306;user=root;password=root;database=sistemaelectronico123;");
+                optionsBuilder.UseMySql("Server=localhost; database=sistemaselectronico; password=root; user=root;");
             }
         }
 
@@ -38,31 +38,34 @@ namespace ManualesElectronicosFInalFinal2.Models
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.Nombre).HasColumnType("varchar(45)");
-
-                entity.HasOne(d => d.IdNavigation)
-                    .WithOne(p => p.Carrera)
-                    .HasForeignKey<Carrera>(d => d.Id)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fkCarrera");
             });
 
             modelBuilder.Entity<Docentes>(entity =>
             {
                 entity.ToTable("docentes");
 
+                entity.HasIndex(e => e.IdCarrera)
+                    .HasName("FkCarrera_idx");
+
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
                     .HasColumnType("int(11)");
 
-                entity.Property(e => e.Contraseña).HasColumnType("varchar(45)");
+                entity.Property(e => e.Contraseña).HasColumnType("char(64)");
 
-                entity.Property(e => e.IdCarrera)
-                    .HasColumnName("idCarrera")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e.Eliminado).HasColumnType("bit(1)");
+
+                entity.Property(e => e.IdCarrera).HasColumnType("int(11)");
 
                 entity.Property(e => e.Nombre).HasColumnType("varchar(45)");
 
-                entity.Property(e => e.NumeroDeControl).HasColumnType("varchar(45)");
+                entity.Property(e => e.NumeroDeControl).HasColumnType("char(64)");
+
+                entity.HasOne(d => d.IdCarreraNavigation)
+                    .WithMany(p => p.Docentes)
+                    .HasForeignKey(d => d.IdCarrera)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FkCarrera");
             });
         }
     }

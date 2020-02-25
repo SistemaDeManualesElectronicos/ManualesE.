@@ -15,9 +15,9 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         public IActionResult Docentes()
         {
             doc = new DocentesRepository();
-            return View(doc.GetDocentesxNombre());
+            return View(doc.GetAll());
         }
-        //hjkl
+     
 
         public IActionResult Agregar()
         {
@@ -31,17 +31,15 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
             if (ModelState.IsValid)
             {
-                if (doc == null)
-                {
 
-                    doc = new DocentesRepository();
-                }
+                doc = new DocentesRepository();
+
                 try
                 {
                     {
                         if (doc.ValidarDocentes(nuevo))
                         {
-                            doc.Insert(nuevo);
+                            doc.InsertRepository(nuevo);
 
                             return RedirectToAction("Docentes");
                         }
@@ -75,13 +73,13 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         [HttpPost]
         public IActionResult Eliminar(int id)
         {
-           DocentesRepository ss = new DocentesRepository();
+            DocentesRepository ss = new DocentesRepository();
 
             var clase = ss.GetDocenteById(id);
             ss.Delete(clase);
             return RedirectToAction("Docentes");
         }
-        
+
 
 
 
@@ -91,50 +89,52 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             var clase = ss.GetDocenteById(id);
             ss.Update(clase);
 
-            if(clase == null)
+            if (clase == null)
             {
-                return  RedirectToAction("Index");
+                return RedirectToAction("Index");
 
             }
             else
-            { 
-            
-                return View(clase);
-            
-            }
-            
-        }
-
-        [HttpPost]
-
-        public IActionResult EditarDocente(DocentesViewModel vi)
-        {
-
-            if (ModelState.IsValid)
             {
-                DocentesRepository doc = new DocentesRepository();
-                var v = doc.GetDDocenteByNombre(vi.Nombre);
-                if (doc == null)
-                {
-                    doc.Update(vi);
-                    return RedirectToAction("Index");
-                }
-                else if (v.Id == vi.NumeroDeControl)
-                {
-                       v.Nombre= vi.Nombre;
-                      doc.Update(v);
-                    doc.Update(vi);
-                    return RedirectToAction("Index");
-                }
-                else {
-                MdelState.AddModelError("","Ya existe un nombre igual. Porfavor escriba otro nombre");
-                    return view(vi);
-                
-                }
+
+                return View(clase);
 
             }
 
-
         }
+
+        //[HttpPost]
+
+        //public IActionResult EditarDocente(DocentesViewModel vi)
+        //{
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        DocentesRepository doc = new DocentesRepository();
+        //        var v = doc.GetDDocenteByNombre(vi.Nombre);
+        //        if (doc == null)
+        //        {
+        //            doc.Update(vi);
+        //            return RedirectToAction("Index");
+        //        }
+        //        else if (v.Id == vi.NumeroDeControl)
+        //        {
+        //               v.Nombre= vi.Nombre;
+        //              doc.Update(v);
+        //            doc.Update(vi);
+        //            return RedirectToAction("Index");
+        //        }
+        //        else {
+        //        MdelState.AddModelError("","Ya existe un nombre igual. Porfavor escriba otro nombre");
+        //            return view(vi);
+
+        //        }
+
+        //    }
+
+
+
+
     }
-    }
+}
+

@@ -11,7 +11,7 @@ namespace ManualesElectronicosFInalFinal2.Services
     {
         public IEnumerable<Carrera> GetCarreras()
         {
-            sistemaelectronico123Context dr = new sistemaelectronico123Context();
+            sistemaselectronicoContext dr = new sistemaselectronicoContext();
             return dr.Carrera;
         }
        
