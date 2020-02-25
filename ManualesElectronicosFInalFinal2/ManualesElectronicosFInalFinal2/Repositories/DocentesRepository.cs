@@ -11,11 +11,14 @@ namespace ManualesElectronicosFInalFinal2.Repositories
 {
     public class DocentesRepository : Repository<Docentes>
     {
-        public IEnumerable<Docentes> GetDocentesxNombre(string Nombre)
+        public IEnumerable<Docentes> GetDocentesxNombre()
         {
+            
             var data = Context.Docentes.OrderBy(x => x.Nombre);
             return data;
         }
+
+       
 
      
       
@@ -38,11 +41,16 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             {
                 throw new Exception("el nombre no puede ir vacio");
             }
-            //if (!NumeroDeControl.IsMatch(docente.NumeroDeControl))
-            //{
-            //    throw new Exception("El numero de control no puede contener letras");
-            //}
+            if (!NumeroDeControl.IsMatch(docente.NumeroDeControl))
+            {
+                throw new Exception("El numero de control no puede contener letras");
+            }
+            if )
+            {
 
+            } 
+           
+            
 
 
 
