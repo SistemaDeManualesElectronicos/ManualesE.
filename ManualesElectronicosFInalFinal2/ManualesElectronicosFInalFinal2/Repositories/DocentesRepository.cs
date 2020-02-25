@@ -1,5 +1,4 @@
 ﻿using ManualesElectronicosFInalFinal2.Models;
-using ManualesElectronicosFInalFinal2.Models.DocentesViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +16,9 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             var data = Context.Docentes.OrderBy(x => x.Nombre);
             return data;
         }
+
+     
+      
         public Docentes GetDDocenteByNombre(string nombre)
         {
             return Context.Docentes
@@ -64,21 +66,20 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             }
         }
 
+        
+
         public void InsertRepository(Docentes nuevo)
         {
-
-            //Docentes l = new Docentes { Nombre = nuevo.Nombre, NumeroDeControl = nuevo.NumeroDeControl, Contraseña = nuevo.NumeroDeControl, Eliminado = false };
-            nuevo.Contraseña = nuevo.NumeroDeControl;
-            var contra= Encriptar(nuevo.Contraseña.ToString());
-            nuevo.Contraseña = contra;
+           
+            nuevo.Contraseña = Encriptar(nuevo.NumeroDeControl.ToString());  
             Insert(nuevo);
         
         }
 
-        public void Update(DocentesViewModel old)
-        {
-            Docentes m = new Docentes { Nombre = old.Nombre, NumeroDeControl = old.NumeroDeControl };
-        }
+        //public void Update(DocentesViewModel old)
+        //{
+        //    Docentes m = new Docentes { Nombre = old.Nombre, NumeroDeControl = old.NumeroDeControl };
+        //}
         public Docentes GetDocenteById(int id)
         {
             return Context.Docentes.FirstOrDefault(x => x.Id == id);

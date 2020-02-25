@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<Docentes>
-
 @{
     ViewData["Title"] = "Docentes";
     Layout = "~/Views/Shared/Layout.cshtml";
@@ -17,9 +16,10 @@
         <div class="card-body">
             <h5 class="card-title">@item.Nombre</h5>
             <p class="card-text">@item.NumeroDeControl</p>
-          
+           
             <a asp-action="Eliminar" asp-route-id="@item.Id" class="btn btn-primary" asp-controller="Docentes">Eliminar Docente</a>
             <a asp-action="EditarDocentes" asp-route-id="@item.Id" class="btn btn-primary" asp-controller="Docentes">Editar  Docente</a>
         </div>
     </div>
 }
+
