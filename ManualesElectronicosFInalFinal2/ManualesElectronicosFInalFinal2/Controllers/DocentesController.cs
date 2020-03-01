@@ -38,12 +38,12 @@ namespace ManualesElectronicosFInalFinal2.Controllers
                 try
                 {
                     {
-                        if (doc.ValidarDocentes(nuevo))
-                        {
-                            doc.InsertRepository(nuevo);
+                     if (doc.ValidarDocentes(nuevo))
+                  {
+                           doc.InsertRepository(nuevo);
 
                             return RedirectToAction("Docentes");
-                        }
+                      }
 
                     }
                 }
