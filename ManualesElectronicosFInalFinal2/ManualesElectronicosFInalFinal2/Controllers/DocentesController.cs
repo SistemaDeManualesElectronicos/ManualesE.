@@ -38,7 +38,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
                 try
                 {
-                    {
+                    
                         if (doc.ValidarDocentes(nuevo))
                         {
                              nuevo.Eliminado = false;
@@ -47,7 +47,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
                              return RedirectToAction("Docentes");
                         }
 
-                    }
+                    
                 }
 
                 catch (Exception ex)
@@ -83,25 +83,45 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
 
 
-        public IActionResult EditarDocentes(int id)
+
+        public IActionResult EditarDocentes(Docentes d)
         {
-            DocentesRepository ss = new DocentesRepository();
-            var clase = ss.GetDocenteById(id);
-            ss.Update(clase);
 
-            if (clase == null)
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("Index");
+                doc = new DocentesRepository();
 
-            }
+                try
+                {
+                    
+                        if (doc.ValidarDocentes(d))
+                        {
+                            var Datos = doc.GetById(d.Id);
+                            Datos.Nombre = d.Nombre;
+                            Datos.NumeroDeControl = d.NumeroDeControl;
+                            Datos.Contraseña = EncriptarLaContraseñaConverter.Encriptar(Datos.NumeroDeControl);
+                            Datos.IdCarrera = d.IdCarrera;
+                            doc.Update(Datos);
+                            return RedirectToAction("Docentes");
+                        }
+                    
+                }
+
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                    return View(d);
+                }
+                return View(d);
+            
+        }
+
             else
             {
-
-                return View(clase);
-
+                return View(d);
             }
 
-        }
+         }
 
 
 

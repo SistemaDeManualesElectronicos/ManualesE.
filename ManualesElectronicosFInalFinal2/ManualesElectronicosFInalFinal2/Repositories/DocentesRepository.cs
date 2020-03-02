@@ -11,6 +11,13 @@ namespace ManualesElectronicosFInalFinal2.Repositories
 {
     public class DocentesRepository : Repository<Docentes>
     {
+        private string error;
+        public string Error
+        {
+            get { return error; }
+            set { value = error; }
+        }
+
         public IEnumerable<Docentes> GetDocentesxNombre()
         {
             
@@ -26,9 +33,9 @@ namespace ManualesElectronicosFInalFinal2.Repositories
 
         public bool ValidarDocentes(Docentes docente)
         {
-
+           
             Regex NombreConCaracteresEspeciales = new Regex(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ.-]+");
-            //Regex NumeroDeControl = new Regex(@"[0-9][0-9][0-9][0-9]+$/");
+           
 
             if (!NombreConCaracteresEspeciales.IsMatch(docente.Nombre.ToString()))
             {
