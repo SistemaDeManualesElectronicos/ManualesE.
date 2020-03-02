@@ -25,14 +25,12 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             return Context.Set<T>();
         }
 
-        public T GetById(object id)
-        {
-            return Context.Find<T>(id);
-        }
-
+      
         public void Insert(T entidad)
         {
+            
             Context.Add(entidad);
+            
             Save();
         }
 

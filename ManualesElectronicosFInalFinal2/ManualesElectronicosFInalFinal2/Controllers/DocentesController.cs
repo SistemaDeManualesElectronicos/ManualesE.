@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ManualesElectronicosFInalFinal2.Helpers;
 using ManualesElectronicosFInalFinal2.Models;
 
 using ManualesElectronicosFInalFinal2.Repositories;
@@ -16,7 +17,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         {
             doc = new DocentesRepository();
             
-            return View(doc.GetAll());
+            return View(doc.GetDocentesxNombre());
         }
      
 
@@ -38,12 +39,13 @@ namespace ManualesElectronicosFInalFinal2.Controllers
                 try
                 {
                     {
-                     if (doc.ValidarDocentes(nuevo))
-                  {
-                           doc.InsertRepository(nuevo);
-
-                            return RedirectToAction("Docentes");
-                      }
+                        if (doc.ValidarDocentes(nuevo))
+                        {
+                             nuevo.Eliminado = false;
+                             nuevo.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.NumeroDeControl);
+                             doc.Insert(nuevo);
+                             return RedirectToAction("Docentes");
+                        }
 
                     }
                 }
@@ -64,20 +66,17 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
         public IActionResult Eliminar(Docentes d)
         {
-
-            DocentesRepository ss = new DocentesRepository();
-
-            var clase = ss.GetDocenteById(d.Id);
-            return View();
+            doc = new DocentesRepository();
+            var datos = doc.GetDocenteById(d.Id);
+            return View(datos);
         }
 
         [HttpPost]
         public IActionResult Eliminar(int id)
         {
-            DocentesRepository ss = new DocentesRepository();
-
-            var clase = ss.GetDocenteById(id);
-            ss.Delete(clase);
+            doc = new DocentesRepository();
+            var clase = doc.GetDocenteById(id);
+            doc.Delete(clase);
             return RedirectToAction("Docentes");
         }
 
@@ -103,36 +102,6 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             }
 
         }
-
-        //[HttpPost]
-
-        //public IActionResult EditarDocente(DocentesViewModel vi)
-        //{
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        DocentesRepository doc = new DocentesRepository();
-        //        var v = doc.GetDDocenteByNombre(vi.Nombre);
-        //        if (doc == null)
-        //        {
-        //            doc.Update(vi);
-        //            return RedirectToAction("Index");
-        //        }
-        //        else if (v.Id == vi.NumeroDeControl)
-        //        {
-        //               v.Nombre= vi.Nombre;
-        //              doc.Update(v);
-        //            doc.Update(vi);
-        //            return RedirectToAction("Index");
-        //        }
-        //        else {
-        //        MdelState.AddModelError("","Ya existe un nombre igual. Porfavor escriba otro nombre");
-        //            return view(vi);
-
-        //        }
-
-        //    }
-
 
 
 
