@@ -2,24 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ManualesElectronicosFInalFinal2.Helpers;
 using ManualesElectronicosFInalFinal2.Models;
-
 using ManualesElectronicosFInalFinal2.Repositories;
-    using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using ManualesElectronicosFInalFinal2.Helpers;
 
-    namespace ManualesElectronicosFInalFinal2.Controllers
+
+namespace ManualesElectronicosFInalFinal2.Controllers
+{
+    public class AlumnosController : Controller
     {
-    public class DocentesController : Controller
-    {
-        DocentesRepository doc;
-        public IActionResult Docentes()
+        public IActionResult Alumnos()
         {
-            doc = new DocentesRepository();
-
-            return View(doc.GetDocentesxNombre());
+            AlumnosRepository doc = new AlumnosRepository();
+            return View(doc.GetAll());
         }
-
 
         public IActionResult Agregar()
         {
@@ -27,27 +24,21 @@ using ManualesElectronicosFInalFinal2.Repositories;
         }
 
         [HttpPost]
-        public IActionResult Agregar(Docentes nuevo)
+
+        public IActionResult Agregar(Alumnos nuevo)
         {
-
-
             if (ModelState.IsValid)
             {
-
-                doc = new DocentesRepository();
-
+                AlumnosRepository doc = new AlumnosRepository();
                 try
                 {
-
-                    if (doc.ValidarDocentes(nuevo))
                     {
-                        nuevo.Eliminado = false;
-                        nuevo.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.NumeroDeControl);
-                        doc.Insert(nuevo);
-                        return RedirectToAction("Docentes");
+                        if (doc.ValidarAlumnos(nuevo))
+                        {
+                            doc.ValidarAlumnos(nuevo);
+                            return RedirectToAction("Alumnos");
+                        }
                     }
-
-
                 }
 
                 catch (Exception ex)
@@ -61,47 +52,49 @@ using ManualesElectronicosFInalFinal2.Repositories;
             {
                 return View(nuevo);
             }
-
         }
 
-        public IActionResult Eliminar(Docentes d)
-        {
-            doc = new DocentesRepository();
-            var datos = doc.GetDocenteById(d.Id);
-            return View(datos);
-        }
-
-        [HttpPost]
         public IActionResult Eliminar(int id)
         {
-            doc = new DocentesRepository();
-            var clase = doc.GetDocenteById(id);
-            doc.Delete(clase);
+            AlumnosRepository repos = new AlumnosRepository();
+            var r = repos.GetById(id);
+            if (r == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(r);
+            }
+        }
+        [HttpPost]
+        public IActionResult Eliminar(Alumnos c)
+        {
+
+            AlumnosRepository repos = new AlumnosRepository();
+            var r = repos.GetById(c.Id);
+            repos.Delete(r);
             return RedirectToAction("Docentes");
         }
 
-
-
-
-
-        public IActionResult EditarDocentes(Docentes d)
+        public IActionResult EditarDocentes(Alumnos d)
         {
 
             if (ModelState.IsValid)
             {
-                doc = new DocentesRepository();
+                AlumnosRepository al = new AlumnosRepository();
 
                 try
                 {
 
-                    if (doc.ValidarDocentes(d))
+                    if (al.ValidarAlumnos(d))
                     {
-                        var Datos = doc.GetById(d.Id);
+                        var Datos = al.GetById(d.Id);
                         Datos.Nombre = d.Nombre;
                         Datos.NumeroDeControl = d.NumeroDeControl;
                         Datos.Contraseña = EncriptarLaContraseñaConverter.Encriptar(Datos.NumeroDeControl);
                         Datos.IdCarrera = d.IdCarrera;
-                        doc.Update(Datos);
+                        al.Update(Datos);
                         return RedirectToAction("Docentes");
                     }
 
@@ -123,8 +116,5 @@ using ManualesElectronicosFInalFinal2.Repositories;
 
         }
 
-
-
     }
 }
-
