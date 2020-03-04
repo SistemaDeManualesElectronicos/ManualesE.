@@ -21,7 +21,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             return Context.Alumnos.FirstOrDefault(x => x.Id == id);
 
         }
-         
+         //fdf
         Regex NumeroDeControl = new Regex(@"/^[0-9]+$/");
        
         public bool ValidarAlumnos(Alumnos alumnos)
