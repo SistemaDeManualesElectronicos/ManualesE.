@@ -59,7 +59,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             {
                 return View(nuevo);
             }
-
+            jnjnjn
 
         }
 
