@@ -59,8 +59,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             {
                 return View(nuevo);
             }
-            jnjnjn
-
+         
         }
 
         public IActionResult Eliminar(int id)
@@ -80,23 +79,33 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             return RedirectToAction("Alumnos");
         }
 
-     
+        public IActionResult EditarAlumnos(int id)
+        {
+            AlumnosRepository al = new AlumnosRepository();
+
+            var a = al.GetById(id);
+
+                return View(a);
+            
+        }
+        [HttpPost]
+
         public IActionResult EditarAlumnos(Alumnos d)
         {
 
             if (ModelState.IsValid)
             {
-                AlumnosRepository al = new AlumnosRepository();
+               
             
                 try
                 {
-                   
+                    AlumnosRepository al = new AlumnosRepository(); 
                     if (al.ValidarAlumnos(d))
                     {
-                        var Datos = al.GetById(d.Nombre);
+                        var Datos = al.GetById(d.Id);
                         Datos.Nombre = d.Nombre;
                         Datos.NumeroControl = d.NumeroControl;
-                        Datos.Contraseña = EncriptarLaContraseñaConverter.Encriptar(Datos.NumeroControl);
+                       Datos.Contraseña = EncriptarLaContraseñaConverter.Encriptar(Datos.NumeroControl);
                         Datos.IdCarrera = d.IdCarrera;
                         al.Update(Datos);
                         return RedirectToAction("Alumnos");

@@ -109,7 +109,7 @@ using ManualesElectronicosFInalFinal2.Repositories;
 
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", ex.Message);
+                    ModelState.AddModelError("",ex.Message);
                     return View(d);
                 }
                 return View(d);
