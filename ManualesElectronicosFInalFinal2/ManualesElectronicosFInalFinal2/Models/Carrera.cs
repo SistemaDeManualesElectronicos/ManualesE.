@@ -8,8 +8,10 @@ namespace ManualesElectronicosFInalFinal2.Models
         public Carrera()
         {
             Docentes = new HashSet<Docentes>();
+            Alumnos = new HashSet<Alumnos>();
         }
 
+        
         public int Id { get; set; }
         public string Nombre { get; set; }
 
