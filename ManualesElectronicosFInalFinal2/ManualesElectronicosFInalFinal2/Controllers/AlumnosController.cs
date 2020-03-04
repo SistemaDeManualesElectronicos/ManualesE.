@@ -10,35 +10,42 @@ using ManualesElectronicosFInalFinal2.Helpers;
 
 namespace ManualesElectronicosFInalFinal2.Controllers
 {
+    
     public class AlumnosController : Controller
     {
+
+        AlumnosRepository alu;
         public IActionResult Alumnos()
         {
-            AlumnosRepository doc = new AlumnosRepository();
-            return View(doc.GetAll());
+            alu = new AlumnosRepository();
+            return View(alu.GetAlumnosxNombre());
         }
 
         public IActionResult Agregar()
         {
             return View();
         }
-
         [HttpPost]
-
         public IActionResult Agregar(Alumnos nuevo)
         {
+
             if (ModelState.IsValid)
             {
-                AlumnosRepository doc = new AlumnosRepository();
+
+                AlumnosRepository alu = new AlumnosRepository();
+
                 try
                 {
+
+                    if (alu.ValidarAlumnos(nuevo))
                     {
-                        if (doc.ValidarAlumnos(nuevo))
-                        {
-                            doc.ValidarAlumnos(nuevo);
-                            return RedirectToAction("Alumnos");
-                        }
+                        nuevo.Eliminado = false;
+                        nuevo.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.NumeroControl);
+                        alu.Insert(nuevo);
+                        return RedirectToAction("Alumnos");
                     }
+
+
                 }
 
                 catch (Exception ex)
@@ -52,32 +59,28 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             {
                 return View(nuevo);
             }
+
+
         }
 
         public IActionResult Eliminar(int id)
         {
             AlumnosRepository repos = new AlumnosRepository();
-            var r = repos.GetById(id);
-            if (r == null)
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                return View(r);
-            }
+            var r = repos.GetById(id);   
+            return View(r);
+            
         }
         [HttpPost]
         public IActionResult Eliminar(Alumnos c)
         {
 
             AlumnosRepository repos = new AlumnosRepository();
-            var r = repos.GetById(c.Id);
+            var r = repos.GetAlumnoById(c.Id);
             repos.Delete(r);
-            return RedirectToAction("Docentes");
+            return RedirectToAction("Alumnos");
         }
 
-        public IActionResult EditarDocentes(Alumnos d)
+        public IActionResult EditarAlumnos(Alumnos d)
         {
 
             if (ModelState.IsValid)
@@ -91,11 +94,11 @@ namespace ManualesElectronicosFInalFinal2.Controllers
                     {
                         var Datos = al.GetById(d.Id);
                         Datos.Nombre = d.Nombre;
-                        Datos.NumeroDeControl = d.NumeroDeControl;
-                        Datos.Contraseña = EncriptarLaContraseñaConverter.Encriptar(Datos.NumeroDeControl);
+                        Datos.NumeroControl = d.NumeroControl;
+                        Datos.Contraseña = EncriptarLaContraseñaConverter.Encriptar(Datos.NumeroControl);
                         Datos.IdCarrera = d.IdCarrera;
                         al.Update(Datos);
-                        return RedirectToAction("Docentes");
+                        return RedirectToAction("Alumnos");
                     }
 
                 }

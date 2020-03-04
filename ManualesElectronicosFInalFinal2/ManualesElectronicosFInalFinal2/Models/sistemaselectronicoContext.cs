@@ -14,7 +14,7 @@ namespace ManualesElectronicosFInalFinal2.Models
             : base(options)
         {
         }
-
+        public virtual DbSet<Alumnos> Alumnos { get; set; }
         public virtual DbSet<Carrera> Carrera { get; set; }
         public virtual DbSet<Docentes> Docentes { get; set; }
 
@@ -67,6 +67,36 @@ namespace ManualesElectronicosFInalFinal2.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FkCarrera");
             });
+
+            modelBuilder.Entity<Alumnos>(entity =>
+            {
+                entity.ToTable("alumnos");
+
+                entity.HasIndex(e => e.IdCarrera)
+                    .HasName("FkCarrera_idx");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Contraseña).HasColumnType("char(64)");
+
+                entity.Property(e => e.Eliminado).HasColumnType("bit(1)");
+
+                entity.Property(e => e.IdCarrera).HasColumnType("int(11)");
+
+                entity.Property(e => e.Nombre).HasColumnType("varchar(45)");
+
+                entity.Property(e => e.NumeroControl).HasColumnType("char(64)");
+
+                entity.HasOne(d => d.IdCarreraNavigation)
+                    .WithMany(p => p.Alumnos)
+                    .HasForeignKey(d => d.IdCarrera)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_carrera");
+            });
+
+
         }
     }
 }

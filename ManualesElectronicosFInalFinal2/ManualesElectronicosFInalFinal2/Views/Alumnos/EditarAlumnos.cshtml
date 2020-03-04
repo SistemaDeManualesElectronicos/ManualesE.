@@ -1,0 +1,91 @@
+﻿@inject AlumnosService service
+@model Alumnos
+@{
+    Layout = null;
+}
+
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <style>
+        body {
+            background: #2f313d;
+            font-family: sans-serif;
+            font-size: 20px;
+        }
+
+        h2 {
+            color: whitesmoke;
+            font-size: 30px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        div {
+            width: 50%;
+            position: absolute;
+            left: 22%;
+            background: rgba(0,0,0,0.3);
+            padding: 20px 30px;
+            color: whitesmoke;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 15px 0px;
+            background: transparent;
+            border: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            outline: none;
+            color: white;
+            font-size: 12px;
+        }
+
+        input[type="submit"] {
+            background: #008F63;
+            border: 0;
+            width: 250px;
+            height: 40px;
+            border-radius: 3px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+            font-size: 20px;
+            margin: 40px;
+        }
+    </style>
+
+</body>
+
+
+</html>
+
+<form method="post" asp-action="EditarAlumnos" asp-controller="Alumnos">
+    <div>
+        <h2>Editar Alumno</h2><br />
+        <label>Nombre Alumno:</label><br />
+
+
+        <input type="hidden" id="id" asp-for="Id" />
+
+        <input type="text" id="nombreAlumnos" asp-for="@Model.Nombre" placeholder="@Model.Nombre" required="required" />
+
+
+        <br />
+        <label>Numero de control:</label><br />
+        <input type="text" asp-for="@Model.NumeroControl" placeholder="@Model.NumeroControl" required="required" /><br />
+        <select asp-for="IdCarrera" asp-items="@(new SelectList(service.GetCarreras(),"Id", "Nombre"))"></select>
+
+        <div class="botones" style="padding:5px">
+            <input type="submit" value="Agregar" />
+            <button asp-action="Alumnos">Cancelar</button>
+
+        </div>
+
+    </div>
+</form>
+

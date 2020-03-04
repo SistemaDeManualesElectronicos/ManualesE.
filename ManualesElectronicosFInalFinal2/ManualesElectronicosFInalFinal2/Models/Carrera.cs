@@ -14,5 +14,6 @@ namespace ManualesElectronicosFInalFinal2.Models
         public string Nombre { get; set; }
 
         public ICollection<Docentes> Docentes { get; set; }
+        public ICollection<Alumnos> Alumnos { get; set; }
     }
 }
