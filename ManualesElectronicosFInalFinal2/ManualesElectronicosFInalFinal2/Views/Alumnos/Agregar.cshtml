@@ -14,8 +14,7 @@
         <input asp-for="Nombre" type="text" /><br />
         <label>Numero De Control</label>
         <input asp-for="NumeroControl" type="text" /><br />
-        @*<label>Carrera:</label>
-            <input asp-for="Carrera" type="text" /><br />*@
+  
 
 
         <select asp-for="IdCarrera" asp-items="@(new SelectList(service.GetCarreras(),"Id", "Nombre"))"></select>
