@@ -80,19 +80,20 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             return RedirectToAction("Alumnos");
         }
 
+     
         public IActionResult EditarAlumnos(Alumnos d)
         {
 
             if (ModelState.IsValid)
             {
                 AlumnosRepository al = new AlumnosRepository();
-
+            
                 try
                 {
-
+                   
                     if (al.ValidarAlumnos(d))
                     {
-                        var Datos = al.GetById(d.Id);
+                        var Datos = al.GetById(d.Nombre);
                         Datos.Nombre = d.Nombre;
                         Datos.NumeroControl = d.NumeroControl;
                         Datos.Contraseña = EncriptarLaContraseñaConverter.Encriptar(Datos.NumeroControl);
