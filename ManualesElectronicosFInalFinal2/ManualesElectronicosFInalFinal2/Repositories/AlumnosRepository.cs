@@ -35,8 +35,32 @@ namespace ManualesElectronicosFInalFinal2.Repositories
         {
           
             Regex NombreConCaracteresEspeciales = new Regex(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ.-]+");
+            Regex NombreConCaracteresEspecialess = new Regex(@"^([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])+[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])?$");
             Regex NumeroDeControlA = new Regex(@"[1][0-9]{2}[A-Z]{1}[0]{1}[0-9]{3}");
 
+       //     if(alumnos.Nombre == null)
+       //     {
+       //         throw new Exception("El Nombre no puede ir vacio2");
+       //     }
+
+            if (string.IsNullOrWhiteSpace(alumnos.Nombre))
+
+            {
+                throw new Exception("El Nombre no puede ir vacio");
+            }
+         //   if (!NombreConCaracteresEspeciales.IsMatch(alumnos.Nombre.ToString())) //validar que no haya caracteres especiales
+          //  {
+         //       throw new Exception("El Nombre no puede ir con caracteres especiales.");
+         //   }
+            if (!NombreConCaracteresEspecialess.IsMatch(alumnos.Nombre.ToString())) //validar que escriba apellidos
+            {
+                throw new Exception("Verifique que haya escrito el nombre completo correctamente y no haya caracteres especiales");
+            }
+            if(alumnos.Nombre.Length >45)
+            {
+                throw new Exception("El limite para el nombre es de 45");
+            }
+////////////////////////Numero Control
             if (string.IsNullOrWhiteSpace(alumnos.NumeroControl.ToString()))  //Validar Numero Control vacio
 
             {
@@ -49,19 +73,10 @@ namespace ManualesElectronicosFInalFinal2.Repositories
                     throw new Exception("Numero de control incorrecto. Verifique que el formato este correcto");
                 }
             }
-
-
-            if (!NombreConCaracteresEspeciales.IsMatch(alumnos.Nombre.ToString())) 
+            if (alumnos.Nombre.Length > 8)
             {
-                throw new Exception("El Nombre no puede ir con caracteres especiales.");
+                throw new Exception("Numero de control incorrecto. El limite para el nombre es de 8");
             }
-         
-            if (string.IsNullOrWhiteSpace(alumnos.Nombre.ToString()))
-
-            {
-                throw new Exception("El Nombre no puede ir vacio");
-            }
-
             if (Context.Alumnos.Any(x => x.NumeroControl == alumnos.NumeroControl))  //Validar si ya existe numero de control
             {
                 throw new Exception("Numero de control repetido");
