@@ -21,26 +21,50 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             return Context.Alumnos.FirstOrDefault(x => x.Id == id);
 
         }
-         //fdf
-        Regex NumeroDeControl = new Regex(@"/^[0-9]+$/");
+      
+      public bool validarAlumnosEditar (Alumnos alumnos)
+        {
+
+
+
+            return true;
+        }
+        sistemaselectronicoContext context = new sistemaselectronicoContext();
        
         public bool ValidarAlumnos(Alumnos alumnos)
         {
+          
             Regex NombreConCaracteresEspeciales = new Regex(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ.-]+");
-            Regex NumeroDeControlA = new Regex(@"[1][0-9]{2}[G,D,M,T,P,A][0]{1}[0-9]{3}");
+            Regex NumeroDeControlA = new Regex(@"[1][0-9]{2}[A-Z]{1}[0]{1}[0-9]{3}");
 
-            if (!NombreConCaracteresEspeciales.IsMatch(alumnos.Nombre.ToString()))
+            if (string.IsNullOrWhiteSpace(alumnos.NumeroControl.ToString()))  //Validar Numero Control vacio
+
+            {
+                throw new Exception("El Numero de control no puede ir vacio");
+            }
+            else
+            {
+                if (!NumeroDeControlA.IsMatch(alumnos.NumeroControl.ToString())) //validar formato de numero de control
+                {
+                    throw new Exception("Numero de control incorrecto. Verifique que el formato este correcto");
+                }
+            }
+
+
+            if (!NombreConCaracteresEspeciales.IsMatch(alumnos.Nombre.ToString())) 
             {
                 throw new Exception("El Nombre no puede ir con caracteres especiales.");
             }
-            if (!NumeroDeControlA.IsMatch(alumnos.NumeroControl.ToString()))
-            {
-                throw new Exception("Numero de control incorrecto. Verifique que el formato este correcto");
-            }
+         
             if (string.IsNullOrWhiteSpace(alumnos.Nombre.ToString()))
 
             {
                 throw new Exception("El Nombre no puede ir vacio");
+            }
+
+            if (Context.Alumnos.Any(x => x.NumeroControl == alumnos.NumeroControl))  //Validar si ya existe numero de control
+            {
+                throw new Exception("Numero de control repetido");
             }
 
             return true;
