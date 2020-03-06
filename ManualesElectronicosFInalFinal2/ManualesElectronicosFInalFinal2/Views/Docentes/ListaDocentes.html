@@ -8,6 +8,11 @@
 <body>
 
     <style>
+        html {
+            position: relative;
+            min-height: 100%;
+        }
+
         body {
             background: #2f313d;
             font-family: sans-serif;
@@ -26,22 +31,35 @@
 
         td {
             background-color: #434550;
+            color: darkgray;
         }
 
         .herramietas {
+            background-color: #2f313d;
             display: block;
-            float: right;
+            position: fixed;
+            bottom: 0px;
+            right: 0px;
+            width: 100%;
         }
 
         img {
-            width: 70px;
-            opacity: 0.5;
+            width: 50px;
+        }
+
+        #main-header {
+            height: 60px;
+            width: 100%;
+            left: 0;
+            top: 0;
+            position: fixed;
         }
     </style>
-    <div>
-        <img src="Imagenes/options.png" style="float: right; margin-top: -95px; width: 50px;" />
+    <header id="main-header">
+        <h1 style="opacity:.01">l</h1>
+        <img src="Imagenes/options1.png" style="float: right; margin-top: -95px; width: 50px;" />
         <img src="Imagenes/list.png" style="float:left; margin-top:-95px; width:50px" />
-    </div>
+    </header>
     <table>
         <tbody>
             <tr>
@@ -205,10 +223,10 @@
         </tbody>
 
     </table>
-    <div class="herramietas">
-        <a href="AgregarDocente.html"><img src="Imagenes/add.png" /></a>
+    <footer class="herramietas">
+        <a class="flotante" href="AgregarDocente.html"><img src="Imagenes/add.png" /></a>
         <a href="EditarDocente.html"><img src="Imagenes/user.png" /></a>
         <a href="#"><img src="Imagenes/delete.png" /></a>
-    </div>
+    </footer>
 </body>
 </html>
