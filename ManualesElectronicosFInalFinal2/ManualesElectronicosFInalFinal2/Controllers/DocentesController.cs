@@ -14,7 +14,7 @@ using ManualesElectronicosFInalFinal2.Repositories;
     {
         DocentesRepository doc;
         public IActionResult Docentes()
-        {
+                    {
             doc = new DocentesRepository();
 
             return View(doc.GetDocentesxNombre());
@@ -25,37 +25,42 @@ using ManualesElectronicosFInalFinal2.Repositories;
         {
             return View();
         }
+        
 
         [HttpPost]
         public IActionResult Agregar(Docentes nuevo)
         {
 
-
+           
             if (ModelState.IsValid)
             {
-
                 doc = new DocentesRepository();
+                List<string> errores = doc.ValidarDocentes(nuevo);
+                for (int i = 0; i < errores.Count(); i++)
+                {
+                    ModelState.AddModelError("", errores[i]);
+                    
+                }
 
-                try
+                if (errores.Count() == 0)
                 {
 
-                    if (doc.ValidarDocentes(nuevo))
-                    {
-                        nuevo.Eliminado = false;
-                        nuevo.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.NumeroDeControl);
-                        doc.Insert(nuevo);
-                        return RedirectToAction("Docentes");
-                    }
 
+
+                    nuevo.Eliminado = false;
+                    nuevo.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.NumeroDeControl);
+                    doc.Insert(nuevo);
+                    return RedirectToAction("Docentes");
 
                 }
 
-                catch (Exception ex)
+
+                else
                 {
-                    ModelState.AddModelError("", ex.Message);
+
                     return View(nuevo);
                 }
-                return View(nuevo);
+
             }
             else
             {
@@ -67,6 +72,13 @@ using ManualesElectronicosFInalFinal2.Repositories;
         public IActionResult Eliminar(Docentes d)
         {
             doc = new DocentesRepository();
+            List<string> errores = doc.ValidarDocentes(d);
+            for (int i = 0; i < errores.Count(); i++)
+            {
+                ModelState.AddModelError("", errores[i]);
+
+            }
+
             var datos = doc.GetDocenteById(d.Id);
             return View(datos);
         }
@@ -90,41 +102,35 @@ using ManualesElectronicosFInalFinal2.Repositories;
             if (ModelState.IsValid)
             {
                 doc = new DocentesRepository();
-
-                try
+                List<string> errores = doc.ValidarDocentes(d);
+                for (int i = 0; i < errores.Count(); i++)
                 {
-
-                    if (doc.ValidarDocentes(d))
-                    {
-                        var Datos = doc.GetById(d.Id);
-                        Datos.Nombre = d.Nombre;
-                        Datos.NumeroDeControl = d.NumeroDeControl;
-                        Datos.Contraseña = EncriptarLaContraseñaConverter.Encriptar(Datos.NumeroDeControl);
-                        Datos.IdCarrera = d.IdCarrera;
-                        doc.Update(Datos);
-                        return RedirectToAction("Docentes");
-                    }
-
+                    ModelState.AddModelError("", errores[i]);
                 }
 
-                catch (Exception ex)
+                if (errores.Count() == 0)
                 {
-                    ModelState.AddModelError("",ex.Message);
+
+
+
+                    var Datos = doc.GetById(d.Id);
+                    Datos.Nombre = d.Nombre;
+                    Datos.NumeroDeControl = d.NumeroDeControl;
+                    Datos.Contraseña = EncriptarLaContraseñaConverter.Encriptar(Datos.NumeroDeControl);
+                    Datos.IdCarrera = d.IdCarrera;
+                    doc.Update(Datos);
+                    return RedirectToAction("Docentes");
+                }
+                    
+                }
+                else
+                {
+                    
                     return View(d);
                 }
                 return View(d);
-
-            }
-
-            else
-            {
-                return View(d);
-            }
-
+            
         }
-
-
-
+        }
     }
-}
 
