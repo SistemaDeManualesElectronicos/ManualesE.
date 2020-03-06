@@ -28,31 +28,28 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         [HttpPost]
         public IActionResult Agregar(Alumnos nuevo)
         {
+       
 
             if (ModelState.IsValid)
             {
 
                 AlumnosRepository alu = new AlumnosRepository();
 
-                try
+                List<string> errores = alu.ValidarAlumnos(nuevo);
+                for (int i = 0; i < errores.Count; i++)
                 {
-
-                    if (alu.ValidarAlumnos(nuevo))
-                    {
-                        nuevo.Eliminado = false;
-                        nuevo.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.NumeroControl);
-                        alu.Insert(nuevo);
-                        return RedirectToAction("Alumnos");
-                    }
-
-
+                    ModelState.AddModelError("", errores[i]);
                 }
 
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError("", ex.Message);
-                    return View(nuevo);
+                if(errores.Count()== 0){
+                    nuevo.Eliminado = false;
+                    nuevo.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.NumeroControl);
+                    alu.Insert(nuevo);
+                    return RedirectToAction("Alumnos");
                 }
+
+
+          
                 return View(nuevo);
             }
             else
@@ -92,32 +89,30 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
         public IActionResult EditarAlumnos(Alumnos d)
         {
-
+            AlumnosRepository alu = new AlumnosRepository();
             if (ModelState.IsValid)
             {
-               
+                List<string> errores = alu.ValidarAlumnosEditar(d);
+                for (int i = 0; i < errores.Count; i++)
+                {
+                    ModelState.AddModelError("", errores[i]);
+                }
+                if (errores.Count() == 0)
+                {
+                    var Datos = alu.GetById(d.Id);
+                    // nuevo.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.NumeroControl);
+                    alu.Update(d);
+                    return RedirectToAction("Alumnos");
+                }
+
+
+
+
             
-                try
-                {
-                    AlumnosRepository al = new AlumnosRepository(); 
-                    if (al.ValidarAlumnos(d))
-                    {
-                        var Datos = al.GetById(d.Id);
-                        Datos.Nombre = d.Nombre;
-                        Datos.NumeroControl = d.NumeroControl;
-                       Datos.Contraseña = EncriptarLaContraseñaConverter.Encriptar(Datos.NumeroControl);
-                        Datos.IdCarrera = d.IdCarrera;
-                        al.Update(Datos);
-                        return RedirectToAction("Alumnos");
-                    }
 
-                }
+                
 
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError("", ex.Message);
-                    return View(d);
-                }
+             
                 return View(d);
 
             }
