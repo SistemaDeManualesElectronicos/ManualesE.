@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Alumnos>
+@{
+    ViewData["Title"] = "Alumnos";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 style="text-align:center">Alumnos</h2>
+<a style="text-align:start; float:left; margin-right:500px; margin-left:610px" asp-action="Agregar" asp-controller="Alumnos" class="btn btn-primary">Agregar Alumno</a>
+
+@foreach (var item in Model)
+{
+    <div class="card" style="width: 18rem;">
+
+        <div class="card-body">
+            <h5 class="card-title">@item.Nombre</h5>
+            <p class="card-text">@item.NumeroControl</p>
+            <p></p>
+            <a asp-action="Eliminar" asp-route-id="@item.Id" class="btn btn-primary" asp-controller="Alumnos">Eliminar Alumno</a>
+            <a asp-action="EditarAlumnos" asp-route-id="@item.Id" class="btn btn-primary" asp-controller="Alumnos">Editar Alumno</a>
+        </div>
+    </div>
+}
+
