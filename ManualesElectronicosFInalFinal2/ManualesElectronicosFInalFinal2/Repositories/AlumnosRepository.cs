@@ -26,17 +26,6 @@ namespace ManualesElectronicosFInalFinal2.Repositories
         sistemaselectronicoContext context = new sistemaselectronicoContext();
         Regex NombreConCaracteresEspecialess = new Regex(@"^([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])+[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])?$");
 
-
-        public bool ErroresAgregar
-        {
-
-            set
-            {
-       
-            }
-
-        }
-     
         public List<string> ValidarAlumnos(Alumnos alumnos)
         {
             List<string> listaerrores = new List<string>();
@@ -61,7 +50,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
                 
             }
 
-            if (Context.Alumnos.Any(x => x.Nombre == alumnos.Nombre))  //Validar si ya existe nombre de un alumno.
+            if (Context.Alumnos.Any(x => x.Nombre == alumnos.Nombre && x.NumeroControl == alumnos.NumeroControl ))  //Validar si ya existe nombre de un alumno.
             {
                 listaerrores.Add("Ya existe este Alumno, Por favor verifique sus datos");
              
@@ -88,7 +77,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             if (Context.Alumnos.Any(x => x.NumeroControl == alumnos.NumeroControl))  //Validar si ya existe numero de control
             {
                
-                listaerrores.Add("Numero de control repetido");
+                listaerrores.Add("Numero de control ya existente");
             }
 
 
@@ -96,8 +85,6 @@ namespace ManualesElectronicosFInalFinal2.Repositories
 
             return listaerrores ;
         }
-
-
         public List<string> ValidarAlumnosEditar(Alumnos alumnos)
         {
             List<string> listaerrores = new List<string>();
@@ -128,7 +115,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
 
         }
 
-
+    
 
     }
 }
