@@ -11,12 +11,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
 {
     public class DocentesRepository : Repository<Docentes>
     {
-        private string error;
-        public string Error
-        {
-            get { return error; }
-            set { value = error; }
-        }
+      
 
         public IEnumerable<Docentes> GetDocentesxNombre()
         {
@@ -31,26 +26,55 @@ namespace ManualesElectronicosFInalFinal2.Repositories
           
         }
 
-        public bool ValidarDocentes(Docentes docente)
+        public List<string> ValidarDocentes(Docentes docente)
         {
-           
-            Regex NombreConCaracteresEspeciales = new Regex(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ.-]+");
-           
+            
+            List<string> errores = new List<string>();
+            Regex NombreConCaracteresEspeciales = new Regex(@"^[A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ]*$");
+            Regex NumeroDeControl = new Regex("^[0-9]*$");
+            var dato = Context.Carrera.FirstOrDefault(x => x.Id == docente.IdCarrera);
 
-            if (!NombreConCaracteresEspeciales.IsMatch(docente.Nombre.ToString()))
-            {
-                throw new Exception("el nombre no puede ir con caracteres especiales poner caracteres especiales");
-            }
-            if (string.IsNullOrWhiteSpace(docente.Nombre.ToString()))
-            {
-                throw new Exception("el nombre no puede ir vacio");
-            }
-            //if (!NumeroDeControl.IsMatch(docente.NumeroDeControl))
-            //{
-            //    throw new Exception("El numero de control no puede contener letras");
-            //}
 
-            return true;
+            if (string.IsNullOrWhiteSpace(docente.NumeroDeControl))
+            {
+                errores.Add("El Campo conocido como numero de control no debe ir vacio");
+            }
+            else
+            {
+                if (!NumeroDeControl.IsMatch(docente.NumeroDeControl))
+                {
+                    errores.Add("El patron de numero de control esta incorrecto");
+                }
+            }
+
+            if (string.IsNullOrWhiteSpace(docente.Nombre))
+            {
+                errores.Add("el campo no puede ser nulo o en blanco");
+            }
+            else
+            {
+                if (!NombreConCaracteresEspeciales.IsMatch(docente.Nombre))
+                {
+                    errores.Add("El nombre no puede tener caracteres especiales");
+                }
+            }
+
+            if (dato == null)
+            {
+                errores.Add("El Value de la carrera no existe");
+            }
+
+            if(Context.Docentes.Any(x=>x.NumeroDeControl  == docente.NumeroDeControl))
+            {
+                errores.Add("El Numero de control ya asignado a otro docente");
+            }
+
+
+            
+            
+
+
+            return errores;
         }
     }
 }
