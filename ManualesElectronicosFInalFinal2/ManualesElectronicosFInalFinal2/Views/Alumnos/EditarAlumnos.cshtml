@@ -1,4 +1,4 @@
-﻿@inject DocenteService service
+﻿@inject AlumnosService service
 @model Alumnos
 @{
     Layout = null;
@@ -78,7 +78,7 @@
         <br />
         <label>Numero de control:</label><br />
         <input type="text" asp-for="@Model.NumeroControl" placeholder="@Model.NumeroControl" required="required" /><br />
-        <select asp-for="IdCarrera" asp-items="@(new SelectList(service.GetCarreras(),"Id", "Nombre"))"></select>
+        <select asp-for="IdCarrera" asp-items="@(new SelectList(service.Gercarreritas(),"Id", "Nombre"))"></select>
 
         <div class="botones" style="padding:5px">
             <input type="submit" value="Editar" />

@@ -8,14 +8,14 @@ namespace ManualesElectronicosFInalFinal2.Repositories
 {
     public abstract class Repository<T> where T : class
     {
-        public sistemaselectronicoContext Context { get; set; }
-
+        public itesrcne_manualesContext Context { get; set; }
+        
         public Repository()
         {
-            Context = new sistemaselectronicoContext();
+            Context = new itesrcne_manualesContext();
         }
 
-        public Repository(sistemaselectronicoContext context)
+        public Repository(itesrcne_manualesContext context)
         {
             Context = context;
         }

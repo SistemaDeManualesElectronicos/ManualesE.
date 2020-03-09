@@ -9,9 +9,10 @@ namespace ManualesElectronicosFInalFinal2.Services
 {
     public class DocenteService
     {
-        public IEnumerable<Carrera> GetCarreras()
+       
+        public IEnumerable<Carrera> GeTcarreritas()
         {
-            sistemaselectronicoContext dr = new sistemaselectronicoContext();
+            itesrcne_manualesContext dr = new itesrcne_manualesContext();
             return dr.Carrera;
         }
        

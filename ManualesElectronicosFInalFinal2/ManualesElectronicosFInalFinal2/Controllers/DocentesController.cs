@@ -36,11 +36,7 @@ using ManualesElectronicosFInalFinal2.Repositories;
             {
                 doc = new DocentesRepository();
                 List<string> errores = doc.ValidarDocentes(nuevo);
-                for (int i = 0; i < errores.Count(); i++)
-                {
-                    ModelState.AddModelError("", errores[i]);
-                    
-                }
+                
 
                 if (errores.Count() == 0)
                 {
@@ -57,7 +53,11 @@ using ManualesElectronicosFInalFinal2.Repositories;
 
                 else
                 {
-
+for (int i = 0; i < errores.Count(); i++)
+                {
+                    ModelState.AddModelError("", errores[i]);
+                    
+                }
                     return View(nuevo);
                 }
 
@@ -73,12 +73,6 @@ using ManualesElectronicosFInalFinal2.Repositories;
         {
             doc = new DocentesRepository();
             List<string> errores = doc.ValidarDocentes(d);
-            for (int i = 0; i < errores.Count(); i++)
-            {
-                ModelState.AddModelError("", errores[i]);
-
-            }
-
             var datos = doc.GetDocenteById(d.Id);
             return View(datos);
         }

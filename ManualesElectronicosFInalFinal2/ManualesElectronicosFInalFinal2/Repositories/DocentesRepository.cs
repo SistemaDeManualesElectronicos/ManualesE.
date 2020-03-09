@@ -30,7 +30,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
         {
             
             List<string> errores = new List<string>();
-            Regex NombreConCaracteresEspeciales = new Regex(@"^[A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ]*$");
+            Regex NombreConCaracteresEspeciales = new Regex(@"^([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])+[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])?$");
             Regex NumeroDeControl = new Regex("^[0-9]*$");
             var dato = Context.Carrera.FirstOrDefault(x => x.Id == docente.IdCarrera);
 
@@ -47,6 +47,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
                 }
             }
 
+           
             if (string.IsNullOrWhiteSpace(docente.Nombre))
             {
                 errores.Add("el campo no puede ser nulo o en blanco");

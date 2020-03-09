@@ -17,7 +17,8 @@
   
 
 
-        <select asp-for="IdCarrera" asp-items="@(new SelectList(service.GetCarreras(),"Id", "Nombre"))"></select>
+    
+        <select asp-for="IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))"></select>
 
         <div class="botones" style="padding:5px">
             <input type="submit" value="Agregar" />

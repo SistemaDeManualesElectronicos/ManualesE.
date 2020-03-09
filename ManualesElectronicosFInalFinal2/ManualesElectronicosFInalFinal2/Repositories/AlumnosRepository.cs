@@ -21,9 +21,9 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             return Context.Alumnos.FirstOrDefault(x => x.Id == id);
 
         }
-      
-     
-        sistemaselectronicoContext context = new sistemaselectronicoContext();
+
+
+        itesrcne_manualesContext context = new itesrcne_manualesContext();
         Regex NombreConCaracteresEspecialess = new Regex(@"^([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])+[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])?$");
 
         public List<string> ValidarAlumnos(Alumnos alumnos)

@@ -7,15 +7,14 @@ namespace ManualesElectronicosFInalFinal2.Models
     {
         public Carrera()
         {
-            Docentes = new HashSet<Docentes>();
             Alumnos = new HashSet<Alumnos>();
+            Docentes = new HashSet<Docentes>();
         }
 
-        
         public int Id { get; set; }
         public string Nombre { get; set; }
 
-        public ICollection<Docentes> Docentes { get; set; }
         public ICollection<Alumnos> Alumnos { get; set; }
+        public ICollection<Docentes> Docentes { get; set; }
     }
 }
