@@ -14,7 +14,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             
             var data = Context.Alumnos.OrderBy(x => x.Nombre);
             return data;
-        }
+        }//p
         
         public Alumnos GetAlumnoById(int id)
         {
@@ -50,7 +50,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
                 
             }
 
-            if (Context.Alumnos.Any(x => x.Nombre == alumnos.Nombre && x.NumeroControl == alumnos.NumeroControl ))  //Validar si ya existe nombre de un alumno.
+            if (Context.Alumnos.Any(x => x.Nombre == alumnos.Nombre && x.NumeroControl == alumnos.NumeroControl && x.Id != alumnos.Id  ))  //Validar si ya existe nombre de un alumno. IIDD
             {
                 listaerrores.Add("Ya existe este Alumno, Por favor verifique sus datos");
              

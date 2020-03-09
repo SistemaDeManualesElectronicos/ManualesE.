@@ -9,6 +9,7 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <link href="~/Views/Docentes/style.css" rel="stylesheet" />
 </head>
 <body>
     <style>
@@ -67,8 +68,7 @@
 <form method="post" asp-action="EditarDocentes" asp-controller="Docentes">
     <div>
         <h2>Editar Docente</h2><br />
-        <label>Nombre Docente:</label><br />
-
+        @*<label>Nombre Docente:</label><br />*@
 
         <input type="hidden" id="id" asp-for="Id" />
 
@@ -76,16 +76,12 @@
 
 
         <br />
-        <label>Numero de control:</label><br />
+        @*<label>Numero de control:</label><br />*@
         <input type="text" asp-for="@Model.NumeroDeControl" placeholder="@Model.NumeroDeControl" required="required" /><br />
         <select asp-for="IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))"></select>
 
-        <div class="botones" style="padding:5px">
             <input type="submit" value="Agregar" />
             <button asp-action="Docentes">Cancelar</button>
-
-        </div>
-
     </div>
 </form>
 
