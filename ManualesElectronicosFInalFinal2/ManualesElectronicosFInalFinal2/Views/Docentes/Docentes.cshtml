@@ -3,7 +3,7 @@
     ViewData["Title"] = "Docentes";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
-
+@inject DocenteService service
 @*<h2 style="text-align:center">Docentes</h2>
 <a style="text-align:start; float:left; margin-right:500px; margin-left:610px" asp-action="Agregar" asp-controller="Docentes" class="btn btn-primary">Agregar Docente</a>*@
 
@@ -94,8 +94,7 @@
                             <td>@item.NumeroDeControl</td>
 
                             <td>@item.Nombre</td>
-
-                            <td>@item.IdCarrera</td>
+                            <td ></td>
 
                         </tr>
                     }
