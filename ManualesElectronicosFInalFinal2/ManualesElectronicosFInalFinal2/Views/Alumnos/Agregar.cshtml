@@ -4,7 +4,8 @@
     ViewData["Title"] = "Agregar";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
-    
+
+<link href="~/Views/Docentes/style.css" rel="stylesheet" />
 <section class="Agregar">
     <form method="post" asp-action="Agregar">
         <div class="caption">
@@ -13,7 +14,7 @@
         @*<label>Nombre:</label>*@
         <input asp-for="Nombre" type="text" placeholder="Nombre alumno" /><br />
         @*<label>Numero De Control</label>*@
-        <input asp-for="NumeroControl" type="text" placeholder="Número de control"/><br />
+        <input asp-for="NumeroControl" type="text" placeholder="Número de control" /><br />
         <select asp-for="IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))"></select>
 
         <div class="botones" style="padding:5px">

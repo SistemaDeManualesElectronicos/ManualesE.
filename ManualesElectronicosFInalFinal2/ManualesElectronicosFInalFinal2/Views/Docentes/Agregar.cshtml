@@ -4,8 +4,8 @@
     ViewData["Title"] = "Agregar";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
-    <link href="~/Views/Docentes/style.css" rel="stylesheet" />
-
+    
+        <link href="~/Views/Docentes/style.css" rel="stylesheet" />
 <style>
     body {
         background: #2f313d;
@@ -48,34 +48,26 @@
     input[type="submit"],button {
         background: #008F63;
         border: 0;
-        width: 250px;
+        width:30%;
         height: 40px;
         border-radius: 3px;
         color: white;
         cursor: pointer;
         transition: background 0.3s ease-in-out;
         font-size: 20px;
-        margin: 40px;
+        margin: 5px;
     }
 </style>
-<section class="Agregar">
-    <form method="post" asp-action="Agregar">
+<section class="Agregar" style="margin:20px;">
+    <form method="post" asp-action="Agregar" >
         <div class="caption">
             <h2>Agregar Docente</h2>
         </div>
-        @*<label>Nombre:</label>*@
         <input asp-for="Nombre" type="text" required="required" placeholder="Nombre docente" /><br />
-        @*<label>Numero De Control</label>*@
         <input asp-for="NumeroDeControl" type="text" placeholder="Número de control" /><br />
-        @*<label>Carrera:</label>
-        <input asp-for="Carrera" type="text" /><br />*@
-        
-        <label  placeholder="Curso" /><br />
-
-
         <select asp-for="IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))"></select>
 
-        <div class="botones" @*style="padding:5px"*@>
+        <div class="botones">
             <input type="submit" value="Agregar" />
             <button asp-action="Docentes">Cancelar</button>
 
@@ -84,21 +76,5 @@
         <div>
             <p>@Html.ValidationSummary()</p>
         </div>
-        @*<div>
-            <h2>Agregar Docente</h2><br />
-
-            <input type="text" placeholder="Nombre Docente" /><br />
-
-            <input type="text" placeholder="Número de contnrol" /><br />
-
-            <input type="text" placeholder=" Carrera" /><br />
-
-            <input type="text" placeholder="Cotraseña" /><br />
-            <input type="text" placeholder="Curso" /><br />
-
-            <input type="submit" value="Agregar" />
-            <input type="submit" value="Cancelar" />
-        </div>*@
     </form>
-
 </section>

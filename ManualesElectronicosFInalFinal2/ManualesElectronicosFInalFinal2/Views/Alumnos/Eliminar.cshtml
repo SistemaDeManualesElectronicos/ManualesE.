@@ -3,63 +3,65 @@
     ViewData["Title"] = "Docentes";
     Layout = null;
 }
-    <style>
-        body {
-            background: #2f313d;
-            font-family: sans-serif;
-            font-size: 20px;
-        }
+    <section>
+        <style>
+            body {
+                background: #2f313d;
+                font-family: sans-serif;
+                font-size: 20px;
+            }
 
-        p {
-            font-size: 20px;
-            color: darkred;
-        }
+            p {
+                font-size: 20px;
+                color: darkred;
+            }
 
-        h2, h1 {
-            color: whitesmoke;
-            font-size: 30px;
-            text-align: center;
-            margin-bottom: 10px;
-        }
+            h2, h1 {
+                color: whitesmoke;
+                font-size: 30px;
+                text-align: center;
+                margin-bottom: 10px;
+            }
 
-        form {
-            width: 50%;
-            position: absolute;
-            left: 22%;
-            background: rgba(0,0,0,0.3);
-            padding: 20px 30px;
-            color: whitesmoke;
-            border-radius: 15px;
-        }
+            form {
+                width: 50%;
+                position: absolute;
+                left: 22%;
+                background: rgba(0,0,0,0.3);
+                padding: 20px 30px;
+                color: whitesmoke;
+                border-radius: 15px;
+            }
 
-        input[type="submit"], input[type="button"] {
-            background: #008F63;
-            border: 0;
-            width: 250px;
-            height: 40px;
-            border-radius: 3px;
-            color: white;
-            cursor: pointer;
-            transition: background 0.3s ease-in-out;
-            font-size: 20px;
-            margin: 40px;
-        }
-    </style>
+            input[type="submit"], input[type="button"] {
+                background: #008F63;
+                border: 0;
+                width: 250px;
+                height: 40px;
+                border-radius: 3px;
+                color: white;
+                cursor: pointer;
+                transition: background 0.3s ease-in-out;
+                font-size: 20px;
+                margin: 40px;
+            }
+        </style>
 
-<form method="post" asp-action="Eliminar" asp-controller="Alumnos">
-    <div>
-        <h1>Eliminar Doncente</h1>
+        <form method="post" asp-action="Eliminar" asp-controller="Alumnos">
+            <div>
+                <h1>Eliminar Doncente</h1>
 
-        <input type="hidden" id="id" asp-for="Id" />
+                <input type="hidden" id="id" asp-for="Id" />
 
-        <p>¿Está seguro de eliminar el docente: "@Model.Nombre" </p>
+                <p>¿Está seguro de eliminar el docente: "@Model.Nombre" </p>
 
-        <div class="botones">
-            <p id="error">
-                @Html.ValidationSummary()
-            </p>
-            <input type="submit" value="Si" id="btnSi" />
-            <input onclick="history.back()" type="button" value="No" id="btnNo" formnovalidate="formnovalidate" />
-        </div>
-    </div>
-</form>
+                <div class="botones">
+                    <p id="error">
+                        @Html.ValidationSummary()
+                    </p>
+                    <input type="submit" value="Si" id="btnSi" />
+                    <input onclick="history.back()" type="button" value="No" id="btnNo" formnovalidate="formnovalidate" />
+                </div>
+            </div>
+        </form>
+    </section>

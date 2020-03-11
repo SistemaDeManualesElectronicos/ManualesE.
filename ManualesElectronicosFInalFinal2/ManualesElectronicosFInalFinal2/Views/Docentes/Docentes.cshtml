@@ -4,10 +4,10 @@
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-<h2 style="text-align:center">Docentes</h2>
-<a style="text-align:start; float:left; margin-right:500px; margin-left:610px" asp-action="Agregar" asp-controller="Docentes" class="btn btn-primary">Agregar Docente</a>
+@*<h2 style="text-align:center">Docentes</h2>
+<a style="text-align:start; float:left; margin-right:500px; margin-left:610px" asp-action="Agregar" asp-controller="Docentes" class="btn btn-primary">Agregar Docente</a>*@
 
-@foreach (var item in Model)
+@*@foreach (var item in Model)
 { 
    <div class="card" style="width: 18rem;">
 
@@ -19,5 +19,96 @@
             <a asp-action="EditarDocentes" asp-route-id="@item.Id" class="btn btn-primary" asp-controller="Docentes">Editar  Docente</a>
         </div>
     </div>
-}
+}*@
+    <body>
+
+        <style>
+            html {
+                position: relative;
+                min-height: 100%;
+            }
+
+            body {
+                background: #2f313d;
+                font-family: sans-serif;
+                font-size: 20px;
+            }
+
+            table {
+                margin-top: 100px;
+                padding: 50px;
+            }
+
+            th {
+                background-color: #212226;
+                color: aliceblue;
+            }
+
+            td {
+                background-color: #434550;
+                color: darkgray;
+            }
+
+            .herramietas {
+                background-color: #2f313d;
+                display: block;
+                position: fixed;
+                bottom: 0px;
+                right: 0px;
+                width: 100%;
+            }
+
+            img {
+                width: 50px;
+            }
+
+            #main-header {
+                height: 60px;
+                width: 100%;
+                left: 0;
+                top: 0;
+                position: fixed;
+            }
+        </style>
+        <header id="main-header">
+            <h1 style="opacity:.01">l</h1>
+            <img src="~/Imagenes/options1.png" style="float: right; margin-top: -95px; width: 50px;" />
+            <img src="~/Imagenes/list.png" style="float:left; margin-top:-95px; width:50px" />
+        </header>
+       
+            <table>
+                <tbody>
+                    <tr>
+
+                        <th>Numero de control</th>
+
+                        <th width="65%">Nombre Del Docente</th>
+
+                        <th>Carrera</th>
+
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>@item.NumeroDeControl</td>
+
+                            <td>@item.Nombre</td>
+
+                            <td>@item.IdCarrera</td>
+
+                        </tr>
+                    }
+                    </tbody>
+
+            </table>
+
+        
+
+        <footer class="herramietas">
+            <a class="flotante" href="Agregar.cshtml"><img src="~/Imagenes/add.png" /></a>
+            <a href="EditarDocentes.cshtml"><img src="~/Imagenes/user.png" /></a>
+            <a href="Eliminar.cshtml"><img src="~/Imagenes/delete.png" /></a>
+        </footer>
+    </body>
 
