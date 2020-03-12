@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "AgregarCurso";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="~/Views/Docentes/style.css" rel="stylesheet" />
+</head>
+<body>
+    <section>
+        <form>
+            <div>
+                <h2>Agregar Curso</h2>
+            </div>
+            <input placeholder="Clave"/><br />
+            <input placeholder="Nombre Curso" /><br />
+            <input placeholder="Número de control" /><br />
+            <input placeholder="Fecha" /><br />
+            <input placeholder="Nombre docente" /><br />
+            <select></select>
+
+            <div class="botones">
+                <input type="submit" value="Agregar" />
+                <button>Cancelar</button>
+
+            </div>
+            <div>
+                <p>@Html.ValidationSummary()</p>
+            </div>      
+        </form>
+    </section>
+</body>
+</html>
+
