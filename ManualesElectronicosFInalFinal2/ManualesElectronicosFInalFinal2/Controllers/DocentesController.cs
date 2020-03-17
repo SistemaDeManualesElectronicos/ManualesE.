@@ -53,7 +53,7 @@ using ManualesElectronicosFInalFinal2.Repositories;
 
                 else
                 {
-for (int i = 0; i < errores.Count(); i++)
+                   for (int i = 0; i < errores.Count(); i++)
                 {
                     ModelState.AddModelError("", errores[i]);
                     
@@ -76,6 +76,11 @@ for (int i = 0; i < errores.Count(); i++)
             var datos = doc.GetDocenteById(d.Id);
             return View(datos);
         }
+
+
+    
+
+
 
         [HttpPost]
         public IActionResult Eliminar(int id)
