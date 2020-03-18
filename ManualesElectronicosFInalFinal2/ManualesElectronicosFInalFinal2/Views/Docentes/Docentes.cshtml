@@ -28,61 +28,125 @@
     <link href="~/Views/Docentes/style.css" rel="stylesheet" />
 </head>
 <body>
+    <style>
+        html {
+            position: relative;
+            min-height: 100%;
+        }
 
-    @*<style>
-            html {
-                position: relative;
-                min-height: 100%;
-            }
+        body {
+            background: #2f313d;
+            font-family: sans-serif;
+            font-size: 20px;
+        }
 
-            body {
-                background: #2f313d;
-                font-family: sans-serif;
-                font-size: 20px;
-            }
+        table {
+            margin: auto;
+        }
 
-            table {
-                margin-top: 100px;
-                padding: 50px;
-            }
+        th {
+            background-color: #212226;
+            color: aliceblue;
+        }
 
-            th {
-                background-color: #212226;
-                color: aliceblue;
-            }
+        td {
+            background-color: #434550;
+            color: darkgray;
+        }
 
-            td {
-                background-color: #434550;
-                color: darkgray;
-            }
+        .herramietas {
+            background-color: #2f313d;
+            display: block;
+            position: fixed;
+            bottom: 0px;
+            right: 0px;
+            width: 100%;
+        }
 
-            .herramietas {
-                background-color: #2f313d;
+        img {
+            width: 50px;
+        }
+
+        #main-header {
+            height: 60px;
+            width: 100%;
+            left: 0;
+            top: 0;
+            position: fixed;
+        }
+        .sidebar {
+            position: fixed;
+            height: 100%;
+            width: 0;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            background-color: #434550;
+            overflow-x: hidden;
+            transition: 0.4s;
+            padding: 1rem 0;
+            box-sizing: border-box;
+        }
+
+            .sidebar .boton-cerrar {
+                position: absolute;
+                top: 0.5rem;
+                right: 1rem;
+                font-size: 2rem;
                 display: block;
-                position: fixed;
-                bottom: 0px;
-                right: 0px;
-                width: 100%;
+                padding: 0;
+                line-height: 1.5rem;
+                margin: 0;
+                height: 32px;
+                width: 32px;
+                text-align: center;
+                vertical-align: top;
             }
 
-            img {
-                width: 50px;
+            .sidebar ul, .sidebar li {
+                margin: 0;
+                padding: 0;
+                list-style: none inside;
             }
 
-            #main-header {
-                height: 60px;
-                width: 100%;
-                left: 0;
-                top: 0;
-                position: fixed;
+            .sidebar ul {
+                margin: 4rem auto;
+                display: block;
+                width: 80%;
+                min-width: 200px;
             }
-        </style>*@
-    <header id="main-header">
-        <h1 style="opacity:.01">l</h1>
-        <img src="~/Imagenes/options1.png" style="float: right; margin-top: -95px; width: 50px;" />
-        <img src="~/Imagenes/list.png" style="float:left; margin-top:-95px; width:50px" />
-    </header>
 
+            .sidebar a {
+                display: block;
+                font-size: 120%;
+                color: #eee;
+                text-decoration: none;
+            }
+                .sidebar a:hover {
+                    color: #fff;
+                    background-color: #008F63;
+                }
+
+        #contenido {
+            transition: margin-left .4s;
+            padding: 1rem;
+        }
+
+
+        .lateral {
+            width: 50px;
+            margin:0;
+            
+        }
+    </style>
+    <div id="sidebar" class="sidebar">
+        <a href="#" class="boton-cerrar" onclick="ocultar()">&times;</a>
+        <ul class="menu">
+            <li><a asp-action="Docentes" asp-controller="Docentes">Docentes</a></li>
+            <li><a asp-action="Alumnos" asp-controller="Alumnos">Alumnos</a></li>
+        </ul>
+    </div>
+    <a id="abrir" class="abrir-cerrar" href="javascript:void(0)" onclick="mostrar()"><img class="lateral" />Menú</a>
     <table>
         <tbody>
             <tr>
@@ -109,10 +173,25 @@
 
     </table>
     <footer class="herramietas">
-        <a class="flotante" asp-action="Agregar" asp-controller="Docentes" ><img src="~/Imagenes/add.png" /></a>
+        <a class="flotante" asp-action="Agregar" asp-controller="Docentes"><img src="~/Imagenes/add.png" /></a>
         <a href="EditarDocentes.cshtml"><img src="~/Imagenes/user.png" /></a>
         <a href="Eliminar.cshtml"><img src="~/Imagenes/delete.png" /></a>
     </footer>
+    <script>
+        function mostrar() {
+            document.getElementById("sidebar").style.width = "300px";
+            document.getElementById("contenido").style.marginLeft = "300px";
+            document.getElementById("abrir").style.display = "none";
+            document.getElementById("cerrar").style.display = "inline";
+        }
+
+        function ocultar() {
+            document.getElementById("sidebar").style.width = "0";
+            document.getElementById("contenido").style.marginLeft = "0";
+            document.getElementById("abrir").style.display = "inline";
+            document.getElementById("cerrar").style.display = "none";
+        }
+    </script>
 </body>
 
 
