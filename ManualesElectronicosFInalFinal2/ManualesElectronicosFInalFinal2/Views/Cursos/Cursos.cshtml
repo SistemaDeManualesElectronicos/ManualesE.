@@ -1,26 +1,36 @@
-﻿
+﻿@model IEnumerable<Curso>
 @{
-    ViewData["Title"] = "Cursos";
+//ViewData["Title"] = "Cursos";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-    <link href="~/Views/Docentes/style.css" rel="stylesheet" />
-</head>
-<body>
-    <div class="card" style="width: 18rem;">
 
-        <div>
-            <h1>Nombre del Curso</h1>
-            <p>Subtema 1</p>
-            <p> Subtema 2</p>
-            <a>Eliminar Curso</a>
-            <a>Editar Curso</a>
+
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        @*<link href="~/Views/Cursos/style.css" rel="stylesheet" />*@
+    </head>
+
+
+
+    <body>
+        <a style="text-align:start; float:left; margin-right:500px; margin-left:610px" asp-action="AgregarCurso" asp-controller="Cursos" class="btn btn-primary">Agregar Cursp</a>
+
+        <div class="card" style="width: 18rem;">
+            @foreach (var item in Model)
+            {
+                <div class="card" style="width: 18rem;">
+
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Nombre</h5>
+                        <p class="card-text">@item.Clave</p>
+                        <p></p>
+                        <a asp-action="Eliminar" asp-route-id="@item.Id" class="btn btn-primary" asp-controller="Cursos">Eliminar Alumno</a>
+                        <a asp-action="EditarAlumnos" asp-route-id="@item.Id" class="btn btn-primary" asp-controller="Cursos">Editar Alumno</a>
+                    </div>
+                </div>
+            }
         </div>
-    </div>
-</body>
-</html>
-
+    </body>
+    </html>

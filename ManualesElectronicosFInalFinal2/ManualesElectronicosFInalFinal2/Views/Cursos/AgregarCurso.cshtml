@@ -1,4 +1,4 @@
-﻿
+﻿@model Curso
 @{
     ViewData["Title"] = "AgregarCurso";
 }
@@ -12,15 +12,16 @@
 </head>
 <body>
     <section>
-        <form>
+        <form method="post">
             <div>
                 <h2>Agregar Curso</h2>
             </div>
-            <input placeholder="Clave"/><br />
-            <input placeholder="Nombre Curso" /><br />
-            <input placeholder="Número de control" /><br />
-            <input placeholder="Fecha" /><br />
-            <input placeholder="Nombre docente" /><br />
+            <input asp-for="Clave" placeholder="Clave" /><br />
+            <input asp-for="Nombre" placeholder="Nombre Curso" /><br />
+
+            <input asp-for="FechaInicio" placeholder="Fecha" /><br />
+            <input asp-for="FechaFinal" placeholder="FechaF" /><br />
+            <input asp-for="IdDocente" placeholder="Nombre docente" /><br />
             <select></select>
 
             <div class="botones">
@@ -30,7 +31,7 @@
             </div>
             <div>
                 <p>@Html.ValidationSummary()</p>
-            </div>      
+            </div>
         </form>
     </section>
 </body>
