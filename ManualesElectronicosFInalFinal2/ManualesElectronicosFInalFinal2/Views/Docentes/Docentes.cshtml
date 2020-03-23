@@ -54,13 +54,13 @@
             color: darkgray;
         }
 
-        .herramietas {
+        .herramietas,.sidebar2 {
             background-color: #2f313d;
             display: block;
             position: fixed;
             bottom: 0px;
             right: 0px;
-            width: 100%;
+            width: 0;
         }
 
         img {
@@ -160,7 +160,7 @@
             </tr>
             @foreach (var item in Model)
             {
-                <tr>
+                <tr onclick="mostrarHerramietas()">
 
                     <td>@item.NumeroDeControl</td>
 
@@ -172,24 +172,36 @@
         </tbody>
 
     </table>
-    <footer class="herramietas">
-        <a class="flotante" asp-action="Agregar" asp-controller="Docentes"><img src="~/Imagenes/add.png" /></a>
-        <a href="EditarDocentes.cshtml"><img src="~/Imagenes/user.png" /></a>
-        <a href="Eliminar.cshtml"><img src="~/Imagenes/delete.png" /></a>
+    <footer id="sidebar2" class="sidebar2">
+        <a class="flotante" asp-action="Agregar" asp-controller="Docentes"><img src="~/Imagenes/add.png" />Agregar</a>
+        <a href="EditarDocentes.cshtml"><img src="~/Imagenes/user.png" />Editar</a>
+        <a href="Eliminar.cshtml"><img src="~/Imagenes/delete.png" />Eliminar</a>
     </footer>
     <script>
         function mostrar() {
             document.getElementById("sidebar").style.width = "300px";
             document.getElementById("contenido").style.marginLeft = "300px";
-            document.getElementById("abrir").style.display = "none";
-            document.getElementById("cerrar").style.display = "inline";
+            document.getElementById("sidebar2").style.marginLeft = "300px";
+         
         }
 
         function ocultar() {
             document.getElementById("sidebar").style.width = "0";
             document.getElementById("contenido").style.marginLeft = "0";
-            document.getElementById("abrir").style.display = "inline";
-            document.getElementById("cerrar").style.display = "none";
+           
+        }
+        function mostrarHerramietas() {
+            document.getElementById("sidebar2").style.backgroundColor = "#2f313d";
+            document.getElementById("sidebar2").style.width = "100%";
+            document.getElementById("sidebar2").style.height = "50px";
+            document.getElementById("sidebar2").style.display = block;
+            document.getElementById("sidebar2").style.position = absolute;
+            document.getElementById("sidebar2").style.bottom = 0;
+            document.getElementById("sidebar2").style.right = 0;
+           
+            document.getElementById("icono").style.height = "10px";
+            
+
         }
     </script>
 </body>
