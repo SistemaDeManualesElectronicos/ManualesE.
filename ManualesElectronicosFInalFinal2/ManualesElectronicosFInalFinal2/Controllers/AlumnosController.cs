@@ -75,7 +75,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         {
             AlumnosRepository al = new AlumnosRepository();
 
-            var a = al.GetById(id);
+            var a = al.GetAlumnoById(id);
 
                 return View(a);
             

@@ -1,7 +1,9 @@
-﻿
+﻿@model Curso
 @{
     ViewData["Title"] = "EliminarCurso";
 }
+    <link href="~/Views/Cursos/style.css" rel="stylesheet" />
+
 <style>
     body {
         background: #2f313d;
@@ -44,16 +46,16 @@
         margin: 40px;
     }
 </style>
-<form>
+<form method="post" asp-action="EliminarCurso" asp-controller="Cursos">
     <div>
         <h1>Eliminar Curso</h1>
 
-        <input/>
+        <input type="hidden" id="id" asp-for="Id"/>
 
-        <p>¿Está seguro de eliminar el Curso:</p>
+        <p>¿Está seguro de eliminar el Curso:"@Model.Nombre"  </p>
 
         <div>
-            <p >
+            <p>
                 @Html.ValidationSummary()
             </p>
             <input type="submit" value="Si" id="btnSi" />

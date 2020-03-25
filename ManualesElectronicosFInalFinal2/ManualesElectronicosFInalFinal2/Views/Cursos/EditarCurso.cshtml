@@ -1,4 +1,4 @@
-﻿
+﻿@model Curso
 @{
     ViewData["Title"] = "EditarCurso";
 }
@@ -8,20 +8,23 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-    <link href="~/Views/Docentes/style.css" rel="stylesheet" />
+    <link href="~/Views/Cursos/style.css" rel="stylesheet" />
 </head>
 <body>
     <section>
-        <form>
+        <form method="post" asp-action="EditarCurso" asp-controller="Cursos">
             <div>
                 <h2>Editar Curso</h2>
             </div>
-            <input placeholder="Clave" /><br />
+            <input type="hidden" id="id" asp-for="Id" /><br />
+            <input type="text" asp-for="@Model.Clave" placeholder="@Model.Clave" required="required" /><br />
+            <input type="text" asp-for="@Model.Nombre" placeholder="@Model.Nombre" required="required" /><br />
+         
             <input placeholder="Nombre Curso" /><br />
             <select></select>
 
             <div class="botones">
-                <input type="submit" value="Agregar" />
+                <input type="submit" value="Editar" />
                 <button>Cancelar</button>
 
             </div>
