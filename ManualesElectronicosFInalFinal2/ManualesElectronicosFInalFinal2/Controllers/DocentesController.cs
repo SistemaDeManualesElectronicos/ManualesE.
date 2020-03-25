@@ -31,35 +31,35 @@ using ManualesElectronicosFInalFinal2.Repositories;
         public IActionResult Agregar(Docentes nuevo)
         {
 
-           
+
             if (ModelState.IsValid)
             {
                 doc = new DocentesRepository();
                 List<string> errores = doc.ValidarDocentes(nuevo);
-                
 
-                if (errores.Count() == 0)
-                {
+              
+                    if (errores.Count() == 0)
+                    {
 
 
 
-                    nuevo.Eliminado = false;
-                    nuevo.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.NumeroDeControl);
-                    doc.Insert(nuevo);
-                    return RedirectToAction("Docentes");
+                        nuevo.Eliminado = false;
+                        nuevo.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.NumeroDeControl);
+                        doc.Insert(nuevo);
+                        return RedirectToAction("Docentes");
 
-                }
+                    }
 
 
                 else
                 {
-                   for (int i = 0; i < errores.Count(); i++)
+                 for (int i = 0; i < errores.Count(); i++)
                 {
                     ModelState.AddModelError("", errores[i]);
-                    
+
                 }
-                    return View(nuevo);
-                }
+                return View(nuevo);
+            }
 
             }
             else
@@ -86,13 +86,19 @@ using ManualesElectronicosFInalFinal2.Repositories;
         public IActionResult Eliminar(int id)
         {
             doc = new DocentesRepository();
+           
             var clase = doc.GetDocenteById(id);
             doc.Delete(clase);
             return RedirectToAction("Docentes");
         }
 
 
-
+       public IActionResult EditarDocentes(int id)
+        {
+            doc = new DocentesRepository();
+            var datos = doc.GetById(id);
+            return View(id);
+        }
 
 
         public IActionResult EditarDocentes(Docentes d)
