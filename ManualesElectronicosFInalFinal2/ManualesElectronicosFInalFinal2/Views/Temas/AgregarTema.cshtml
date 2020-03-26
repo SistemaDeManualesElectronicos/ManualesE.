@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "AgregarTema";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="~/Views/Cursos/style.css" rel="stylesheet" />
+</head>
+<body>
+    <section>
+        <form>
+            <div>
+                <h2>Agregar Tema</h2>
+            </div>
+            <input type="text" placeholder="Nombre del tema" /><br />
+
+            <select></select>
+
+            <div>
+                <input type="submit" value="Agregar" />
+                <button>Cancelar</button>
+
+            </div>
+            <div>
+                <p>@Html.ValidationSummary()</p>
+            </div>
+        </form>
+    </section>
+</body>
+</html>
+
