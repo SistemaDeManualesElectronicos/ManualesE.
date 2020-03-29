@@ -72,12 +72,12 @@
 
         <input type="hidden" id="id" asp-for="Id" />
 
-        <input type="text" id="nombreAlumnos" asp-for="@Model.Nombre" placeholder="@Model.Nombre" required="required" />
+        <input type="text" id="nombreAlumnos" asp-for="@Model.Nombre" placeholder="@Model.Nombre"  />
 
 
         <br />
         <label>Numero de control:</label><br />
-        <input type="text" asp-for="@Model.NumeroControl" placeholder="@Model.NumeroControl" required="required" /><br />
+        <input type="text" asp-for="@Model.NumeroControl" placeholder="@Model.NumeroControl"  /><br />
         <select asp-for="IdCarrera" asp-items="@(new SelectList(service.Gercarreritas(),"Id", "Nombre"))"></select>
 
         <div class="botones" style="padding:5px">
