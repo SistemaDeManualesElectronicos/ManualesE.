@@ -42,6 +42,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
                 }
 
                 if(errores.Count()== 0){
+                    nuevo.Nombre = nuevo.Nombre.ToUpper();
                     nuevo.Eliminado = false;
                     nuevo.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.NumeroControl);
                     alu.Insert(nuevo);

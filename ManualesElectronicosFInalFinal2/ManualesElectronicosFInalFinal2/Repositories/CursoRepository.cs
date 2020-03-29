@@ -26,12 +26,21 @@ namespace ManualesElectronicosFInalFinal2.Repositories
         {
             List<string> listaerrores = new List<string>();
 
-            //if (curso.Nombre.Length < 4)
-            //{
-                //listaerrores.Add("Debe poner un nombre mayor a 4 letras ");
-                //
-           // }
+            if (curso.Nombre.Length < 4 && curso.Nombre.Length < 30)
+            {
+                listaerrores.Add("El nombre debe ser minimo 4 letras ");
+                
+            }
+            if (curso.FechaInicio.Value > DateTime.Now)
+            {
+                listaerrores.Add("La Fecha debe debe ser mayir a la de hoy ");
 
+            }
+            if (curso.FechaFinal.Value > DateTime.Now && curso.FechaFinal.Value > curso.FechaInicio)
+            {
+                listaerrores.Add("La fecha debe ser despues de la fecha inicio ");
+
+            }
 
 
             return listaerrores;
