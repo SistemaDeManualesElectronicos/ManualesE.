@@ -58,25 +58,34 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
         }
 
-        public IActionResult Eliminar(Curso d)
+        public IActionResult EliminarCurso(Curso d)
         {
             cucu = new CursoRepository();
-            List<string> errores = cucu.ValidarCurso(d);
+          //  List<string> errores = cucu.ValidarCurso(d);
             var datos = cucu.GetCursoById(d.Id);
             return View(datos);
         }
 
 
         [HttpPost]
-        public IActionResult Eliminar(int id)
+        public IActionResult EliminarCurso(int id)
         {
             cucu = new CursoRepository();
             var clase = cucu.GetCursoById(id);
             cucu.Delete(clase);
-            return RedirectToAction("Docentes");
+            return RedirectToAction("Cursos");
         }
 
+        public IActionResult EditarCurso(int id)
+        {
+            CursoRepository cu = new CursoRepository();
 
+            var a = cu.GetById(id);
+
+            return View(a);
+
+        }
+        [HttpPost]
         public IActionResult EditarCurso(Curso c)
         {
 
@@ -93,7 +102,10 @@ namespace ManualesElectronicosFInalFinal2.Controllers
                     var Datos = cucu.GetCursoById(c.Id);
 
                     Datos.Nombre = c.Nombre;
-                    Datos.Clave = c.Clave;   
+                    Datos.Clave = c.Clave;
+                    Datos.FechaInicio = c.FechaInicio;
+                    Datos.FechaFinal = c.FechaFinal;
+                    cucu.Update(Datos);
                 }
 
                 else
@@ -107,7 +119,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
                 }
                
             }
-            return View(c);
+            return RedirectToAction("Cursos");
 
         }
 

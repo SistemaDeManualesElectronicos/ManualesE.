@@ -42,6 +42,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
                 }
 
                 if(errores.Count()== 0){
+                    nuevo.Nombre = nuevo.Nombre.ToUpper();
                     nuevo.Eliminado = false;
                     nuevo.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.NumeroControl);
                     alu.Insert(nuevo);
@@ -75,7 +76,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         {
             AlumnosRepository al = new AlumnosRepository();
 
-            var a = al.GetById(id);
+            var a = al.GetAlumnoById(id);
 
                 return View(a);
             

@@ -41,7 +41,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
    
             if (!NombreConCaracteresEspecialess.IsMatch(alumnos.Nombre.ToString())) //validar que escriba apellidos
             {
-                listaerrores.Add("Verifique que haya escrito el nombre completo correctamente y no haya caracteres especiales");
+                listaerrores.Add("Verifique que haya escrito un nombre completo valido correctamente y no haya caracteres especiales");
              
             }
             if(alumnos.Nombre.Length >45)  
