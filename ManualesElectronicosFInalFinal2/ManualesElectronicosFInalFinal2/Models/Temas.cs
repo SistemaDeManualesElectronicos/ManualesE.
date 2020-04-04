@@ -5,8 +5,14 @@ namespace ManualesElectronicosFInalFinal2.Models
 {
     public partial class Temas
     {
+        public Temas()
+        {
+            Subtemas = new HashSet<Subtemas>();
+        }
+
         public int Id { get; set; }
         public string Encabezado { get; set; }
-        public string IdSubTema { get; set; }
+
+        public ICollection<Subtemas> Subtemas { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 {
     public class TemasController : Controller
     {
-        TemasRepository temas;
+        public TemasRepository temas;
         public IActionResult Temas()
         {
             temas = new TemasRepository();
@@ -33,7 +33,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
                 if (errores.Count() == 0)
                 {
                     temas.Insert(t);
-                    RedirectToAction("Temas");
+                   return RedirectToAction("Temas");
                 }
                 else
                 {
@@ -51,7 +51,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             {
                 return View();
             }
-            return View();
+            
         }
 
         public IActionResult Eliminar(Temas d)
@@ -73,16 +73,17 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             return RedirectToAction("Temas");
         }
 
-
-        public IActionResult EditarTemas(int id)
+      
+        public IActionResult EditarTemass(int id)
         {
            temas = new TemasRepository();
-            var datos = temas.GetById(id);
-            return View(id);
+            var datos = temas.GetTemabyId(id);
+            return View(datos);
         }
 
-
-        public IActionResult EditarTemas(Temas d)
+        
+        [HttpPost]
+        public IActionResult EditarTemass(Temas d)
         {
 
             if (ModelState.IsValid)
@@ -99,9 +100,9 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
 
 
-                    var Datos = temas.GetById(d.Id);
+                    var Datos = temas.GetTemabyId(d.Id);
                     Datos.Encabezado = d.Encabezado;
-                    Datos.IdSubTema = d.IdSubTema;
+                   
                     temas.Update(Datos);
                     return RedirectToAction("Temas");
                 }

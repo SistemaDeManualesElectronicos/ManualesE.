@@ -1,4 +1,5 @@
 ﻿using ManualesElectronicosFInalFinal2.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,10 +37,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
                 }
             }
 
-            if (Context.Temas.Any(x => x.Encabezado.ToUpper() == t.Encabezado.ToUpper()))
-            {
-                pablito.Add("El tema ya existe alv");
-            }
+          
            
             return pablito;
       
