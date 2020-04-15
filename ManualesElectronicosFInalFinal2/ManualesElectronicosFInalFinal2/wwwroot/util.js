@@ -1,6 +1,4 @@
-﻿function showModal(id) {
-	$("#" + id).show();
-}
+﻿
 
 $(document).ready(function () {
 	if (sessionStorage.curpos) {
