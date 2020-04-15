@@ -11,7 +11,9 @@ namespace ManualesElectronicosFInalFinal2.Models
         public string Contraseña { get; set; }
         public int? IdCarrera { get; set; }
         public bool? Eliminado { get; set; }
-
+      
         public Carrera IdCarreraNavigation { get; set; }
+
+       
     }
 }

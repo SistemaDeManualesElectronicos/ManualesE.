@@ -1,5 +1,5 @@
-﻿function showlogout() {
-    $("#logout").load("poplogout.html");
+﻿function showModal(id) {
+	$("#" + id).show();
 }
 
 $(document).ready(function () {
@@ -31,3 +31,6 @@ $(document).ready(function () {
 	});
 
 });
+
+
+
