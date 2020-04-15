@@ -10,5 +10,8 @@ namespace ManualesElectronicosFInalFinal2.Models
         public string ContenidoHtml { get; set; }
         public string ReferenciasApa { get; set; }
         public string ListadeRecursos { get; set; }
+        public int? IdTemas { get; set; }
+
+        public Temas IdTemasNavigation { get; set; }
     }
 }

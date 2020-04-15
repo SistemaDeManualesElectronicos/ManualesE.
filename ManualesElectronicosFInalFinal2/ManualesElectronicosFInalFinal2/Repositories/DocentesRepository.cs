@@ -1,4 +1,5 @@
 ﻿using ManualesElectronicosFInalFinal2.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
         public IEnumerable<Docentes> GetDocentesxNombre()
         {
             
-            var data = Context.Docentes.OrderBy(x => x.Nombre);
+            var data = Context.Docentes.Include(x=>x.IdCarreraNavigation).OrderBy(x => x.Nombre);
             return data;
         }
 
@@ -26,15 +27,16 @@ namespace ManualesElectronicosFInalFinal2.Repositories
           
         }
 
+       
         public List<string> ValidarDocentes(Docentes docente)
         {
             
             List<string> errores = new List<string>();
-            Regex NombreConCaracteresEspeciales = new Regex(@"^([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])+[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])?$");
-            Regex NumeroDeControl = new Regex("^[0-9]*$");
+            Regex NombreConCaracteresEspeciales = new Regex(@"^([A-Za-zÁÉÍÓÚñáéíóúÑ]{1,10}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{1,10}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{1,10}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])+[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{1,10}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])?$");
+            Regex NumeroDeControl = new Regex(@"^([0-9]\d{0,5})+$");
             var dato = Context.Carrera.FirstOrDefault(x => x.Id == docente.IdCarrera);
 
-
+            
             if (string.IsNullOrWhiteSpace(docente.NumeroDeControl))
             {
                 errores.Add("El Campo conocido como numero de control no debe ir vacio");
@@ -46,17 +48,19 @@ namespace ManualesElectronicosFInalFinal2.Repositories
                     errores.Add("El patron de numero de control esta incorrecto");
                 }
             }
-
            
+
+  
             if (string.IsNullOrWhiteSpace(docente.Nombre))
             {
                 errores.Add("el campo no puede ser nulo o en blanco");
             }
+            
             else
             {
                 if (!NombreConCaracteresEspeciales.IsMatch(docente.Nombre))
                 {
-                    errores.Add("El nombre no puede tener caracteres especiales");
+                    errores.Add("El nombre no puede tener caracteres especiales o debe contener nombre y apellido");
                 }
             }
 
@@ -70,11 +74,12 @@ namespace ManualesElectronicosFInalFinal2.Repositories
                 errores.Add("El Numero de control ya asignado a otro docente");
             }
 
-
-            
             
 
 
+
+            
+           
             return errores;
         }
     }

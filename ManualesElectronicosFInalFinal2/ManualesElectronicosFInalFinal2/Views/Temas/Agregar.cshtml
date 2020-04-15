@@ -1,6 +1,6 @@
-﻿
+﻿@model Temas
 @{
-    ViewData["Title"] = "EditarTema";
+    Layout = null;
 }
 
 <!DOCTYPE html>
@@ -12,16 +12,16 @@
 </head>
 <body>
     <section>
-        <form>
+        <form method="post" asp-action="Agregar">
             <div>
-                <h2>Editar Tema</h2>
-            </div>            
-            <input type="text" placeholder="El nombre del tema" /><br />
+                <h2>Agregar Tema</h2>
+            </div>
+            <input asp-for="Encabezado" type="text" placeholder="Nombre del tema" /><br />
 
-            <select></select>
+            
 
             <div>
-                <input type="submit" value="Editar" />
+                <input type="submit" value="Agregar" />
                 <button>Cancelar</button>
 
             </div>

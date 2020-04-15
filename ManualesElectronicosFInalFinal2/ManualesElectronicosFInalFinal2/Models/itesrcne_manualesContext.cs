@@ -129,6 +129,9 @@ namespace ManualesElectronicosFInalFinal2.Models
             {
                 entity.ToTable("subtemas");
 
+                entity.HasIndex(e => e.IdTemas)
+                    .HasName("fkTemas_idx");
+
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
                     .HasColumnType("int(11)");
@@ -137,6 +140,10 @@ namespace ManualesElectronicosFInalFinal2.Models
                     .HasColumnName("ContenidoHTML")
                     .HasColumnType("varchar(45)");
 
+                entity.Property(e => e.IdTemas)
+                    .HasColumnName("idTemas")
+                    .HasColumnType("int(11)");
+
                 entity.Property(e => e.ListadeRecursos).HasColumnType("varchar(45)");
 
                 entity.Property(e => e.Nombre).HasColumnType("varchar(45)");
@@ -144,6 +151,11 @@ namespace ManualesElectronicosFInalFinal2.Models
                 entity.Property(e => e.ReferenciasApa)
                     .HasColumnName("Referencias APA")
                     .HasColumnType("varchar(45)");
+
+                entity.HasOne(d => d.IdTemasNavigation)
+                    .WithMany(p => p.Subtemas)
+                    .HasForeignKey(d => d.IdTemas)
+                    .HasConstraintName("fkTemas");
             });
 
             modelBuilder.Entity<Temas>(entity =>
@@ -155,10 +167,6 @@ namespace ManualesElectronicosFInalFinal2.Models
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.Encabezado).HasColumnType("varchar(45)");
-
-                entity.Property(e => e.IdSubTema)
-                    .HasColumnName("idSubTema")
-                    .HasColumnType("varchar(45)");
             });
         }
     }

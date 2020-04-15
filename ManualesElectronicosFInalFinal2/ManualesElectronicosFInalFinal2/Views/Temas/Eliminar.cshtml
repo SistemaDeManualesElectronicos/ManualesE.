@@ -1,9 +1,9 @@
-﻿@model Curso
+﻿@model Temas
 @{
-    ViewData["Title"] = "EliminarCurso";
+    ViewData["Title"] = "EliminarTema";
 }
-    <link href="~/Views/Cursos/style.css" rel="stylesheet" />
 
+<link href="~/Views/Docentes/style.css" rel="stylesheet" />
 <style>
     body {
         background: #2f313d;
@@ -46,20 +46,20 @@
         margin: 40px;
     }
 </style>
-<form method="post" asp-action="EliminarCurso" asp-controller="Cursos">
+<form method="post" asp-action="Eliminar" asp-controller="Temas">
     <div>
-        <h1>Eliminar Curso</h1>
+        <h1>Eliminar Tema</h1>
 
-        <input type="hidden" id="id" asp-for="Id"/>
+    
+        <input type="hidden" id="id" asp-for="Id" />
+        <p>¿Está seguro de eliminar el tema:? @Model.Encabezado</p>
 
-        <p>¿Está seguro de eliminar el Curso:"@Model.Nombre"  </p>
-
-        <div>
+        <div class="botones">
             <p>
                 @Html.ValidationSummary()
             </p>
-            <input type="submit" value="Si" id="btnSi" />
-            <input onclick="history.back()" type="button" value="No" id="btnNo" formnovalidate="formnovalidate" />
+            <input type="submit" value="Si" />
+            <input type="button" value="No" />
         </div>
     </div>
 </form>

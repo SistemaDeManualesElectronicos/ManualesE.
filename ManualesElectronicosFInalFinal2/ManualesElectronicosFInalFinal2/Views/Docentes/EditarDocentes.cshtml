@@ -46,7 +46,7 @@
             font-size: 12px;
         }
 
-        input[type="submit"], button {
+        input[type="submit"] {
             background: #008F63;
             border: 0;
             width: 250px;
@@ -59,22 +59,29 @@
             margin: 40px;
         }
     </style>
-    <form method="post" asp-action="EditarDocentes" asp-controller="Docentes">
-        <div>
-            <h2>Editar Docente</h2>
-            <input type="hidden" id="id" asp-for="Id" /><br />
-            <input type="text" id="nombreDocente" asp-for="@Model.Nombre" placeholder="@Model.Nombre" required="required" /><br />
-            <input type="text" asp-for="@Model.NumeroDeControl" placeholder="@Model.NumeroDeControl" required="required" /><br />
-            <select asp-for="IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))"></select>
 
-            <input type="submit" value="Agregar" />
-            <button asp-action="Docentes">Cancelar</button>
-        </div>
-    </form>
 </body>
 
 
 </html>
 
+<form method="post" asp-action="EditarDocentes" asp-controller="Docentes">
+    <div>
+        <h2>Editar Docente</h2><br />
+        @*<label>Nombre Docente:</label><br />*@
 
+        <input type="hidden" id="id" asp-for="Id" />
+
+        <input type="text" id="nombreDocente" asp-for="@Model.Nombre"  placeholder="@Model.Nombre"   />
+
+
+        <br />
+        @*<label>Numero de control:</label><br />*@
+        <input type="text" asp-for="@Model.NumeroDeControl" placeholder="@Model.NumeroDeControl"  /><br />
+        <select asp-for="IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))"></select>
+
+            <input type="submit" value="Agregar" />
+            <button asp-action="Docentes">Cancelar</button>
+    </div>
+</form>
 
