@@ -33,6 +33,6 @@ namespace ManualesElectronicosFInalFinal2
             app.UseMvcWithDefaultRoute();
             app.UseStaticFiles();
         }
-    
+        
     }
 }

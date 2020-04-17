@@ -6,9 +6,21 @@
 
   <ItemGroup>
     <Content Remove="Views\Temas\EditarTemas.cshtml" />
+    <Content Remove="wwwroot\Content\StyleSheet.css" />
+    <Content Remove="wwwroot\images\add.png" />
+    <Content Remove="wwwroot\images\delete.png" />
+    <Content Remove="wwwroot\images\list.png" />
+    <Content Remove="wwwroot\images\options1.png" />
+    <Content Remove="wwwroot\images\user.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Content\StyleSheet.css" />
+    <None Include="wwwroot\images\add.png" />
+    <None Include="wwwroot\images\delete.png" />
+    <None Include="wwwroot\images\list.png" />
+    <None Include="wwwroot\images\options1.png" />
+    <None Include="wwwroot\images\user.png" />
     <None Include="wwwroot\js\jquery-3.4.1.slim.min %281%29.map" />
     <None Include="wwwroot\js\jquery-3.4.1.slim.min %282%29.map" />
     <None Include="wwwroot\js\jquery-3.4.1.slim.min%281%29.map" />
