@@ -31,6 +31,7 @@ namespace ManualesElectronicosFInalFinal2
 
             app.UseMvc();
             app.UseMvcWithDefaultRoute();
+            app.UseStaticFiles();
         }
     
     }
