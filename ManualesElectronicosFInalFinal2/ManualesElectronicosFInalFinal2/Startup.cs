@@ -28,7 +28,7 @@ namespace ManualesElectronicosFInalFinal2
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseFileServer();
             app.UseMvc();
             app.UseMvcWithDefaultRoute();
             app.UseStaticFiles();

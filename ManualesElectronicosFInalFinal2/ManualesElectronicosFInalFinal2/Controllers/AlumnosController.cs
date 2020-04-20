@@ -30,15 +30,16 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         //{
         //    return View();
         //}
-      //  [HttpPost]
-        public JsonResult Agregar(Alumnos nuevo)
+        [HttpPost]
+        public JsonResult Agregar(ViewModelAlumnos nuevo)
         {
-
+            alu = new AlumnosRepository();
             JsonResult json = null;
-            nuevo.Nombre = nuevo.Nombre.ToUpper();
-            nuevo.Eliminado = false;
-            nuevo.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.NumeroControl);
-            alu.Insert(nuevo);
+            nuevo.Alumno.Nombre = nuevo.Alumno.Nombre.ToUpper();
+           
+            nuevo.Alumno.Eliminado = false;
+            nuevo.Alumno.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.Alumno.NumeroControl);
+            alu.Insert(nuevo.Alumno);
             json = Json(true);
             //if (ModelState.IsValid)
             //{
