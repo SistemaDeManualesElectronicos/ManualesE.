@@ -35,12 +35,21 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         {
             alu = new AlumnosRepository();
             JsonResult json = null;
+            List<string> errores = alu.ValidarAlumnos(nuevo.Alumno);
             nuevo.Alumno.Nombre = nuevo.Alumno.Nombre.ToUpper();
+             if (errores.Count() == 0)
+                {
 
             nuevo.Alumno.Eliminado = false;
             nuevo.Alumno.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.Alumno.NumeroControl);
             alu.Insert(nuevo.Alumno);
             json = Json(true);
+               }
+
+                for (int i = 0; i < errores.Count; i++)
+                {
+                json = Json(errores);
+                }
             //if (ModelState.IsValid)
             //{
 
