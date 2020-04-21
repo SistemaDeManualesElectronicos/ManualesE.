@@ -54,13 +54,6 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
             //    if (errores.Count() == 0)
             //    {
-            //        nuevo.Nombre = nuevo.Nombre.ToUpper();
-            //        nuevo.Eliminado = false;
-            //        nuevo.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.NumeroControl);
-            //        alu.Insert(nuevo);
-            //        json = Json(true);
-
-            //    }
 
             //}
             return json;
@@ -72,7 +65,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             JsonResult json = null;
             try
             {
-                AlumnosRepository alu = new AlumnosRepository();
+               AlumnosRepository alu = new AlumnosRepository();
                 var r = alu.GetAlumnoById(Id);
                 if (r != null)
                 {
@@ -97,7 +90,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         {
             JsonResult json = null;
             AlumnosRepository al = new AlumnosRepository();
-            var alu = al.GetById(id);
+            var alu = al.GetAlumnoById(id);
 
             if (alu == null)
             {
