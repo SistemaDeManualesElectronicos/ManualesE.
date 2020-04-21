@@ -14,67 +14,73 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         public IActionResult Cursos()
         {
             cucu = new CursoRepository();
-            return View(cucu.GetAll()); ;
+            ViewModelCurso cur = new ViewModelCurso();
+            cur.Cursos = cucu.GetAllxNombre();
+            return View(cur); ;
         }   
 
-        public IActionResult AgregarCurso()
-        {
-            return View();
-        }
+      //  public IActionResult AgregarCurso()
+        //{
+          //  return View();
+        //}
         [HttpPost]
-        public IActionResult AgregarCurso(Curso c )
+        public JsonResult Agregar(ViewModelCurso c )
         {
-            if (ModelState.IsValid)
-            {
+            JsonResult json = null;
                 CursoRepository cu = new CursoRepository();
-                List<string> errores = cu.ValidarCurso(c);
+              //  List<string> errores = cu.ValidarCurso(c.Curso  );
 
-                if (errores.Count() == 0)
+                //if (errores.Count() == 0)
+                //{
+
+                    cu.Insert(c.Curso);
+                json = Json(true);
+                //}
+
+                //else
+                //{
+                  //  for (int i = 0; i < errores.Count; i++)
+                    //{
+                    //json = Json(errores);
+
+                    //}
+
+                //}
+
+            return json;
+         
+
+
+        }
+
+        public JsonResult Eliminar(int Id)
+        {
+            JsonResult json = null;
+
+            try
+            {
+                CursoRepository cucu = new CursoRepository();
+                var r = cucu.GetById(Id);
+                if (r != null)
                 {
-
-                    cu.Insert(c);
-                    return RedirectToAction("Cursos");
+                    cucu.Delete(r);
+                    json = Json(true);
                 }
-
                 else
                 {
-                    for (int i = 0; i < errores.Count; i++)
-                    {
-                        ModelState.AddModelError("", errores[i]);
-
-                    }
-
+                    json = Json("El curso no existe o ya ha sido eliminado.");
                 }
-             
-                return View(c);
-               
             }
-            else
+            catch (Exception ex)
             {
-                return View(c);
+                json = Json(ex.Message);
             }
-
-
+            return json;
 
         }
+     
+       
 
-        public IActionResult EliminarCurso(Curso d)
-        {
-            cucu = new CursoRepository();
-          //  List<string> errores = cucu.ValidarCurso(d);
-            var datos = cucu.GetCursoById(d.Id);
-            return View(datos);
-        }
-
-
-        [HttpPost]
-        public IActionResult EliminarCurso(int id)
-        {
-            cucu = new CursoRepository();
-            var clase = cucu.GetCursoById(id);
-            cucu.Delete(clase);
-            return RedirectToAction("Cursos");
-        }
 
         public IActionResult EditarCurso(int id)
         {

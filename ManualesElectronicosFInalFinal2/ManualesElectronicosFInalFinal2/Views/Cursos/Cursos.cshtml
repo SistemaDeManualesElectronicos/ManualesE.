@@ -1,36 +1,109 @@
-﻿@model IEnumerable<Curso>
+﻿@model ManualesElectronicosFInalFinal2.Models.ViewModelCurso
 @{
-//ViewData["Title"] = "Cursos";
+    ViewData["Title"] = "Cursos";
+    Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-
-
-    <html>
-    <head>
-        <meta charset="utf-8" />
-        <title></title>
-        @*<link href="~/Views/Cursos/style.css" rel="stylesheet" />*@
-    </head>
+<head>
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
 
 
-    <body>
-        <a style="text-align:start; float:left; margin-right:500px; margin-left:610px" asp-action="AgregarCurso" asp-controller="Cursos" class="btn btn-primary">Agregar Curso</a>
+    <style>
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,.5);
+            display: none;
+        }
 
-        <div class="card" style="width: 18rem;">
-            @foreach (var item in Model)
-            {
-                <div class="card" style="width: 18rem;">
-
-                    <div class="card-body">
-                        <h5 class="card-title">@item.Nombre</h5>
-                        <p class="card-text">@item.Clave</p>
-                        <p></p>
-                        <a asp-action="EliminarCurso" asp-route-id="@item.Id" class="btn btn-primary" asp-controller="Cursos">Eliminar Curso</a>
-                        <a asp-action="EditarCurso" asp-route-id="@item.Id" class="btn btn-primary" asp-controller="Cursos">Editar Curso</a>
-                    </div>
-                </div>
+            .modal div {
+                background-color: white;
+                margin: 20px auto;
+                width: 500px;
             }
-        </div>
-    </body>
-    </html>
+    </style>
+
+</head>
+
+
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    @*<link href="~/Views/Cursos/style.css" rel="stylesheet" />*@
+</head>
+
+
+<a href="javascript:showModal('modalAgregar')"><i class="fa fa-plus"></i> Agregar Cursoo</a>
+<body>
+    <a style="text-align:start; float:left; margin-right:500px; margin-left:610px" asp-action="AgregarCurso" asp-controller="Cursos" class="btn btn-primary">Agregar Curso</a>
+
+
+    <div class="card" style="width: 18rem;">
+        @foreach (var item in Model.Cursos)
+        {
+            <div class="card" style="width: 18rem;">
+
+                <div class="card-body">
+                    <h5 class="card-title">@item.Nombre</h5>
+                    <p class="card-text">@item.Clave</p>
+                    <p></p>
+                    <a asp-action="EliminarCurso" asp-route-id="@item.Id" class="btn btn-primary" asp-controller="Cursos">Eliminar Curso</a>
+                    <a href="javascript:eliminar(@item.Id)"><i class="fa fa-remove"></i> Eliminar</a>
+
+                    <a asp-action="EditarCurso" asp-route-id="@item.Id" class="btn btn-primary" asp-controller="Cursos">Editar Curso</a>
+                </div>
+            </div>
+        }
+    </div>
+</body>
+
+<div class="modal" id="modalAgregar">
+    <div>
+        <h1>Agregar Curso</h1>
+        @*Es necesario agregar la clase formAjax definida en util.js*@
+
+        <form class="formAjax" method="post" action="~/Cursos/Agregar">
+            <label>Nombre:</label>
+            <input required asp-for="Curso.Nombre" />
+            <label>Fecha Inicio:</label>
+            @*<input required asp-for="Curso.FechaInicio" />
+            <label>Fecha Final:</label>
+            <input required asp-for="Curso.FechaFinal" />*@
+            <p class="error"></p>
+
+            <input type="submit" value="Agregar" />
+            <a href="~/Cursos/Cursos">
+                <input type="button" value="Cancelar" />
+            </a>
+        </form>
+    </div>
+</div>
+
+<div id="modalEliminar" class="modal">
+    <div>
+        <h1>Eliminar Cursp</h1>
+
+        <form class="formAjax" method="post" action="~/Cursos/Eliminar">
+            <input id="deleteId" type="hidden" name="Id" />
+            <p><b>¿Está seguro de eliminar el curso?</b></p>
+
+            <p class="error"></p>
+                
+            <input type="submit" value="Si" />
+            <a href="~/Cursos/Cursos">
+                <input type="button" value="No" />
+            </a>
+        </form>
+    </div>
+    <script>
+        function eliminar(id) {
+            $("#deleteId").val(id);
+            showModal("modalEliminar");
+        }
+    </script>
+</div>

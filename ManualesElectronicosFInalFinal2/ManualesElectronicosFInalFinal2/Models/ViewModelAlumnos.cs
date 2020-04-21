@@ -13,6 +13,6 @@ namespace ManualesElectronicosFInalFinal2.Models
         public  Alumnos Alumno { get; set; }
         public IEnumerable<Alumnos> Alumnos { get; set; }
 
-
+        public IEnumerable<Carrera> Carrera { get; set; }
     }
 }
