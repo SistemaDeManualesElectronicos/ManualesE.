@@ -78,54 +78,70 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             return json;
 
         }
-     
-       
 
 
-        public IActionResult EditarCurso(int id)
+        public JsonResult GetCurso(int id)
         {
+            JsonResult json = null;
             CursoRepository cu = new CursoRepository();
+            var alu = cu.GetById(id);
 
-            var a = cu.GetById(id);
+            if (alu == null)
+            {
+                json = Json(false);
+            }
+            else
+            {
+                json = Json(
+                    new
+                    {
+                        alu.Id,
+                        alu.Nombre,
+                        alu.FechaInicio,
+                        alu.FechaFinal
+                    }
 
-            return View(a);
+
+                    );
+            }
+            return json;
 
         }
         [HttpPost]
-        public IActionResult EditarCurso(Curso c)
+        public JsonResult EditarCurso(ViewModelCurso c)
         {
 
-            if (ModelState.IsValid)
-            {
+            JsonResult json = null;
 
-                cucu = new CursoRepository();
-                List<string> errores = cucu.ValidarCurso(c);
+            cucu = new CursoRepository();
+                List<string> errores = cucu.ValidarCurso(c.Curso);
 
 
 
                 if(errores.Count() == 0)
                 {
-                    var Datos = cucu.GetCursoById(c.Id);
+                    var Datos = cucu.GetCursoById(c.Curso.Id);
 
-                    Datos.Nombre = c.Nombre;
-                    Datos.Clave = c.Clave;
-                    Datos.FechaInicio = c.FechaInicio;
-                    Datos.FechaFinal = c.FechaFinal;
+                    Datos.Nombre = c.Curso.Nombre;
+                    Datos.Clave = c.Curso.Clave;
+                    Datos.FechaInicio = c.Curso.FechaInicio;
+                    Datos.FechaFinal = c.Curso.FechaFinal;
                     cucu.Update(Datos);
+                Json(true);
                 }
 
                 else
                 {
                     for (int i = 0; i < errores.Count(); i++)
                     {
-                        ModelState.AddModelError("", errores[i]);
+                    Json(errores);
                     }
 
 
                 }
-               
-            }
-            return RedirectToAction("Cursos");
+
+
+            return json;
 
         }
 
