@@ -27,7 +27,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             Regex NombreConCaracteresEspeciales = new Regex(@"^([A-Za-zÁÉÍÓÚñáéíóúÑ]){1,29}?$");
             if (string.IsNullOrEmpty(t.Encabezado))
             {
-                pablito.Add("rellene el pinche nombre");
+                pablito.Add("el nombre del tema no puede estar vacio");
             }
             else
             {

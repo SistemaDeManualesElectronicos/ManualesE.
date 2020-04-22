@@ -8,8 +8,11 @@ namespace ManualesElectronicosFInalFinal2.Models.DocentesViewModels
 {
     public class DocenteViewModel:Repository<Docentes>
     {
-      
-           
+
+        public Docentes Docente { get; set; }
+        public IEnumerable<Docentes> docentes { get; set; }
+
+        public IEnumerable<Carrera> Carrera { get; set; }
 
     }
 }
