@@ -9,5 +9,6 @@ namespace ManualesElectronicosFInalFinal2.Models
     {
         public Curso Curso { get; set; }
         public IEnumerable<Curso> Cursos { get; set; }
+        public IEnumerable<Carrera> Carrera { get; set; }
     }
 }

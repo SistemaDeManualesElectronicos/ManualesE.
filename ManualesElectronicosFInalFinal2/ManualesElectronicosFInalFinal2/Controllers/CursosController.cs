@@ -28,24 +28,24 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         {
             JsonResult json = null;
                 CursoRepository cu = new CursoRepository();
-              //  List<string> errores = cu.ValidarCurso(c.Curso  );
+                List<string> errores = cu.ValidarCurso(c.Curso  );
 
-                //if (errores.Count() == 0)
-                //{
+            if (errores.Count() == 0)
+            {
 
-                    cu.Insert(c.Curso);
+                cu.Insert(c.Curso);
                 json = Json(true);
-                //}
+            }
 
-                //else
-                //{
-                  //  for (int i = 0; i < errores.Count; i++)
-                    //{
-                    //json = Json(errores);
+            else
+            {
+                for (int i = 0; i < errores.Count; i++)
+                {
+                    json = Json(errores);
 
-                    //}
+                 }
 
-                //}
+            }
 
             return json;
          

@@ -1,5 +1,5 @@
 ﻿@model ManualesElectronicosFInalFinal2.Models.ViewModelAlumnos
-
+@inject DocenteService service
 
 @{
 	ViewData["Title"] = "Alumnos";
@@ -7,33 +7,32 @@
 
 }
 <head>
-		<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-		
-	
+	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
-		<style>
-			.modal {
-				position: fixed;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				background-color: rgba(0,0,0,.5);
-				display: none;
+
+
+	<style>
+		.modal {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0,0,0,.5);
+			display: none;
+		}
+
+			.modal div {
+				background-color: white;
+				margin: 20px auto;
+				width: 500px;
 			}
-
-				.modal div {
-					background-color: white;
-					margin: 20px auto;
-					width: 500px;
-				}
-		</style>
+	</style>
 
 </head>
 <h2 style="text-align:center">Alumnos</h2>
-<a style="text-align:start; float:left; margin-right:500px; margin-left:610px" asp-action="Agregar" asp-controller="Alumnos" class="btn btn-primary">Agregar Alumno</a>
 
-<a href="javascript:showModal('modalAgregar')"><i class="fa fa-plus"></i> Agregar Alumno</a>
+<a style="text-align:start; float:left; margin-right:500px; margin-left:610px" class="btn btn-primary" href="javascript:showModal('modalAgregar')"><i></i> Agregar Alumno</a>
 @foreach (var item in Model.Alumnos)
 {
 
@@ -41,36 +40,40 @@
 
 		<div class="card-body">
 			<h5 class="card-title">@item.Nombre</h5>
-			<p class="card-text">@item.NumeroControl</p>
+			<p  class="card-text">@item.NumeroControl</p>
+			
+			<p  class="card-text">@item.IdCarreraNavigation.Nombre</p>
 			<p></p>
-			<a asp-action="Eliminar" asp-route-id="@item.Id" class="btn btn-primary" asp-controller="Alumnos">Eliminar Alumno</a>
-			<a href="javascript:eliminar(@item.Id)"><i class="fa fa-remove"></i> Eliminar</a>
-			<a asp-action="EditarAlumnos" asp-route-id="@item.Id" class="btn btn-primary" asp-controller="Alumnos">Editar Alumno</a>
-			<a href="javascript:editar(@item.Id)"><i class="fa fa-edit"></i> Editar</a>
+			<a class="btn btn-primary" href="javascript:eliminar(@item.Id)"><i class="fa fa-remove"></i> Eliminar</a>
+			<a class="btn btn-primary" href="javascript:editar(@item.Id)"><i class="fa fa-edit"></i> Editar</a>
 		</div>
 	</div>
 }
 
-	
+
 <div class="modal" id="modalAgregar">
 	<div>
 		<h1>Agregar Alumno</h1>
 		@*Es necesario agregar la clase formAjax definida en util.js*@
 
-	<form class="formAjax" method="post" action="~/Alumnos/Agregar">
-		<label>Nombre:</label>
-		<input required asp-for="Alumno.Nombre" />
-		<label>Numero de control:</label>
-		<input required asp-for="Alumno.NumeroControl" />
-		<label>Carrera:</label>
-		<input required asp-for="Alumno.IdCarrera" />
-		<p class="error"></p>
+		<form class="formAjax" method="post" action="~/Alumnos/Agregar">
+			<label>Nombre:</label>
+			<input required asp-for="Alumno.Nombre" />
+			<label>Numero de control:</label>
+			<input required asp-for="Alumno.NumeroControl" />
+			<label>Carrera:</label>
+			
+			<select required asp-for="Alumno.IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))">
+				<option value="">Seleccione una clase</option>
+			</select>
 
-		<input type="submit" value="Agregar" />
-		<a href="~/Alumnos/Alumnos">
-			<input type="button" value="Cancelar" />
-		</a>
-	</form>
+			<p class="error"></p>
+
+			<input type="submit" value="Agregar" />
+			<a href="~/Alumnos/Alumnos">
+				<input type="button" value="Cancelar" />
+			</a>
+		</form>
 	</div>
 </div>
 
@@ -105,16 +108,19 @@
 
 		<form class="formAjax" method="post" action="~/Alumnos/Editar">
 			<input id="editId" type="hidden" asp-for="Alumno.Id" />
+
 			<label>Nombre:</label>
 			<input id="editNombre" required asp-for="Alumno.Nombre" type="text" />
-			<label>Carrera:</label>
-			@*<select id="editIdCarrera" required asp-for="Alumno.IdCarrera" asp-items="@(new SelectList(Model.Alumno, "Id", "Nombre"))">
-				<option value="">Seleccione una clase</option>
-			</select>*@
+
+
 			<label>Numero de control:</label>
 			<input id="editNumeroControl" required asp-for="Alumno.NumeroControl" type="text" />
-			<label>Peso:</label>
-		
+
+			<label>Carrera:</label>
+			<select id="editIdCarrera" required asp-for="Alumno.IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))">
+				<option value="">Seleccione una clase</option>
+			</select>
+
 			<p class="error"></p>
 
 			<input type="submit" value="Guardar" />
@@ -131,7 +137,7 @@
 					x.find("#editId").val(data.id);
 					x.find("#editNombre").val(data.nombre);
 					x.find("#editNumeroControl").val(data.numeroControl);
-				
+
 					x.find('#editIdCarrera option[value="' + data.idCarrera + '"]').attr('selected', true)
 					showModal("modalEditar");
 				}

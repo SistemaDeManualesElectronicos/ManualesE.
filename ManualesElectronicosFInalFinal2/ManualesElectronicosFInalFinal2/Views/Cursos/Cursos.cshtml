@@ -72,9 +72,9 @@
             <label>Nombre:</label>
             <input required asp-for="Curso.Nombre" />
             <label>Fecha Inicio:</label>
-            @*<input required asp-for="Curso.FechaInicio" />
+            <input type="date" required asp-for="Curso.FechaInicio" />
             <label>Fecha Final:</label>
-            <input required asp-for="Curso.FechaFinal" />*@
+            <input type="date" required asp-for="Curso.FechaFinal" />
             <p class="error"></p>
 
             <input type="submit" value="Agregar" />
@@ -119,11 +119,16 @@
             <input id="editNombre" required asp-for="Curso.Nombre" type="text" />
             @*<label>Carrera:</label>*@
             @*<select id="editIdCarrera" required asp-for="Alumno.IdCarrera" asp-items="@(new SelectList(Model.Alumno, "Id", "Nombre"))">
-                    <option value="">Seleccione una clase</option>
-                </select>*@
+            <option value="">Seleccione una clase</option>
+        </select>*@
+
             <label>Fecha Inicio:</label>
-            <input id="editNumeroControl" required asp-for="Curso.FechaInicio" type="text" />
-            <label>Peso:</label>
+            <input type="date" id="editInicio"  required asp-for="Curso.FechaInicio.Value.Date" value="Curso.FechaInicio"  />
+
+            <label>Fecha Final:</label>
+            <input   id="editFinal" required asp-for="Curso.FechaFinal" />
+
+         
 
             <p class="error"></p>
 
@@ -140,8 +145,8 @@
 					var x = $("#modalEditar form");
 					x.find("#editId").val(data.id);
 					x.find("#editNombre").val(data.nombre);
-					x.find("#editNumeroControl").val(data.numeroControl);
-
+					x.find("#editInicio").val(data.fechaInicio);
+                    x.find("#editFinal").val(data.fechaFinal);
 					x.find('#editIdCarrera option[value="' + data.idCarrera + '"]').attr('selected', true)
 					showModal("modalEditar");
 				}
