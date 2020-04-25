@@ -17,7 +17,8 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         {
             doc = new DocentesRepository();
             DocenteViewModel nom = new DocenteViewModel();
-            return View(doc.GetDocentesxNombre());
+            nom.docentes = doc.GetDocentesxNombre();
+            return View(nom);
         }
 
 

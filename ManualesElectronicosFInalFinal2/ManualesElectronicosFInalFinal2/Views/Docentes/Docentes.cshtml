@@ -247,18 +247,42 @@
                         <td>@item.NumeroDeControl</td>
 
                         <td>@item.Nombre</td>
-                        <td></td>
+                        <td>@item.IdCarreraNavigation.Nombre</td>
 
                     </tr>
                 }
             </tbody>
 
         </table>
+
+
+        <div class="modal" id="modalAgregar">
+            <div>
+                <h1>Agregar Docente</h1>
+                @*Es necesario agregar la clase formAjax definida en util.js*@
+
+                <form class="formAjax" method="post" action="~/Docentes/Agregar">
+                    <label>Nombre:</label>
+                    <input required asp-for="Docente.Nombre" />
+                    <label>Numero de control:</label>
+                    <input required asp-for="Docente.NumeroDeControl" />
+                    <label>Carrera:</label>
+                    <select asp-for="Docente.IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))"></select>
+                    <p class="error"></p>
+
+                    <input type="submit" value="Agregar" />
+                    <a href="~/Docentes/Docentes">
+                        <input type="button" value="Cancelar" />
+                    </a>
+                </form>
+            </div>
+        </div>
+
         <footer id="sidebar2" class="sidebar2">
             <a class="flotante" asp-action="Agregar" asp-controller="Docentes"><img src="~/images/add.png" />Agregar</a>
             <a asp-controller="Docentes" asp-action="EditarDocentes"><img src="~/Imagenes/user.png" />Editar</a>
             <a asp-controller="Docentes" asp-action="Eliminar"><img src="~/Imagenes/delete.png" />Eliminar</a>
-            
+
         </footer>
         @*<div class="izquierda">
 
