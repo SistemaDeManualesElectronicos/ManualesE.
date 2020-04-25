@@ -1,224 +1,14 @@
 ﻿@model ManualesElectronicosFInalFinal2.Models.DocentesViewModels.DocenteViewModel;
-        @{
-            ViewData["Title"] = "Docentes";
-            Layout = "~/Views/Shared/Layout.cshtml";
-        }
-        @inject DocenteService service
-        @*<h2 style="text-align:center">Docentes</h2>
-            <a style="text-align:start; float:left; margin-right:500px; margin-left:610px" asp-action="Agregar" asp-controller="Docentes" class="btn btn-primary">Agregar Docente</a>*@
-
-        @*@foreach (var item in Model)
-            {
-               <div class="card" style="width: 18rem;">
-
-                    <div class="card-body">
-                        <h5 class="card-title">@item.Nombre</h5>
-                        <p class="card-text">@item.NumeroDeControl</p>
-                        <p></p>
-                        <a asp-action="Eliminar" asp-route-id="@item.Id" class="btn btn-primary" asp-controller="Docentes">Eliminar Docente</a>
-                        <a asp-action="EditarDocentes" asp-route-id="@item.Id" class="btn btn-primary" asp-controller="Docentes">Editar  Docente</a>
-                    </div>
-                </div>
-            }*@
-
-
-    <head>
+@{
+    ViewData["Title"] = "Docentes";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@inject DocenteService service
+@*<head>
         <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-        <link href="~/Views/Docentes/style.css" rel="stylesheet" />
+
     </head>
     <body>
-        <style>
-            html {
-                position: relative;
-                min-height: 100%;
-            }
-
-            body {
-                background: #2f313d;
-                font-family: sans-serif;
-                font-size: 20px;
-            }
-
-            table {
-                margin: auto;
-            }
-
-            th {
-                background-color: #212226;
-                color: aliceblue;
-            }
-
-            td {
-                background-color: #434550;
-                color: darkgray;
-            }
-
-            .herramietas, .sidebar2 {
-                background-color: #2f313d;
-                display: block;
-                position: fixed;
-                bottom: 0px;
-                right: 0px;
-                width: 0;
-            }
-
-            img {
-                width: 50px;
-            }
-
-            #main-header {
-                height: 60px;
-                width: 100%;
-                left: 0;
-                top: 0;
-                position: fixed;
-            }
-
-            .sidebar {
-                position: fixed;
-                height: 100%;
-                width: 0;
-                top: 0;
-                left: 0;
-                z-index: 1;
-                background-color: #434550;
-                overflow-x: hidden;
-                transition: 0.4s;
-                padding: 1rem 0;
-                box-sizing: border-box;
-            }
-
-                .sidebar .boton-cerrar {
-                    position: absolute;
-                    top: 0.5rem;
-                    right: 1rem;
-                    font-size: 2rem;
-                    display: block;
-                    padding: 0;
-                    line-height: 1.5rem;
-                    margin: 0;
-                    height: 32px;
-                    width: 32px;
-                    text-align: center;
-                    vertical-align: top;
-                }
-
-                .sidebar ul, .sidebar li {
-                    margin: 0;
-                    padding: 0;
-                    list-style: none inside;
-                }
-
-                .sidebar ul {
-                    margin: 4rem auto;
-                    display: block;
-                    width: 80%;
-                    min-width: 200px;
-                }
-
-                .sidebar a {
-                    display: block;
-                    font-size: 120%;
-                    color: #eee;
-                    text-decoration: none;
-                }
-
-                    .sidebar a:hover {
-                        color: #fff;
-                        background-color: #008F63;
-                    }
-
-            #contenido {
-                transition: margin-left .4s;
-                padding: 1rem;
-            }
-
-
-            .lateral {
-                width: 50px;
-                margin: 0;
-            }
-
-            .izquierda {
-                position: fixed;
-                height: 200px;
-                width: 250px;
-                top: 0;
-                left: 80%;
-                background-color: #434550;
-                margin-top: 60px;
-                border-radius: 15px;
-                text-align: center;
-                color: white;
-                border-style: double;
-                border-color: black;
-            }
-
-            .dropbtn {
-                background-color: #008F63;
-                color: white;
-                padding: 16px;
-                font-size: 16px;
-                border: none;
-                cursor: pointer;
-                border-radius: 50px;
-                width: 50px;
-                height: 50px;
-            }
-
-            .dropdown {
-                position: fixed;
-                display: inline-block;
-                top: 0;
-                left: 90%;
-                background-color: #434550;
-                margin-top: 30px;
-                text-align: center;
-                background: bottom;
-            }
-
-            .dropdown-content {
-                display: none;
-                position: absolute;
-                background-color: #f9f9f9;
-                width: 100px;
-            }
-
-                .dropdown-content a {
-                    color: black;
-                    padding: 12px 16px;
-                    text-decoration: none;
-                    display: block;
-                }
-
-                    .dropdown-content a:hover {
-                        background-color: #f1f1f1
-                    }
-
-            .dropdown:hover .dropdown-content {
-                display: block;
-            }
-
-            .dropdown:hover .dropbtn {
-                background-color: #3e8e41;
-            }
-
-            .modal {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0,0,0,.5);
-                display: none;
-            }
-
-                .modal div {
-                    background-color: white;
-                    margin: 20px auto;
-                    width: 500px;
-                }
-        </style>
         <div id="sidebar" class="sidebar">
             <a href="#" class="boton-cerrar" onclick="ocultar()">&times;</a>
             <ul class="menu">
@@ -258,15 +48,8 @@
             <a class="flotante" asp-action="Agregar" asp-controller="Docentes"><img src="~/images/add.png" />Agregar</a>
             <a asp-controller="Docentes" asp-action="EditarDocentes"><img src="~/Imagenes/user.png" />Editar</a>
             <a asp-controller="Docentes" asp-action="Eliminar"><img src="~/Imagenes/delete.png" />Eliminar</a>
-            
-        </footer>
-        @*<div class="izquierda">
 
-            <a>Opciones</a>
-            <p>Ejemplo</p>
-            <p>Ejemplo</p>
-            <p>Ejemplo</p>
-        </div>*@
+        </footer>
         <div class="dropdown">
             <button class="dropbtn">D</button>
             <div class="dropdown-content">
@@ -302,7 +85,107 @@
 
             }
         </script>
-    </body>
+    </body>*@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="css/estilos.css" rel="stylesheet" />
+    <link href="~/Content/estilos.css" rel="stylesheet" />
+    <link href="css/grid.css" rel="stylesheet" />
+    <link href="~/Content/grid.css" rel="stylesheet" />
+    <link href="css/colores.css" rel="stylesheet" />
+    <link href="~/Content/colores.css" rel="stylesheet" />
+    <!-- Para usar iconos con FontAwesome  -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="jquery-3.5.0.min"></script>
+    <script src="util.js"></script>
+    <title>Titulo</title>
+    <script>
+        $(document).ready(function () {
+            $("#bars").click(function () {
+                $("nav").toggleClass("open");
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <nav class="menu">
+        <div>
+        </div>
+        <ul>
+            <li><a href="#"><i class="fa fa-address-card"></i> Mi Cuenta</a></li>
+            <li><a href="#"><i class="fa fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+        </ul>
+
+    </nav>
+    <header>
+        <a href="#" class="left"><i class="fa fa-bars"></i></a>
+        <h1><b>ITESRC</b> Manuales Electronicos</h1>
+        <div class="dropdown">
+            <a href="#" class="right">
+                <i class="fa fa-user"></i>
+            </a>
+            <ul>
+                <li><a href="#"><i class="fa fa-key"></i>Cambiar Contraseña</a></li>
+                <li><a href="#"><i class="fa fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+            </ul>
+        </div>
+    </header>
+    <main>
+
+        <section>
+
+            <h2>
+                Lista Docentes
+                <input type="search" placeholder="Filtro..." />
+            </h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 1%" class="center">#</th>
+                        <th width="10%" class="center">Numero de control</th>
+
+                        <th width="65%" class="center">Nombre Del Docente</th>
+
+                        <th width="15%">Carrera</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.docentes)
+                    {
+                        <tr>
+                            <td>1</td>
+                            <td class="center">@item.NumeroDeControl</td>
+                            <td class="center">@item.Nombre</td>
+                            <td></td>
+                            <td>
+                                <a asp-controller="Docentes" asp-action="EditarDocentes"><i class="fas fa-user-edit"></i></a>
+                            </td>
+                            <td>
+                                <a asp-controller="Docentes" asp-action="Eliminar"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+            </table>
+
+            <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#">1</a>
+                <a class="active" href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">&raquo;</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
 
 
 
