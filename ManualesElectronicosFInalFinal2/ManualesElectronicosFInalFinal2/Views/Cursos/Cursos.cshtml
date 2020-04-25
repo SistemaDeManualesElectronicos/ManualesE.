@@ -4,37 +4,39 @@
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-<head>
-    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <head>
+        <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
 
 
-    <style>
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,.5);
-            display: none;
-        }
-
-            .modal div {
-                background-color: white;
-                margin: 20px auto;
-                width: 500px;
+        <style>
+            .modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,.5);
+                display: none;
             }
-    </style>
 
-</head>
+                .modal div {
+                    background-color: white;
+                    margin: 20px auto;
+                    width: 500px;
+                }
+        </style>
+
+
+        <link href="~/Content/StyleSheet.css" rel="stylesheet" />
+    </head>
 
 
 
 <head>
     <meta charset="utf-8" />
     <title></title>
-    @*<link href="~/Views/Cursos/style.css" rel="stylesheet" />*@
+    <link href="~\css\style.css" rel="stylesheet" />
 </head>
 
 
@@ -72,9 +74,9 @@
             <label>Nombre:</label>
             <input required asp-for="Curso.Nombre" />
             <label>Fecha Inicio:</label>
-            @*<input required asp-for="Curso.FechaInicio" />
+            <input type="date" required asp-for="Curso.FechaInicio" />
             <label>Fecha Final:</label>
-            <input required asp-for="Curso.FechaFinal" />*@
+            <input type="date" required asp-for="Curso.FechaFinal" />
             <p class="error"></p>
 
             <input type="submit" value="Agregar" />
@@ -119,11 +121,16 @@
             <input id="editNombre" required asp-for="Curso.Nombre" type="text" />
             @*<label>Carrera:</label>*@
             @*<select id="editIdCarrera" required asp-for="Alumno.IdCarrera" asp-items="@(new SelectList(Model.Alumno, "Id", "Nombre"))">
-                    <option value="">Seleccione una clase</option>
-                </select>*@
+            <option value="">Seleccione una clase</option>
+        </select>*@
+
             <label>Fecha Inicio:</label>
-            <input id="editNumeroControl" required asp-for="Curso.FechaInicio" type="text" />
-            <label>Peso:</label>
+            <input type="date" id="editInicio"  required asp-for="Curso.FechaInicio.Value.Date" value="Curso.FechaInicio"  />
+
+            <label>Fecha Final:</label>
+            <input   id="editFinal" required asp-for="Curso.FechaFinal" />
+
+         
 
             <p class="error"></p>
 
@@ -140,8 +147,8 @@
 					var x = $("#modalEditar form");
 					x.find("#editId").val(data.id);
 					x.find("#editNombre").val(data.nombre);
-					x.find("#editNumeroControl").val(data.numeroControl);
-
+					x.find("#editInicio").val(data.fechaInicio);
+                    x.find("#editFinal").val(data.fechaFinal);
 					x.find('#editIdCarrera option[value="' + data.idCarrera + '"]').attr('selected', true)
 					showModal("modalEditar");
 				}

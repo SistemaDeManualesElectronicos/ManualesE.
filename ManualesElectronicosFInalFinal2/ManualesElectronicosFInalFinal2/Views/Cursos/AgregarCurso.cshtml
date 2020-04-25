@@ -66,12 +66,12 @@
                 <h2>Agregar Curso</h2>
             </div>
             <input asp-for="Clave" placeholder="Clave" /><br />
-            <input asp-for="Nombre" placeholder="Nombre Curso" /><br />
+            <input type="date" asp-for="Nombre" typeof="date"  placeholder="Nombre Curso" /><br />
             <p>Fecha inicio</p>
-            <input asp-for="FechaInicio" placeholder="Fecha" /><br />
+            <input  asp-for="FechaInicio"  placeholder="Fecha" /><br />
             <p>Fecha final</p>
-            <input asp-for="FechaFinal" placeholder="FechaF" /><br />
-            <input asp-for="IdDocente" placeholder="Nombre docente" /><br />
+            <input type="date" value="3/3/2015" asp-for="FechaFinal"   placeholder="FechaF" /><br />
+            <input asp-for="IdDocente"  placeholder="Nombre docente" /><br />
             <select></select>
 
             <div class="botones">

@@ -13,7 +13,7 @@ namespace ManualesElectronicosFInalFinal2.Services
 
 
        
-        public IEnumerable<Carrera> Gercarreritas()
+        public IEnumerable<Carrera> GeTcarreritas()
         {
             itesrcne_manualesContext dr = new itesrcne_manualesContext();
             return dr.Carrera;

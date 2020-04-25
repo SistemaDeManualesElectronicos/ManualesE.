@@ -33,14 +33,32 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         [HttpPost]
         public JsonResult Agregar(ViewModelAlumnos nuevo)
         {
-            alu = new AlumnosRepository();
-            JsonResult json = null;
-            nuevo.Alumno.Nombre = nuevo.Alumno.Nombre.ToUpper();
+            
+                alu = new AlumnosRepository();
+                JsonResult json = null;
+                List<string> errores = alu.ValidarAlumnos(nuevo.Alumno);
+                nuevo.Alumno.Nombre = nuevo.Alumno.Nombre.ToUpper();
+            try
+            {
+                if (errores.Count() == 0)
+                {
 
-            nuevo.Alumno.Eliminado = false;
-            nuevo.Alumno.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.Alumno.NumeroControl);
-            alu.Insert(nuevo.Alumno);
-            json = Json(true);
+                    nuevo.Alumno.Eliminado = false;
+                    nuevo.Alumno.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.Alumno.NumeroControl);
+                    alu.Insert(nuevo.Alumno);
+                    json = Json(true);
+                }
+
+                for (int i = 0; i < errores.Count; i++)
+                {
+                    json = Json(errores);
+                }
+            }
+
+            catch (Exception ex)
+            {
+                json = Json(ex.Message);
+            }
             //if (ModelState.IsValid)
             //{
 
@@ -62,6 +80,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
         public JsonResult Eliminar(int Id)
         {
+           
             JsonResult json = null;
             try
             {
@@ -81,6 +100,8 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             {
                 json = Json(ex.Message);
             }
+
+
             return json;
 
         }
@@ -118,16 +139,29 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         {
             JsonResult json = null;
             AlumnosRepository al = new AlumnosRepository();
+            e.Alumno.Nombre = e.Alumno.Nombre.ToUpper();
+            List<string> errores = al.ValidarAlumnos(e.Alumno);
 
+            try
+            {
+                //if (errores.Count() == 0)
+                //        {
+                if (errores.Count() == 0)
+                {
+                    al.Update(e.Alumno);
+                    json = Json(true);
+                }
+                for (int i = 0; i < errores.Count; i++)
+                {
+                    json = Json(errores);
+                }
+                //  }
+            }
 
-            //List<string> errores = alu.ValidarAlumnos(e.Alumno);
-            //if (errores.Count() == 0)
-            //        {
-                al.Update(e.Alumno);
-                json = Json(true);
-
-          //  }
-
+            catch(Exception ex)
+            {
+                json = Json(ex.Message);
+            }
                 return json;
 
         }

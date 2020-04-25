@@ -1,0 +1,131 @@
+﻿html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    background: #2f313d;
+    font-family: sans-serif;
+}
+
+h2, h1 {
+    color: whitesmoke;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.login {
+    width: 250px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -184px 0px 0px -155px;
+    background: rgba(0,0,0,0.3);
+    padding: 20px 30px;
+    border-radius: 15px;
+}
+
+.DivEditar {
+    width: 50%;
+    position: absolute;
+    left: 22%;
+    background: rgba(0,0,0,0.3);
+    padding: 20px 30px;
+    color: whitesmoke;
+    border-radius: 15px;
+}
+
+input[type="text"], input[type="password"] {
+    width: 250px;
+    padding: 25px 0px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    outline: none;
+    color: white;
+    font-size: 12px;
+}
+
+input[type="submit"], input[type="button"] {
+    background: #008F63;
+    border: 0;
+    width: 250px;
+    height: 40px;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    font-size: 20px;
+    margin: 40px;
+}
+
+.botonesAgregar {
+    background: #008F63;
+    border: 0;
+    width: 250px;
+    height: 40px;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    font-size: 20px;
+    margin: 40px;
+}
+
+.Agregar {
+    width: 250px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -184px 0px 0px -155px;
+    background: rgba(0,0,0,0.3);
+    padding: 20px 30px;
+    border-radius: 15px;
+}
+
+form.eliminar {
+    width: 20%;
+    position: absolute;
+    left: 38%;
+    background: rgba(0,0,0,0.3);
+    padding: 20px 30px;
+    color: whitesmoke;
+    border-radius: 15px;
+}
+
+table {
+    margin-top: 100px;
+    padding: 50px;
+}
+
+th {
+    background-color: #212226;
+    color: aliceblue;
+}
+
+td {
+    background-color: #434550;
+    color: darkgray;
+}
+
+.herramietas {
+    background-color: #2f313d;
+    display: block;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    width: 100%;
+}
+
+img {
+    width: 50px;
+}
+
+#main-header {
+    height: 60px;
+    width: 100%;
+    left: 0;
+    top: 0;
+    position: fixed;
+}

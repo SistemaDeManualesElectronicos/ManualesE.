@@ -21,9 +21,13 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             return Context.Curso.FirstOrDefault(x => x.Id == id);
 
         }
-
+       
+        
+        
         public List<string> ValidarCurso(Curso curso)
         {
+            
+     
             List<string> listaerrores = new List<string>();
 
             if (curso.Nombre.Length < 4 && curso.Nombre.Length < 30)
@@ -31,14 +35,14 @@ namespace ManualesElectronicosFInalFinal2.Repositories
                 listaerrores.Add("El nombre debe ser minimo 4 letras ");
                 
             }
-            if (curso.FechaInicio.Value > DateTime.Now)
+            if (curso.FechaInicio.Value < DateTime.Now)
             {
-                listaerrores.Add("La Fecha debe debe ser mayir a la de hoy ");
+                listaerrores.Add("La Fecha inicio debe debe ser mayor a la de hoy ");
 
             }
-            if (curso.FechaFinal.Value > DateTime.Now && curso.FechaFinal.Value > curso.FechaInicio)
+            if (curso.FechaFinal.Value < DateTime.Now && curso.FechaFinal.Value < curso.FechaInicio)
             {
-                listaerrores.Add("La fecha debe ser despues de la fecha inicio ");
+                listaerrores.Add("La fecha final debe ser despues de la fecha inicio ");
 
             }
 

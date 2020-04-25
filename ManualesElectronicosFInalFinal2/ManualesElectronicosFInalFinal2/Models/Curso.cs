@@ -12,5 +12,8 @@ namespace ManualesElectronicosFInalFinal2.Models
         public DateTime? FechaFinal { get; set; }
         public int? IdDocente { get; set; }
         public int? IdTemas { get; set; }
+
+    
+
     }
 }

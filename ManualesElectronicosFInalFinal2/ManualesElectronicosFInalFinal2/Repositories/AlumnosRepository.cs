@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using ManualesElectronicosFInalFinal2.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ManualesElectronicosFInalFinal2.Repositories
 {
@@ -12,7 +13,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
        public IEnumerable<Alumnos> GetAlumnosxNombre()
         {
             
-            var data = Context.Alumnos.OrderBy(x => x.Nombre);
+            var data = Context.Alumnos.Include(x => x.IdCarreraNavigation).OrderBy(x => x.Nombre);
             return data;
         }//p
         
@@ -74,7 +75,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
                 listaerrores.Add("Numero de control incorrecto. El Numero de contorl tiene 8 caracteres");
             }
       
-            if (Context.Alumnos.Any(x => x.NumeroControl == alumnos.NumeroControl))  //Validar si ya existe numero de control
+            if (Context.Alumnos.Any(x => x.NumeroControl == alumnos.NumeroControl && x.Id != alumnos.Id))  //Validar si ya existe numero de control
             {
                
                 listaerrores.Add("Numero de control ya existente");
