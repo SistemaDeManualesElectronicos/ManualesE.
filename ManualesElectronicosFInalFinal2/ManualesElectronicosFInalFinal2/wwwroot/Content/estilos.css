@@ -93,21 +93,25 @@ header {
 		line-height: 30px;
 		width: 26px;
 		margin: 0 10px;
+		text-decoration:none;
 	}
-
+	
 	header h1 {
 		font-weight: lighter;
 		margin: 0;
-		line-height: 30px;
+		/*line-height: 30px;*/
 		width: calc(100% - 200px);
+		color: white;
 		float: left;
 		font-size: large;
 		padding-left: 10px;
+		border-bottom: none;
 	}
 
-	header .dropdown {
+	header .dropdown ul {
 		width: 100px;
 		float: right;
+		
 	}
 
 	header .right {
@@ -119,7 +123,7 @@ header {
 }
 
 header ul {
-	border: 1px solid black;
+	/*border: 1px solid black;*/
 	display: none;
 	list-style: none;
 	margin: 0;
@@ -167,10 +171,6 @@ header .opc {
 }
 
 main {
-	/*height: calc(100% - 80px);*/
-	/*position: fixed;
-	top: 60px;
-	left: 225px;*/
 	overflow: hidden;
 	margin: 60px 0 0 225px;
 	padding: 10px;
@@ -184,8 +184,8 @@ main {
 		font-size: 1.2em;
 		font-weight: 400;
 		padding: 5px;
-		width: calc(100% - 10px);
-		border-bottom: 1px solid #2c3e50;
+	
+		
 	}
 
 .infohoras {

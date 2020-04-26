@@ -4,103 +4,19 @@
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 @inject DocenteService service
-@*<head>
-        <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
-    </head>
-    <body>
-        <div id="sidebar" class="sidebar">
-            <a href="#" class="boton-cerrar" onclick="ocultar()">&times;</a>
-            <ul class="menu">
-                <li><a asp-action="Docentes" asp-controller="Docentes">Docentes</a></li>
-                <li><a asp-action="Alumnos" asp-controller="Alumnos">Alumnos</a></li>
-            </ul>
-        </div>
-        <a id="abrir" class="abrir-cerrar" href="javascript:void(0)" onclick="mostrar()"><img class="lateral" />Menú</a>
-
-        <a href="javascript:showModal('modalAgregar')"><i class="fa fa-plus"></i> Agregar Alumno</a>
-        <table>
-            <tbody>
-                <tr>
-
-                    <th>Numero de control</th>
-
-                    <th width="65%">Nombre Del Docente</th>
-
-                    <th>Carrera</th>
-
-                </tr>
-                @foreach (var item in Model.docentes)
-                {
-                    <tr onclick="mostrarHerramietas()">
-
-                        <td>@item.NumeroDeControl</td>
-
-                        <td>@item.Nombre</td>
-                        <td></td>
-
-                    </tr>
-                }
-            </tbody>
-
-        </table>
-        <footer id="sidebar2" class="sidebar2">
-            <a class="flotante" asp-action="Agregar" asp-controller="Docentes"><img src="~/images/add.png" />Agregar</a>
-            <a asp-controller="Docentes" asp-action="EditarDocentes"><img src="~/Imagenes/user.png" />Editar</a>
-            <a asp-controller="Docentes" asp-action="Eliminar"><img src="~/Imagenes/delete.png" />Eliminar</a>
-
-        </footer>
-        <div class="dropdown">
-            <button class="dropbtn">D</button>
-            <div class="dropdown-content">
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Salir</a>
-            </div>
-        </div>
-        <script>
-            function mostrar() {
-                document.getElementById("sidebar").style.width = "300px";
-                document.getElementById("contenido").style.marginLeft = "300px";
-                document.getElementById("sidebar2").style.marginLeft = "300px";
-
-            }
-
-            function ocultar() {
-                document.getElementById("sidebar").style.width = "0";
-                document.getElementById("contenido").style.marginLeft = "0";
-
-            }
-            function mostrarHerramietas() {
-                document.getElementById("sidebar2").style.backgroundColor = "#2f313d";
-                document.getElementById("sidebar2").style.width = "100%";
-                document.getElementById("sidebar2").style.height = "50px";
-                document.getElementById("sidebar2").style.display = block;
-                document.getElementById("sidebar2").style.position = absolute;
-                document.getElementById("sidebar2").style.bottom = 0;
-                document.getElementById("sidebar2").style.right = 0;
-
-                document.getElementById("icono").style.height = "10px";
-
-
-            }
-        </script>
-    </body>*@
-<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <link href="css/estilos.css" rel="stylesheet" />
     <link href="~/Content/estilos.css" rel="stylesheet" />
-    <link href="css/grid.css" rel="stylesheet" />
     <link href="~/Content/grid.css" rel="stylesheet" />
-    <link href="css/colores.css" rel="stylesheet" />
-    <link href="~/Content/colores.css" rel="stylesheet" />
+    <link href="~/Content/OtrosColores.css" rel="stylesheet" />
     <!-- Para usar iconos con FontAwesome  -->
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="jquery-3.5.0.min"></script>
     <script src="util.js"></script>
-    <title>Titulo</title>
+    <title>Docentes</title>
     <script>
         $(document).ready(function () {
             $("#bars").click(function () {
@@ -122,19 +38,21 @@
     </nav>
     <header>
         <a href="#" class="left"><i class="fa fa-bars"></i></a>
-        <h1><b>ITESRC</b> Manuales Electronicos</h1>
+        <h1  style="color:white; width:auto; border-bottom:none; text-align:center;"><b>ITESRC</b> Manuales Electronicos</h1>
         <div class="dropdown">
             <a href="#" class="right">
                 <i class="fa fa-user"></i>
             </a>
             <ul>
-                <li><a href="#"><i class="fa fa-key"></i>Cambiar Contraseña</a></li>
-                <li><a href="#"><i class="fa fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+                <li><a style="text-decoration: none; color:black;" href="#"><i class="fa fa-key"></i>Cambiar Contraseña</a></li>
+                <li><a style="text-decoration: none; color:black;" href="#"><i class="fa fa-sign-out-alt"></i> Cerrar Sesión</a></li>
             </ul>
         </div>
     </header>
     <main>
-
+        <div>
+            <h2 style=" float:right; "> <a style="color:white;" asp-action="Agregar" asp-controller="Docentes"><i class="fas fa-user-plus"></i></a></h2>
+        </div>
         <section>
 
             <h2>
@@ -144,7 +62,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th style="width: 1%" class="center">#</th>
+
                         <th width="10%" class="center">Numero de control</th>
 
                         <th width="65%" class="center">Nombre Del Docente</th>
@@ -157,7 +75,7 @@
                     @foreach (var item in Model.docentes)
                     {
                         <tr>
-                            <td>1</td>
+
                             <td class="center">@item.NumeroDeControl</td>
                             <td class="center">@item.Nombre</td>
                             <td class="center">@item.IdCarreraNavigation.Nombre</td>
@@ -169,20 +87,27 @@
                             </td>
                         </tr>
                     }
-                    </tbody>
+                </tbody>
             </table>
-
-            <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#">1</a>
-                <a class="active" href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">&raquo;</a>
-            </div>
         </section>
+
+        <div class="modal" id="eliminar">
+            <section>
+                <h2>Confirme la eliminación</h2>
+
+                <form action="#" method="post">
+                    <p>¿Esta seguro de eliminar?</p>
+
+
+                    <label class="col-12 error">ERROR</label>
+
+                    <input type="button" value="No" class="cancel" />
+                    <input type="submit" value="Si" />
+                </form>
+
+            </section>
+
+        </div>
     </main>
 </body>
 </html>
