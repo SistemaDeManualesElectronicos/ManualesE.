@@ -51,7 +51,7 @@
     </header>
     <main>
         <div>
-            <h2 style=" float:right; "> <a style="color:white;" asp-action="Agregar" asp-controller="Docentes"><i class="fas fa-user-plus"></i></a></h2>
+            <h2 style=" float:right; "> <a  style="color:white;" asp-action="Agregar" asp-controller="Docentes"><i class="fas fa-user-plus"></i></a></h2>
         </div>
         <section>
 
@@ -89,25 +89,78 @@
                     }
                 </tbody>
             </table>
+
+            <div class="modal" id="eliminar">
+                <section>
+                    <h2>Confirme la eliminación</h2>
+
+                    <form action="#" method="post">
+                        <p>¿Esta seguro de eliminar?</p>
+
+
+                        <label class="col-12 error">ERROR</label>
+
+                        <input type="button" value="No" class="cancel" />
+                        <input type="submit" value="Si" />
+                    </form>
+
+                </section>
+
+            </div>
+            <div class="modal" id="Agregar">
+                <section>
+                    <h2>Agregar Docente</h2>
+
+                    <form action="#" method="post">
+                        <label class="col-2">Nombre:</label>
+                        <input class="col-10" type="text" required="required" />
+
+                        <label class="col-2">Número de control:</label>
+                        <input class="col-10" type="text" maxlength="15" required="required" />
+
+                        <label class="col-2">curso:</label>
+                        <input class="col-10" type="text" required="required" />
+
+                        <label class="col-2">Carrera:</label>
+                        <select class="col-10" required="required">
+                            <option value="">Seleccione</option>
+                        </select>
+
+                        <label class="col-12 error">Error</label>
+
+                        <input type="button" class="cancel" value="Cancelar" />
+                        <input type="submit" value="Agregar" />
+                    </form>
+                </section>
+            </div>
+            <div class="modal" id="Editar">
+                <section>
+                    <h2>Editar Docente</h2>
+
+                    <form action="#" method="post">
+                        <label class="col-2">Nombre:</label>
+                        <input class="col-10" type="text" required="required" />
+
+                        <label class="col-2">Número de control:</label>
+                        <input class="col-10" type="text" maxlength="15" required="required" />
+
+                        <label class="col-2">curso:</label>
+                        <input class="col-10" type="text" required="required" />
+
+                        <label class="col-2">Carrera:</label>
+                        <select class="col-10" required="required">
+                            <option value="">Seleccione</option>
+                        </select>
+
+                        <label class="col-12 error">Error</label>
+
+                        <input type="button" class="cancel" value="Cancelar" />
+                        <input type="submit" value="Aceptar" />
+                    </form>
+                </section>
+            </div>
         </section>
 
-        <div class="modal" id="eliminar">
-            <section>
-                <h2>Confirme la eliminación</h2>
-
-                <form action="#" method="post">
-                    <p>¿Esta seguro de eliminar?</p>
-
-
-                    <label class="col-12 error">ERROR</label>
-
-                    <input type="button" value="No" class="cancel" />
-                    <input type="submit" value="Si" />
-                </form>
-
-            </section>
-
-        </div>
     </main>
 </body>
 </html>
