@@ -33,7 +33,7 @@ main h1 {
 
 
 form input[type=button], form input[type=submit], form a.btn, .pagination a.active {
-    border-color: #E91E63;
+    /*border-color: #E91E63;*/
     background-color: #008F63;
 }
 /* light-primary-color background: #F8BBD0 */
@@ -65,7 +65,7 @@ header ul li:hover {
 /* primary-text-color #212121 */
 
 form label, .pagination a {
-    color: #008F63;
+    color: white;
 }
 /* secondary-text-color #d3d3d3 */
 
