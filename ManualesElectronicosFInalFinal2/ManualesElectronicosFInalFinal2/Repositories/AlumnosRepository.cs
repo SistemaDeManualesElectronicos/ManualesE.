@@ -80,9 +80,12 @@ namespace ManualesElectronicosFInalFinal2.Repositories
                
                 listaerrores.Add("Numero de control ya existente");
             }
+            if (alumnos.IdCarrera == null)
+            {
+                listaerrores.Add("El Value de la carrera no existe");
+            }
 
 
-     
 
             return listaerrores ;
         }

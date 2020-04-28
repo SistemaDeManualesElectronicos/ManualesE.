@@ -6,149 +6,8 @@
 	Layout = "~/Views/Shared/Layout.cshtml";
 
 }
-@*<head>
-	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
-    <link href="~/Content/StyleSheet.css" rel="stylesheet" />
-
-	<style>
-		.modal {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background-color: rgba(0,0,0,.5);
-			display: none;
-		}
-
-			.modal div {
-				background-color: white;
-				margin: 20px auto;
-				width: 500px;
-			}
-	</style>
-
-</head>
-<h2 style="text-align:center">Alumnos</h2>
-
-<a style="text-align:start; float:left; margin-right:500px; margin-left:610px" class="btn btn-primary" href="javascript:showModal('modalAgregar')"><i></i> Agregar Alumno</a>
-@foreach (var item in Model.Alumnos)
-{
-
-	<div class="card" style="width: 18rem;">
-
-		<div class="card-body">
-			<h5 class="card-title">@item.Nombre</h5>
-			<p  class="card-text">@item.NumeroControl</p>
-			
-			<p  class="card-text">@item.IdCarreraNavigation.Nombre</p>
-			<p></p>
-			<a class="btn btn-primary" href="javascript:eliminar(@item.Id)"><i class="fa fa-remove"></i> Eliminar</a>
-			<a class="btn btn-primary" href="javascript:editar(@item.Id)"><i class="fa fa-edit"></i> Editar</a>
-		</div>
-	</div>
-}
-
-
-<div class="modal" id="modalAgregar">
-	<div>
-		<h1>Agregar Alumno</h1>*@
-		@*Es necesario agregar la clase formAjax definida en util.js*@
-
-		@*<form class="formAjax" method="post" action="~/Alumnos/Agregar">
-			<label>Nombre:</label>
-			<input required asp-for="Alumno.Nombre" />
-			<label>Numero de control:</label>
-			<input required asp-for="Alumno.NumeroControl" />
-			<label>Carrera:</label>
-			
-			<select required asp-for="Alumno.IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))">
-				<option value="">Seleccione una clase</option>
-			</select>
-
-			<p class="error"></p>
-
-			<input type="submit" value="Agregar" />
-			<a href="~/Alumnos/Alumnos">
-				<input type="button" value="Cancelar" />
-			</a>
-		</form>
-	</div>
-</div>
-
-
-<div id="modalEliminar" class="modal">
-	<div>
-		<h1>Eliminar Alumno</h1>
-
-		<form class="formAjax" method="post" action="~/Alumnos/Eliminar">
-			<input id="deleteId" type="hidden" name="Id" />
-			<p><b>¿Está seguro de eliminar el alumno?</b></p>
-
-			<p class="error"></p>
-
-			<input type="submit" value="Si" />
-			<a href="~/Alumnos/Alumnos">
-				<input type="button" value="No" />
-			</a>
-		</form>
-	</div>
-	<script>
-		function eliminar(id) {
-			$("#deleteId").val(id);
-			showModal("modalEliminar");
-		}
-	</script>
-</div>
-
-<div id="modalEditar" class="modal">
-	<div>
-		<h1>Editar Alumno</h1>
-
-		<form class="formAjax" method="post" action="~/Alumnos/Editar">
-			<input id="editId" type="hidden" asp-for="Alumno.Id" />
-
-			<label>Nombre:</label>
-			<input id="editNombre" required asp-for="Alumno.Nombre" type="text" />
-
-
-			<label>Numero de control:</label>
-			<input id="editNumeroControl" required asp-for="Alumno.NumeroControl" type="text" />
-
-			<label>Carrera:</label>
-			<select id="editIdCarrera" required asp-for="Alumno.IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))">
-				<option value="">Seleccione una clase</option>
-			</select>
-
-			<p class="error"></p>
-
-			<input type="submit" value="Guardar" />
-			<a href="~/Alumnos/Alumnos">
-				<input type="button" value="Cancelar" />
-			</a>
-		</form>
-		<script>
-		function editar(id) {
-			$.post('@Url.Action("GetAlumno", "Alumnos")', { "id": id }, function (data, status) {
-				if (data != false) {
-
-					var x = $("#modalEditar form");
-					x.find("#editId").val(data.id);
-					x.find("#editNombre").val(data.nombre);
-					x.find("#editNumeroControl").val(data.numeroControl);
-
-					x.find('#editIdCarrera option[value="' + data.idCarrera + '"]').attr('selected', true)
-					showModal("modalEditar");
-				}
-			});
-		}
-		</script>
-	</div>
-</div>*@
-
-@*<script src="~/util.js"></script>*@
-    <html>
+    
     <head>
         <meta charset="utf-8" />
         <link href="~/Content/estilos.css" rel="stylesheet" />
@@ -224,10 +83,10 @@
                                 <td class="center">@item.Nombre</td>
                                 <td class="center">@item.IdCarreraNavigation.Nombre</td>
                                 <td>
-                                    <a href="javascript:showModal('modalEditar')"><i class="fas fa-user-edit"></i></a>
+                                    <a href="javascript:editar(@item.Id)"><i class="fas fa-user-edit"></i></a>
                                 </td>
                                 <td>
-                                    <a href="javascript:showModal('ModalEliminar')"><i class="fa fa-trash"></i></a>
+                                    <a href="javascript:eliminar(@item.Id)"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                         }
@@ -239,44 +98,50 @@
                     <section>
                         <h2>Agregar Alumno</h2>
 
-                        <form class="formAjax" method="post">
-                            <label class="col-2">Nombre:</label>
-                            <input class="col-10" type="text" required="required" />
+                        <form class="formAjax" method="post"action="~/Alumnos/Agregar">
+                            <label class="col-2"  >Nombre:</label>
+                            <input class="col-10" type="text" required="required"  asp-for="Alumno.Nombre"  />
+
 
                             <label class="col-2">Número de control:</label>
-                            <input class="col-10" type="text" maxlength="15" required="required" />
+                            <input class="col-10" type="text" maxlength="15"  asp-for="Alumno.NumeroControl" required="required" />
 
                             <label class="col-2">Contraseña:</label>
                             <input class="col-10" type="text" required="required" />
 
                             <label class="col-2">Carrera:</label>
-                            <select class="col-10" required="required">
+                            <select class="col-10" required="required" asp-for="Alumno.IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))">
                                 <option value="">Seleccione</option>
                             </select>
+
+
 
                             <label class="col-12 error">Error</label>
 
                             <input type="button" class="cancel" value="Cancelar" />
-                            <input type="submit" value="Agregar" />
+                         <a href="Alumnos/Alumnos"></a>
+                                <input type="submit" value="Agregar" />
                         </form>
                     </section>
                 </div>
-                <div class="modal" id="modalEditar">
+                <div  id="modalEditar" class="modal">
                     <section>
                         <h2>Editar Alumno</h2>
 
-                        <form action="#" method="post">
+                        <form class="formAjax" method="post" action="~/Alumnos/Editar">
+                            <input id="editId" type="hidden" asp-for="Alumno.Id" />
+
                             <label class="col-2">Nombre:</label>
-                            <input class="col-10" type="text" required="required" />
+                            <input  id="editNombre" class="col-10" type="text" asp-for="Alumno.Nombre" required="required" />
 
                             <label class="col-2">Número de control:</label>
-                            <input class="col-10" type="text" maxlength="15" required="required" />
+                            <input id="editNumeroControl" class="col-10" type="text" maxlength="15" asp-for="Alumno.NumeroControl" required="required" />
 
                             <label class="col-2">Contraseña:</label>
                             <input class="col-10" type="text" required="required" />
 
-                            <label class="col-2">Carrera:</label>
-                            <select class="col-10" required="required">
+                            <label   class="col-2">Carrera:</label>
+                            <select id="editIdCarrera" class="col-10" required="required" asp-for="Alumno.IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))">
                                 <option value="">Seleccione</option>
                             </select>
 
@@ -286,27 +151,55 @@
                             <input type="submit" value="Aceptar" />
                         </form>
                     </section>
+
+                    <script>
+		function editar(id) {
+			$.post('@Url.Action("GetAlumno", "Alumnos")', { "id": id }, function (data, status) {
+				if (data != false) {
+
+					var x = $("#modalEditar form");
+					x.find("#editId").val(data.id);
+					x.find("#editNombre").val(data.nombre);
+					x.find("#editNumeroControl").val(data.numeroControl);
+
+					x.find('#editIdCarrera option[value="' + data.idCarrera + '"]').attr('selected', true)
+					showModal("modalEditar");
+				}
+			});
+		}
+                    </script>
                 </div>
-                <div class="modal" id="ModalEliminar">
+                    <div  id="modalEliminar" class="modal">
                     <section>
                         <h2>Confirme la eliminación</h2>
 
-                        <form class="formAjax" action="#" method="post">
+                        <form class="formAjax"  method="post" action="~/Alumnos/Eliminar">
+                            <input id="deleteId" type="hidden" name="Id" />
                             <p>¿Esta seguro de eliminar?</p>
 
 
                             <label class="col-12 error">ERROR</label>
 
-                            <input type="button" value="No" class="cancel" />
+                            <a href="~/Alumnos/Alumnos">
+                                <input type="button" value="No" class="cancel" />
+
+                            </a>
                             <input type="submit" value="Si" />
+
                         </form>
 
                     </section>
-
+                    <script>
+                        function eliminar(id) {
+                            $("#deleteId").val(id);
+                            showModal("modalEliminar");
+                        }
+                    </script>
                 </div>
+
             </section>
 
         </main>
     </body>
-    </html>
+   
 
