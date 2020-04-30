@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <script src="jquery-3.5.0.min"></script>
         <script src="util.js"></script>
-        <title>Docentes</title>
+        <title>Alumnos</title>
         <script>
             $(document).ready(function () {
                 $("#bars").click(function () {
@@ -106,8 +106,7 @@
                             <label class="col-2">Número de control:</label>
                             <input class="col-10" type="text" maxlength="15"  asp-for="Alumno.NumeroControl" required="required" />
 
-                            <label class="col-2">Contraseña:</label>
-                            <input class="col-10" type="text" required="required" />
+                            
 
                             <label class="col-2">Carrera:</label>
                             <select class="col-10" required="required" asp-for="Alumno.IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))">
@@ -116,7 +115,7 @@
 
 
 
-                            <label class="col-12 error">Error</label>
+                            <label class="col-12 error"></label><br />
 
                             <input type="button" class="cancel" value="Cancelar" />
                          <a href="Alumnos/Alumnos"></a>
@@ -137,15 +136,14 @@
                             <label class="col-2">Número de control:</label>
                             <input id="editNumeroControl" class="col-10" type="text" maxlength="15" asp-for="Alumno.NumeroControl" required="required" />
 
-                            <label class="col-2">Contraseña:</label>
-                            <input class="col-10" type="text" required="required" />
+                            
 
                             <label   class="col-2">Carrera:</label>
                             <select id="editIdCarrera" class="col-10" required="required" asp-for="Alumno.IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))">
                                 <option value="">Seleccione</option>
                             </select>
 
-                            <label class="col-12 error">Error</label>
+                            <label class="col-12 error"></label>
 
                             <input type="button" class="cancel" value="Cancelar" />
                             <input type="submit" value="Aceptar" />
