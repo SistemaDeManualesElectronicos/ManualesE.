@@ -2,45 +2,55 @@
 @{
     ViewData["Title"] = "Index";
 }
-
 <head>
     <meta charset="utf-8" />
+    <link href="~/Content/estilos.css" rel="stylesheet" />
+    <link href="~/Content/grid.css" rel="stylesheet" />
+    <link href="~/Content/OtrosColores.css" rel="stylesheet" />
+    <!-- Para usar iconos con FontAwesome  -->
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="jquery-3.5.0.min"></script>
+    <script src="util.js"></script>
     <title></title>
-    <link href="~/Views/Docentes/style.css" rel="stylesheet" />
+    <script>
+            $(document).ready(function () {
+                $("#bars").click(function () {
+                    $("nav").toggleClass("open");
+                });
+            });
+    </script>
+
 </head>
 <body>
-    <style>
-        html {
-    position: relative;
-    min-height: 100%;
-}
+    <nav class="menu">
+        <div>
+        </div>
+        <ul>
+            <li><a asp-action="Docentes" asp-controller="Docentes"><i class="fa fa-address-card"></i>Docentes</a></li>
+            <li><a asp-action="Alumnos" asp-controller="Alumnos"><i class="fa fa-address-card"></i>Alumnos</a></li>
+            <li><a asp-action="Cursos" asp-controller="Cursos"><i class="far fa-file-alt"></i>Cursos</a></li>
+            <li><a asp-action="Temas" asp-controller="Temas"><i class="far fa-file-alt"></i>Temas</a></li>
+            <li><a asp-action="Index" asp-controller="Subtemas"><i class="far fa-file-alt"></i>Subtemas</a></li>
 
-body {
-    background: #2f313d;
-    font-family: sans-serif;
-}
+        </ul>
 
-h2, h1,a {
-    color: whitesmoke;
-    font-size: 20px;
-    text-align: center;
-    margin-bottom: 10px;
-}
-        nav {
-            background-color: #282828;
-            position: fixed;
-            margin: 0;
-            padding: 0;
-            height: 100%;
-        }
-    </style>
-    <nav>
-        <h2><a asp-action="Docentes" asp-controller="Docentes">docentes</a></h2>
-
-        <h2><a asp-action="Alumnos" asp-controller="Alumnos">Alumnos</a></h2>
-
-        <h2><a asp-action="Cursos" asp-controller="Cursos">Cursos</a></h2>
-        <h2><a asp-action="Temas" asp-controller="Temas">Temas</a></h2>
-        <h2><a asp-action="Index" asp-controller="Subtemas">Subtemas</a></h2>
     </nav>
+    <header>
+        <a href="#" class="left"><i class="fa fa-bars"></i></a>
+        <h1 style="color:white; width:auto; border-bottom:none; text-align:center;"><b>ITESRC</b> Manuales Electronicos</h1>
+        <div class="dropdown">
+            <a href="#" class="right">
+                <i class="fa fa-user"></i>
+            </a>
+            <ul>
+                <li><a style="text-decoration: none; color:black;" href="#"><i class="fa fa-key"></i>Cambiar Contraseña</a></li>
+                <li><a style="text-decoration: none; color:black;" href="#"><i class="fa fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+            </ul>
+        </div>
+    </header>
+    <main>
+       
+    </main>
 </body>
