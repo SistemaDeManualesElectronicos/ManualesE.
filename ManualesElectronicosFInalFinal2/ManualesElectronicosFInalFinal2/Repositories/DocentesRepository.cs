@@ -32,7 +32,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
         {
             
             List<string> errores = new List<string>();
-            Regex NombreConCaracteresEspeciales = new Regex(@"^([A-Za-zÁÉÍÓÚñáéíóúÑ]{1,10}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{1,10}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{1,10}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])+[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{1,10}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])?$");
+            Regex NombreConCaracteresEspeciales = new Regex(@"^([A-ZÁÉÍÓÚñáéíóúÑ]{0}?[A-ZÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-ZÁÉÍÓÚñáéíóúÑ]{0}?[A-ZÁÉÍÓÚñáéíóúÑ\'])+[\s]?([A-ZÁÉÍÓÚñáéíóúÑ]{0}?[A-ZÁÉÍÓÚñáéíóúÑ\'])?$");
             Regex NumeroDeControl = new Regex(@"^([0-9]\d{0,5})+$");
             var dato = Context.Carrera.FirstOrDefault(x => x.Id == docente.IdCarrera);
 
