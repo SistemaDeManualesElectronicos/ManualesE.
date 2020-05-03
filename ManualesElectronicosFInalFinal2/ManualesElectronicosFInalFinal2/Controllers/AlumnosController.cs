@@ -12,7 +12,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 {
 
     public class AlumnosController : Controller
-    {
+    {//
 
         AlumnosRepository alu;
         public IActionResult Alumnos()
