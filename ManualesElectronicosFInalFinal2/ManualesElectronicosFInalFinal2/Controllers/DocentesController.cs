@@ -43,7 +43,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             {
                 if (errores.Count() == 0)
                 {
-
+                    
                     nuevo.Docente.Eliminado = false;
                     nuevo.Docente.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.Docente.NumeroDeControl);
                     doc.Insert(nuevo.Docente);
@@ -132,20 +132,20 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         }
 
 
-        //public IActionResult EditarDocentes(int id)
-        //{
-        //    doc = new DocentesRepository();
-        //    var datos = doc.GetById(id);
-        //    return View(id);
-        //}
+   
 
         [HttpPost]
         public JsonResult EditarDocentes(DocenteViewModel d)
         {
-
+            
             JsonResult json = null;
             DocentesRepository doc = new DocentesRepository();
             
+            
+            
+
+
+
             List<string> errores = doc.ValidarDocentes(d.Docente);
             d.Docente.Nombre = d.Docente.Nombre.ToUpper();
             try
@@ -154,7 +154,8 @@ namespace ManualesElectronicosFInalFinal2.Controllers
                 //        {
                 if (errores.Count() == 0)
                 {
-                   doc.Update(d.Docente);
+                   
+                    doc.Update(d.Docente);
                     json = Json(true);
                 }
                 for (int i = 0; i < errores.Count; i++)
