@@ -137,7 +137,7 @@
                             <label class="col-2">Número de control:</label>
                             <input id="editNumeroControl" class="col-10" type="text" maxlength="15" asp-for="Alumno.NumeroControl" required="required" />
 
-                            
+                           
 
                             <label   class="col-2">Carrera:</label>
                             <select id="editIdCarrera" class="col-10" required="required" asp-for="Alumno.IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))">

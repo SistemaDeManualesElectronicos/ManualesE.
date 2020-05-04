@@ -27,7 +27,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         }
 
         //public IActionResult Agregar()
-        //{
+        //{dff
         //    return View();
         //}
         [HttpPost]
