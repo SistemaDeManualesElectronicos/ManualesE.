@@ -33,56 +33,37 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
             doc = new DocentesRepository();
             JsonResult json = null;
+           
+            List<string> errores = doc.ValidarDocentes(nuevo.Docente);
             nuevo.Docente.Nombre = nuevo.Docente.Nombre.ToUpper();
 
-            nuevo.Docente.Eliminado = false;
-            nuevo.Docente.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.Docente.NumeroDeControl);
-            doc.Insert(nuevo.Docente);
-            json = Json(true);
-            //List<string> errores = doc.ValidarDocentes(nuevo);
 
 
-            //        if (errores.Count() == 0)
-            //        {
+            try
+            {
+                if (errores.Count() == 0)
+                {
+                    
+                    nuevo.Docente.Eliminado = false;
+                    nuevo.Docente.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.Docente.NumeroDeControl);
+                    doc.Insert(nuevo.Docente);
+                    json = Json(true);
+                }
 
+                for (int i = 0; i < errores.Count; i++)
+                {
+                    json = Json(errores);
+                }
+            }
 
-
-            //            nuevo.Eliminado = false;
-            //            nuevo.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.NumeroDeControl);
-            //            doc.Insert(nuevo);
-            //            return RedirectToAction("Docentes");
-
-            //        }
-
-
-            //else
-            //    {
-            //     for (int i = 0; i < errores.Count(); i++)
-            //    {
-            //        ModelState.AddModelError("", errores[i]);
-
-            //    }
-            //    return View(nuevo);
-            //}
+            catch (Exception ex)
+            {
+                json = Json(ex.Message);
+            }
 
             return json;
         }
-        //else
-        //{
-        //    return View(nuevo);
-        //}
-
-
-
-
-
-        //public IActionResult Eliminar(Docentes d)
-        //{
-        //    doc = new DocentesRepository();
-        //    List<string> errores = doc.ValidarDocentes(d);
-        //    var datos = doc.GetDocenteById(d.Id);
-        //    return View(datos);
-        //}
+      
 
 
 
@@ -93,7 +74,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         public JsonResult Eliminar(int id)
         {
             JsonResult json = null;
-            doc = new DocentesRepository();
+          
 
             try
             {
@@ -151,66 +132,49 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         }
 
 
-        //public IActionResult EditarDocentes(int id)
-        //{
-        //    doc = new DocentesRepository();
-        //    var datos = doc.GetById(id);
-        //    return View(id);
-        //}
+   
 
-
-        public IActionResult EditarDocentes(DocenteViewModel d)
+        [HttpPost]
+        public JsonResult EditarDocentes(DocenteViewModel d)
         {
-
-            //    if (ModelState.IsValid)
-            //    {
-            //        doc = new DocentesRepository();
-            //        List<string> errores = doc.ValidarDocentes(d);
-            //        for (int i = 0; i < errores.Count(); i++)
-            //        {
-            //            ModelState.AddModelError("", errores[i]);
-            //        }
-
-            //        if (errores.Count() == 0)
-            //        {
-
-
-
-            //            var Datos = doc.GetById(d.Id);
-            //            Datos.Nombre = d.Nombre;
-            //            Datos.NumeroDeControl = d.NumeroDeControl;
-            //            Datos.Contraseña = EncriptarLaContraseñaConverter.Encriptar(Datos.NumeroDeControl);
-            //            Datos.IdCarrera = d.IdCarrera;
-            //            doc.Update(Datos);
-            //            return RedirectToAction("Docentes");
-            //        }
-
-            //        }
-            //        else
-            //        {
-
-            //            return View(d);
-            //        }
-            //        return View(d);
-
-            //}
-
+            
             JsonResult json = null;
-            DocentesRepository al = new DocentesRepository();
+            DocentesRepository doc = new DocentesRepository();
+            
+            
+            
 
 
-            //List<string> errores = alu.ValidarAlumnos(e.Alumno);
-            //if (errores.Count() == 0)
-            //        {
-            al.Update(d.Docente);
-            json = Json(true);
 
-            //  }
+            List<string> errores = doc.ValidarDocentes(d.Docente);
+            d.Docente.Nombre = d.Docente.Nombre.ToUpper();
+            try
+            {
+                //if (errores.Count() == 0)
+                //        {
+                if (errores.Count() == 0)
+                {
+                   
+                    doc.Update(d.Docente);
+                    json = Json(true);
+                }
+                for (int i = 0; i < errores.Count; i++)
+                {
+                    json = Json(errores);
+                }
+                //  }
+            }
 
+            catch (Exception ex)
+            {
+                json = Json(ex.Message);
+            }
             return json;
 
-
         }
+
+
     }
 }
+
 
