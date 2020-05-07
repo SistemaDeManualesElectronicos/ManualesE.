@@ -116,7 +116,7 @@
                     </form>
                 </section>
             </div>
-            <div class="modal" id="modalEditar">
+            <div  id="modalEditar" class="modal">
                 <section>
                     <h2>Editar Docente</h2>
 
@@ -126,7 +126,7 @@
 
 
                         <label class="col-2">Número de control:</label>
-                        <input class="col-10" type="text" maxlength="15" asp-for="Docente.NumeroDeControl" required="required" />
+                        <input   class="col-10" type="text" maxlength="15" asp-for="Docente.NumeroDeControl" required="required" />
 
 
                         <label class="col-2">Carrera:</label>
@@ -148,7 +148,7 @@
                     var x = $("#modalEditar form");
                     x.find("#editId").val(data.id);
 					x.find("#editNombre").val(data.nombre);
-					x.find("#editNumeroDeControl").val(data.numerodecontrol);
+					x.find("#editNumeroDeControl").val(data.numeroDeControl);
 
 					x.find('#editIdCarrera option[value="' + data.idCarrera + '"]').attr('selected', true)
 					showModal("modalEditar");
