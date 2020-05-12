@@ -74,15 +74,17 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         public JsonResult Eliminar(int id)
         {
             JsonResult json = null;
-          
-
+            DocentesRepository doc = new DocentesRepository();
+            
+            var datos = doc.GetDocenteById(id);
+            List<string> errores = doc.ValidarDocentes(datos);
             try
             {
-                DocentesRepository doc = new DocentesRepository();
-                var r = doc.GetDocenteById(id);
-                if (r != null)
+                //DocentesRepository doc = new DocentesRepository();
+                //var r = doc.GetDocenteById(id);
+                if (errores.Count()==0)
                 {
-                    doc.Delete(r);
+                    doc.Delete(datos);
                     json = Json(true);
                 }
                 else
@@ -95,8 +97,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             {
                 json = Json(ex.Message);
             }
-            //var clase = doc.GetDocenteById(id);
-            //doc.Delete(clase);
+           
             return json;
         }
 
@@ -140,29 +141,24 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             
             JsonResult json = null;
             DocentesRepository doc = new DocentesRepository();
-            
-            
-            
-
-
-
-            List<string> errores = doc.ValidarDocentes(d.Docente);
             d.Docente.Nombre = d.Docente.Nombre.ToUpper();
+            List<string> errores = doc.ValidarDocentes(d.Docente);
+           
             try
             {
-                //if (errores.Count() == 0)
-                //        {
-                if (errores.Count() == 0)
                 {
-                   
-                    doc.Update(d.Docente);
-                    json = Json(true);
+                    if (errores.Count() == 0)
+                    {
+
+                        doc.Update(d.Docente);
+                        json = Json(true);
+                    }
+                    for (int i = 0; i < errores.Count; i++)
+                    {
+                        json = Json(errores);
+                    }
+
                 }
-                for (int i = 0; i < errores.Count; i++)
-                {
-                    json = Json(errores);
-                }
-                //  }
             }
 
             catch (Exception ex)
