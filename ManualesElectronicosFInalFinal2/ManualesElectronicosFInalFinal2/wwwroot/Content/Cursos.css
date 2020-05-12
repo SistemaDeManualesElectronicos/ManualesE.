@@ -9,7 +9,7 @@
 
 .ficha {
     text-decoration: none;
-    width: 80%;
+    width: calc(50% - 7px);
     padding-bottom: 10px;
     background-color: #34495E;
     margin: 0 5px 10px 0;
