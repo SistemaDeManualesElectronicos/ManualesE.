@@ -37,12 +37,12 @@ namespace ManualesElectronicosFInalFinal2.Controllers
                 alu = new AlumnosRepository();
                 JsonResult json = null;
                 List<string> errores = alu.ValidarAlumnos(nuevo.Alumno);
-                nuevo.Alumno.Nombre = nuevo.Alumno.Nombre.ToUpper();
+            
             try
             {
                 if (errores.Count() == 0)
                 {
-
+                    nuevo.Alumno.Nombre = nuevo.Alumno.Nombre.ToUpper();
                     nuevo.Alumno.Eliminado = false;
                     nuevo.Alumno.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.Alumno.NumeroControl);
                     alu.Insert(nuevo.Alumno);
@@ -57,7 +57,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
             catch (Exception ex)
             {
-                json = Json(ex.Message);
+                json = Json("Ah ocurrido un error, porfavor actualice la pagina y vuelva a intntarlo, si el error persiste comuniquese con soporte tecnico");
             }
             //if (ModelState.IsValid)
             //{
@@ -98,7 +98,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             }
             catch (Exception ex)
             {
-                json = Json(ex.Message);
+                json = Json("Ah ocurrido un error, porfavor actualice la pagina y vuelva a intntarlo, si el error persiste comuniquese con soporte tecnico");
             }
 
 
@@ -148,9 +148,19 @@ namespace ManualesElectronicosFInalFinal2.Controllers
                 //        {
                 if (errores.Count() == 0)
                 {
-                    al.Update(e.Alumno);
-                    json = Json(true);
+                    if (e != null)
+                    {
+                        e.Alumno.Nombre = e.Alumno.Nombre.ToUpper();
+                        al.Update(e.Alumno);
+                        json = Json(true);
+                    }
+                    else
+                    {
+                        json = Json("El alumno no existe o ya ha sido eliminado.");
+                    }
                 }
+
+                
                 for (int i = 0; i < errores.Count; i++)
                 {
                     json = Json(errores);
@@ -160,7 +170,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
             catch(Exception ex)
             {
-                json = Json(ex.Message);
+                json = Json("Ah ocurrido un error, porfavor actualice la pagina y vuelva a intntarlo, si el error persiste comuniquese con soporte tecnico");
             }
                 return json;
 

@@ -115,7 +115,7 @@
     <div>
         <h1>Editar Curso</h1>
 
-        <form class="formAjax" method="post" action="~/Alumnos/Editar">
+        <form class="formAjax" method="post" action="~/Cursos/EditarCurso">
             @*<input id="editId" type="hidden" asp-for="Alumno.Id" />*@
             <label>Nombre:</label>
             <input id="editNombre" required asp-for="Curso.Nombre" type="text" />
@@ -125,10 +125,10 @@
         </select>*@
 
             <label>Fecha Inicio:</label>
-            <input type="date" id="editInicio"  required asp-for="Curso.FechaInicio.Value.Date" value="Curso.FechaInicio"  />
+            <input  id="editInicio"  required asp-for="Curso.FechaInicio"   />
 
             <label>Fecha Final:</label>
-            <input   id="editFinal" required asp-for="Curso.FechaFinal" />
+            <input   id="editFinal" required asp-for="Curso.FechaFinal"  />
 
          
 

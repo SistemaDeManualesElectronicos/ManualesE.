@@ -13,6 +13,7 @@ namespace ManualesElectronicosFInalFinal2.Models
         public int? IdDocente { get; set; }
         public int? IdTemas { get; set; }
 
+        
     
 
     }
