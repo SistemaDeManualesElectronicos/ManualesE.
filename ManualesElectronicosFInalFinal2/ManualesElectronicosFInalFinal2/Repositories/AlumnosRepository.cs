@@ -82,6 +82,13 @@ namespace ManualesElectronicosFInalFinal2.Repositories
 
                         }
                     }
+                  string num = alumnos.NumeroControl.ToString().Substring(5,3);
+
+                    if (num.Contains("000"))
+                    {
+                        listaerrores.Add("Numero de control no puede tener 000");
+                    }
+                
 
                     if (alumnos.NumeroControl.Length > 8 || alumnos.NumeroControl.Length < 8)
                     {
