@@ -110,7 +110,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         [HttpPost]
         public JsonResult EditarCurso(ViewModelCurso c)
         {
-
+            //fgdfdgf
             JsonResult json = null;
 
             cucu = new CursoRepository();

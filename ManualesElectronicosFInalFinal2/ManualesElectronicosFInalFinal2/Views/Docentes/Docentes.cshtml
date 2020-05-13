@@ -5,7 +5,7 @@
 }
 @inject DocenteService service
 
-
+<html>
 <head>
     <meta charset="utf-8" />
     <link href="~/Content/estilos.css" rel="stylesheet" />
@@ -34,7 +34,8 @@
         <ul>
             <li><a asp-action="Docentes" asp-controller="Docentes"><i class="fa fa-address-card"></i>Docentes</a></li>
             <li><a asp-action="Alumnos" asp-controller="Alumnos"><i class="fa fa-address-card"></i>Alumnos</a></li>
-            
+            <li><a asp-action="Cursos" asp-controller="Cursos"><i class="fa fa-address-card"></i>Cursos</a></li>
+
         </ul>
 
     </nav>
@@ -82,10 +83,10 @@
                             <td class="center">@item.Nombre</td>
                             <td class="center">@item.IdCarreraNavigation.Nombre</td>
                             <td>
-                                <a href="javascript:editar(@item.Id)"><i class="fas fa-user-edit" ></i></a>
+                                <a href="javascript:editar('@item.Id')"><i class="fas fa-user-edit" ></i></a>
                             </td>
                             <td>
-                                <a href="javascript:eliminar(@item.Id)"><i class="fa fa-trash" ></i></a>
+                                <a href="javascript:eliminar('@item.Id')"><i class="fa fa-trash" ></i></a>
                             </td>
                         </tr>
                     }
@@ -116,22 +117,21 @@
                     </form>
                 </section>
             </div>
-            <div class="modal" id="modalEditar">
+            <div  id="modalEditar" class="modal">
                 <section>
                     <h2>Editar Docente</h2>
 
-                    <form method="post" action="~/Docentes/EditarDocentes">
-                        <input id="editId" type="hidden" asp-for="Docente.Id" />
+                    <form method="post" asp-action="EditarDocentes" asp-controller="Docentes">
                         <label class="col-2">Nombre:</label>
-                        <input class="col-10" id="editNombre" asp-for="Docente.Nombre" type="text" required="required" />
+                        <input class="col-10" asp-for="Docente.Nombre" type="text" required="required" />
 
 
-                        @*<label class="col-2">Número de control:</label>*@
-                        <input class="col-10" type="hidden" id="editNumeroControl" maxlength="15" asp-for="Docente.NumeroDeControl" required="required" />
+                        <label class="col-2">Número de control:</label>
+                        <input   class="col-10" type="text" maxlength="15" asp-for="Docente.NumeroDeControl" required="required" />
 
 
                         <label class="col-2">Carrera:</label>
-                        <select class="col-10" id="editIdCarrera" required="required" asp-for="Docente.IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))">
+                        <select class="col-10" required="required" asp-for="Docente.IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))">
                             <option value="">Seleccione una carrera</option>
                         </select>
 
@@ -149,7 +149,7 @@
                     var x = $("#modalEditar form");
                     x.find("#editId").val(data.id);
 					x.find("#editNombre").val(data.nombre);
-					x.find("#editNumeroControl").val(data.numeroDeControl);
+					x.find("#editNumeroDeControl").val(data.numeroDeControl);
 
 					x.find('#editIdCarrera option[value="' + data.idCarrera + '"]').attr('selected', true)
 					showModal("modalEditar");
@@ -159,21 +159,17 @@
                     </script>
                 </section>
             </div>
-            <div class="modal" id="modalEliminar">
+            <div class="modal" id="ModalEliminar">
                 <section>
                     <h2>Confirme la eliminación</h2>
 
                     <form class="formAjax" method="post" action="~/Docentes/Eliminar">
-                        <input id="deleteId" type="hidden" name="Id" />
-                        <p>¿Esta seguro de eliminar al docente?</p>
+                        <p>¿Esta seguro de eliminar?</p>
 
 
                         <label class="col-12 error"></label>
 
-                        <a href="~/Docentes/Docentes">
                         <input type="button" value="No" class="cancel" />
-                            </a>
-
                         <input type="submit" value="Si" />
                     </form>
 
@@ -190,7 +186,7 @@
 
     </main>
 </body>
-
+</html>
 
 
 
