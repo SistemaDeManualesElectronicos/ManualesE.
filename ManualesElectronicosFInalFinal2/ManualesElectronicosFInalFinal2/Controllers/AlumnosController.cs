@@ -23,7 +23,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
             return View(nom);
 
-
+//cv
         }
 
         //public IActionResult Agregar()
