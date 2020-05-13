@@ -184,6 +184,7 @@ main {
 		font-size: 1.2em;
 		font-weight: 400;
 		padding: 5px;
+		color:white;
 	
 		
 	}
@@ -309,7 +310,7 @@ table td a {
 }
 
 
-.fichas {
+/*.fichas {
 	clear: both;
 	margin: 10px 0;
 }
@@ -349,7 +350,7 @@ table td a {
 		text-align: center;
 		font-size: large;
 		padding: 5px;
-	}
+	}*/
 
 		section h2 a {
 			float: right;

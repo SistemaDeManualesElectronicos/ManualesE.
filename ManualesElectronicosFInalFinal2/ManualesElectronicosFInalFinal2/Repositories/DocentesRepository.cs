@@ -69,17 +69,17 @@ namespace ManualesElectronicosFInalFinal2.Repositories
                 errores.Add("El Value de la carrera no existe");
             }
 
-            if(Context.Docentes.Any(x=>x.NumeroDeControl  == docente.NumeroDeControl))
+            if (Context.Docentes.Any(x => x.NumeroDeControl == docente.NumeroDeControl && x.Id != docente.Id))  //Validar si ya existe numero de control
             {
-                errores.Add("El Numero de control ya asignado a otro docente");
+
+                errores.Add("Numero de control ya existente");
             }
 
-            
 
 
 
-            
-           
+
+
             return errores;
         }
     }
