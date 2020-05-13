@@ -60,7 +60,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             {
                 if (!NombreConCaracteresEspeciales.IsMatch(docente.Nombre))
                 {
-                    errores.Add("El nombre no puede tener caracteres especiales o debe contener nombre y apellido");
+                    errores.Add("El nombre no puede tener caracteres especiales o debe contener nombre y apellido, debe estar en mayusculas");
                 }
             }
 
