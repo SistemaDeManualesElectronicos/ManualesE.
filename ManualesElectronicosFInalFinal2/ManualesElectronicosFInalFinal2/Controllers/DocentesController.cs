@@ -33,7 +33,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
             doc = new DocentesRepository();
             JsonResult json = null;
-           
+
             List<string> errores = doc.ValidarDocentes(nuevo.Docente);
             nuevo.Docente.Nombre = nuevo.Docente.Nombre.ToUpper();
 
@@ -43,7 +43,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             {
                 if (errores.Count() == 0)
                 {
-                    
+
                     nuevo.Docente.Eliminado = false;
                     nuevo.Docente.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.Docente.NumeroDeControl);
                     doc.Insert(nuevo.Docente);
@@ -63,7 +63,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
             return json;
         }
-      
+
 
 
 
@@ -75,14 +75,14 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         {
             JsonResult json = null;
             DocentesRepository doc = new DocentesRepository();
-            
+
             var datos = doc.GetDocenteById(id);
             List<string> errores = doc.ValidarDocentes(datos);
             try
             {
                 //DocentesRepository doc = new DocentesRepository();
                 //var r = doc.GetDocenteById(id);
-                if (errores.Count()==0)
+                if (errores.Count() == 0)
                 {
                     doc.Delete(datos);
                     json = Json(true);
@@ -97,7 +97,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             {
                 json = Json(ex.Message);
             }
-           
+
             return json;
         }
 
@@ -131,44 +131,53 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             return json;
 
         }
+    
 
 
-   
+
 
         [HttpPost]
         public JsonResult EditarDocentes(DocenteViewModel d)
         {
-            
+
             JsonResult json = null;
             DocentesRepository doc = new DocentesRepository();
             d.Docente.Nombre = d.Docente.Nombre.ToUpper();
             List<string> errores = doc.ValidarDocentes(d.Docente);
-           
-            try
+
+
+            if (d.Docente != null)
             {
+
+                try
                 {
-                    if (errores.Count() == 0)
                     {
+                        if (errores.Count() == 0)
+                        {
 
-                        doc.Update(d.Docente);
-                        json = Json(true);
-                    }
-                    for (int i = 0; i < errores.Count; i++)
-                    {
-                        json = Json(errores);
-                    }
+                            doc.Update(d.Docente);
+                            json = Json(true);
+                        }
+                        for (int i = 0; i < errores.Count; i++)
+                        {
+                            json = Json(errores);
+                        }
 
+                    }
                 }
-            }
 
-            catch (Exception ex)
+                catch (Exception ex)
+                {
+                    json = Json(ex.Message);
+                }
+                return json;
+
+            }
+            else
             {
-                json = Json(ex.Message);
+                return json;
             }
-            return json;
-
         }
-
 
     }
 }
