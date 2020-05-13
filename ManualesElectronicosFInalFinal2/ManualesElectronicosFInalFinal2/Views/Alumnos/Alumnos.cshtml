@@ -7,7 +7,7 @@
 
 }
 
-
+    <html>
     <head>
         <meta charset="utf-8" />
         <link href="~/Content/estilos.css" rel="stylesheet" />
@@ -36,6 +36,7 @@
             <ul>
                 <li><a asp-action="Docentes" asp-controller="Docentes"><i class="fa fa-address-card"></i>Docentes</a></li>
                 <li><a asp-action="Alumnos" asp-controller="Alumnos"><i class="fa fa-address-card"></i>Alumnos</a></li>
+                <li><a asp-action="Cursos" asp-controller="Cursos"><i class="fa fa-address-card"></i>Cursos</a></li>
 
             </ul>
 
@@ -69,10 +70,10 @@
 
                             <th width="10%" class="center">Numero de control</th>
 
-                            <th width="65%" class="center">Nombre Del Docente</th>
+                            <th width="65%" class="center">Nombre Del Alumno</th>
 
                             <th width="15%">Carrera</th>
-
+                         
                         </tr>
                     </thead>
                     <tbody>
@@ -99,15 +100,15 @@
                     <section>
                         <h2>Agregar Alumno</h2>
 
-                        <form class="formAjax" method="post"action="~/Alumnos/Agregar">
-                            <label class="col-2"  >Nombre:</label>
-                            <input class="col-10" type="text" required="required"  asp-for="Alumno.Nombre"  />
+                        <form class="formAjax" method="post" action="~/Alumnos/Agregar">
+                            <label class="col-2">Nombre:</label>
+                            <input class="col-10" type="text" required="required" asp-for="Alumno.Nombre" />
 
 
                             <label class="col-2">Número de control:</label>
-                            <input class="col-10" type="text" maxlength="15"  asp-for="Alumno.NumeroControl" required="required" />
+                            <input class="col-10" type="text" maxlength="15" asp-for="Alumno.NumeroControl" required="required" />
 
-                            
+
 
                             <label class="col-2">Carrera:</label>
                             <select class="col-10" required="required" asp-for="Alumno.IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))">
@@ -119,12 +120,12 @@
                             <label class="col-12 error"></label>
 
                             <input type="button" class="cancel" value="Cancelar" />
-                         <a href="Alumnos/Alumnos"></a>
-                                <input type="submit" value="Agregar" />
+                            <a href="Alumnos/Alumnos"></a>
+                            <input type="submit" value="Agregar" />
                         </form>
                     </section>
                 </div>
-                <div  id="modalEditar" class="modal">
+                <div id="modalEditar" class="modal">
                     <section>
                         <h2>Editar Alumno</h2>
 
@@ -132,14 +133,14 @@
                             <input id="editId" type="hidden" asp-for="Alumno.Id" />
 
                             <label class="col-2">Nombre:</label>
-                            <input  id="editNombre" class="col-10" type="text" asp-for="Alumno.Nombre" required="required" />
+                            <input id="editNombre" class="col-10" type="text" asp-for="Alumno.Nombre" required="required" />
 
-                            <label class="col-2">Número de control:</label>
-                            <input id="editNumeroControl" class="col-10" type="text" maxlength="15" asp-for="Alumno.NumeroControl" required="required" />
+                            @*<label class="col-2">Número de control:</label>
+                            <input id="editNumeroControl" class="col-10" type="text" maxlength="15" asp-for="Alumno.NumeroControl" required="required" />*@
 
-                           
 
-                            <label   class="col-2">Carrera:</label>
+
+                            <label class="col-2">Carrera:</label>
                             <select id="editIdCarrera" class="col-10" required="required" asp-for="Alumno.IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))">
                                 <option value="">Seleccione</option>
                             </select>
@@ -150,7 +151,7 @@
                             <input type="submit" value="Aceptar" />
                         </form>
                     </section>
-                    
+
                     <script>
 		function editar(id) {
 			$.post('@Url.Action("GetAlumno", "Alumnos")', { "id": id }, function (data, status) {
@@ -168,11 +169,11 @@
 		}
                     </script>
                 </div>
-                    <div  id="modalEliminar" class="modal">
+                <div id="modalEliminar" class="modal">
                     <section>
                         <h2>Confirme la eliminación</h2>
 
-                        <form class="formAjax"  method="post" action="~/Alumnos/Eliminar">
+                        <form class="formAjax" method="post" action="~/Alumnos/Eliminar">
                             <input id="deleteId" type="hidden" name="Id" />
                             <p>¿Esta seguro de eliminar?</p>
 
@@ -200,5 +201,6 @@
 
         </main>
     </body>
+    </html>
    
 

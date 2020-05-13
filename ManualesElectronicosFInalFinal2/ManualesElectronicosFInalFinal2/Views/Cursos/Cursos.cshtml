@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <script src="jquery-3.5.0.min"></script>
         <script src="util.js"></script>
-        <title>Docentes</title>
+        <title>Cursos</title>
         <script>
             $(document).ready(function () {
                 $("#bars").click(function () {
@@ -32,6 +32,7 @@
             <ul>
                 <li><a asp-action="Docentes" asp-controller="Docentes"><i class="fa fa-address-card"></i>Docentes</a></li>
                 <li><a asp-action="Alumnos" asp-controller="Alumnos"><i class="fa fa-address-card"></i>Alumnos</a></li>
+                <li><a asp-action="Cursos" asp-controller="Cursos"><i class="fa fa-address-card"></i>Cursos</a></li>
 
             </ul>
 
@@ -66,31 +67,21 @@
                 </div>
 
             </div>
-            <div class="fichas">
-                <div class="ficha">
-                    <a href="#">
-                        <h2>Nombre del curso</h2>
-                        <h1>N. de C.</h1>
+            <div class="modal" id="modalAgregar">
+                <section>
+                    <h2>Agregar Curso</h2>
 
+                    <form class="formAjax" action="">
+                        <label class="col-2">Nombre curso:</label>
+                        <input class="col-10" type="text"  />
 
-                    </a>
-                    <a href="#"><i class="fas fa-edit"></i></a>
-                    <a href="#"><i class="fa fa-trash"></i></a>
-                </div>
+                        <label class="col-12 error"></label>
 
-            </div>
-            <div class="fichas">
-                <div class="ficha">
-                    <a href="#">
-                        <h2>Nombre del curso</h2>
-                        <h1>N. de C.</h1>
-
-
-                    </a>
-                    <a href="#"><i class="fas fa-edit"></i></a>
-                    <a href="#"><i class="fa fa-trash"></i></a>
-                </div>
-
+                        <input type="button" class="cancel" value="Cancelar" />
+                       
+                        <input type="submit" value="Agregar" />
+                    </form>
+                </section>
             </div>
         </main>
     </body>
