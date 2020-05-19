@@ -43,7 +43,7 @@
     <script src="util.js"></script>
     <script src="js/jquery-3.5.0.min.js"></script>
     <script src="js/util.js"></script>
-    <title>Titulo</title>
+    <title>Temas</title>
     <script>
         $(document).ready(function () {
             $("#bars").click(function () {
@@ -80,12 +80,12 @@
     </header>
     <main>
         <div>
-            <h2 style=" float:right; "> <a href="#" style="color:white;"><i class="fas fa-plus-circle"></i></a></h2>
+            <h2 style=" float:right; "> <a href="javascript:showModal('modalAgregar')" style="color:white;"><i class="fas fa-plus-circle"></i></a></h2>
         </div>
         <section>
 
             <h2>
-                Ciencias Naturales vol. 1
+                Nombre del curso
             </h2>
 
             <table>
@@ -93,23 +93,47 @@
                     <tr>
                         <th style="width: 1%">#</th>
                         <th>Nombre del tema</th>
+                        <th width="1%"></th>
+                        <th width="1%"></th>
 
 
 
                     </tr>
                 </thead>
                 <tbody>
-                   
-                    
-                        <tr>
-                            <td>1</td>
-                            <td><a>Elementos de la natualeza</a></td>
-                        </tr>
-                    
+
+
+                    <tr>
+                        <td>1</td>
+                        <td><a href="#">Elementos de la natualeza</a></td>
+                        <td>
+                            <a href=""><i class="fas fa-edit"></i></a>
+                        </td>
+                        <td>
+                            <a href=""><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+
 
                 </tbody>
             </table>
+            <div class="modal" id="modalAgregar">
+                <section>
+                    <h2>Agregar Tema</h2>
 
+                    <form class="formAjax" method="post" action="">
+                        <label class="col-2">Nombre:</label>
+                        <input class="col-10"/>
+
+                        
+
+                        <label class="col-12 error"></label>
+
+                        <input type="button" class="cancel" value="Cancelar" />
+                        <input type="submit" value="Agregar" />
+                    </form>
+                </section>
+            </div>
         </section>
 
     </main>
