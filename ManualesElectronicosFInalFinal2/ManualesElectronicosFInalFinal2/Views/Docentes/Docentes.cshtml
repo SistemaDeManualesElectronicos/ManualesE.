@@ -115,16 +115,17 @@
                     <h2>Editar Docente</h2>
 
                     <form method="post" asp-action="EditarDocentes" asp-controller="Docentes">
+                        <input id="editId" type="hidden" asp-for="Docente.Id" />
                         <label class="col-2">Nombre:</label>
-                        <input class="col-10" asp-for="Docente.Nombre" type="text" required="required" />
+                        <input class="col-10" id="editNombre" asp-for="Docente.Nombre" type="text" required="required" />
 
 
                         <label class="col-2">Número de control:</label>
-                        <input class="col-10" type="text" maxlength="15" asp-for="Docente.NumeroDeControl" required="required" />
+                        <input class="col-10" id="editNumeroDeControl" type="text" maxlength="15" asp-for="Docente.NumeroDeControl" required="required" />
 
 
                         <label class="col-2">Carrera:</label>
-                        <select class="col-10" required="required" asp-for="Docente.IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))">
+                        <select class="col-10" required="required" id="editIdCarrera" asp-for="Docente.IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))">
                             <option value="">Seleccione una carrera</option>
                         </select>
 
@@ -152,11 +153,12 @@
                     </script>
                 </section>
             </div>
-            <div class="modal" id="ModalEliminar">
+            <div class="modal" id="modalEliminar">
                 <section>
                     <h2>Confirme la eliminación</h2>
 
                     <form class="formAjax" method="post" action="~/Docentes/Eliminar">
+                        <input id="deleteId" type="hidden" name="Id" />
                         <p>¿Esta seguro de eliminar?</p>
 
 
