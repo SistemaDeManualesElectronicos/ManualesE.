@@ -46,19 +46,21 @@
             </ul>
         </div>
     </header>
-    <main>
 
+    <main>
+        <div>
+            <h2 style=" float:right; margin-top:15px; "> <a href="javascript:showModal('modalAgregar')" style="color:white;"><i class="fas fa-plus-circle"></i></a></h2>
+        </div>
 
         <div class="main">
 
             <!--cards -->
             @foreach (var item in Model.Cursos)
-            {  
+            {
                 <div class="card">
 
                     <div class="image">
-
-                       
+                        <img src="https://c4.wallpaperflare.com/wallpaper/246/739/689/digital-digital-art-artwork-illustration-abstract-hd-wallpaper-preview.jpg" />
                     </div>
                     <div class="title">
                         <h1>
@@ -66,12 +68,38 @@
                         </h1>
                     </div>
                     <div class="des">
-                        <p>Descripcion del curso</p>
+                        <p>@item.FechaInicio</p>
+                        <p>@item.FechaFinal</p>
                         <button>Temas</button>
                     </div>
                 </div>
             }
-        
+
+        </div>
+        <div class="modal" id="modalAgregar">
+            <section>
+                <h2>Agregar Curso</h2>
+
+                <form class="formAjax" method="post" action="~/Docentes/Agregar">
+                    <label class="col-2">Nombre:</label>
+                    <input class="col-10" required asp-for="Curso.Nombre"/>
+
+                    <label class="col-2">Fecha Inicio:</label>
+                    <input class="col-10" type="date" required asp-for="Curso.FechaInicio"  />
+
+                    <label class="col-2">Fecha final:</label>
+                    <input class="col-10" input type="date" required asp-for="Curso.FechaFinal"/>
+                        
+                    
+
+                    <label class="col-12 error"></label>
+
+                    <a href="~/Cursos/Cursos">
+                        <input type="button" value="Cancelar" />
+                    </a>
+                    <input type="submit" value="Agregar" />
+                </form>
+            </section>
         </div>
     </main>
 

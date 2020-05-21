@@ -10,7 +10,7 @@
 
 
 .menu {
-	/*background: #34495E;*/
+
 	width: 225px;
 	height: calc(100% - 30px);
 	position: fixed;
@@ -53,8 +53,7 @@
 	}
 
 		.menu ul li {
-			/*border-top: 1px solid #54677a;
-			border-bottom: 1px solid #142638;*/
+			
 			height: 40px;
 		}
 
@@ -228,26 +227,7 @@ section h2 {
 			opacity: 0.3;
 		}
 
-.pagination {
-	text-align: center;
-	border-top: 1px solid lightgray;
-}
 
-	.pagination a {
-		color: black;
-		display:inline-block;
-		padding: 8px 16px;
-		text-decoration: none;
-	}
-
-		.pagination a.active {
-			background-color: #4CAF50;
-			color: white;
-		}
-
-		.pagination a:hover:not(.active) {
-			background-color: #ddd;
-		}
 
 .infohoras dl {
 	margin: 0;
@@ -309,48 +289,6 @@ table td a {
 	text-decoration: none;
 }
 
-
-/*.fichas {
-	clear: both;
-	margin: 10px 0;
-}
-
-.ficha {
-	text-decoration: none;
-	width: calc(50% - 7px);
-	padding-bottom: 10px;
-	background-color: #34495E;
-	margin: 0 5px 10px 0;
-	float: left;
-	border: 1px solid #34495e;
-	min-height: 100px;
-	background-repeat: no-repeat;
-	background-position: center 50px;
-	background-size: 50px;
-}
-.ficha 
-{
-	text-align:center;
-}
-
-	.ficha.disabled {
-		opacity: .4;
-	}
-
-	.ficha:nth-child(even) {
-		margin: 0 0 10px 5px;
-	}
-
-
-	.ficha h2, section h2 {
-		background-color: #2c3e50;
-		margin: 0 0 10px 0;
-		font-weight: normal;
-		color: white;
-		text-align: center;
-		font-size: large;
-		padding: 5px;
-	}*/
 
 		section h2 a {
 			float: right;

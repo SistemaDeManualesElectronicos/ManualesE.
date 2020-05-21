@@ -39,6 +39,9 @@ h1 {
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
 }
+.des p{
+    color:aliceblue;
+}
 
 button {
     margin-top: 40px;
@@ -47,6 +50,8 @@ button {
     border: 1px solid black;
     /*    border-radius: 5px;*/
     padding: 10px;
+    background-color:midnightblue;
+    width:90%;
 }
 
     button:hover {
