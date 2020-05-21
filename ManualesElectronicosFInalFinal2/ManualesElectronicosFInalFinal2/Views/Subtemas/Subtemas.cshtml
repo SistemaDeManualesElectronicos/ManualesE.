@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewData["Title"] = "Subtemas";
+}
+    <html>
+    <head>
+        <meta charset="utf-8" />
+
+        <link href="~/Content/OtrosColores.css" rel="stylesheet" />
+        <link href="~/Content/estilos.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <script src="jquery-3.5.0.min"></script>
+        <script src="util.js"></script>
+        <script src="js/jquery-3.5.0.min.js"></script>
+        <script src="js/util.js"></script>
+        <title>Subtemas</title>
+        <script>
+        $(document).ready(function () {
+            $("#bars").click(function () {
+                $("nav").toggleClass("open");
+            });
+        });
+
+        </script>
+
+
+    </head>
+    <body>
+        <nav class="menu">
+            <div>
+            </div>
+            <ul>
+                <li><a href="#"><i class="fa fa-address-card"></i> Mi Cuenta</a></li>
+                <li><a href="#"><i class="fa fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+            </ul>
+
+        </nav>
+        <header>
+            <a href="#" class="left"><i class="fa fa-bars"></i></a>
+            <h1><b>ITESRC</b> Manuales Electronicos</h1>
+            <div class="dropdown">
+                <a href="#" class="right">
+                    <i class="fa fa-user"></i>
+                </a>
+                <ul>
+                    <li><a href="#"><i class="fa fa-key"></i>Cambiar Contraseña</a></li>
+                    <li><a href="#"><i class="fa fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+                </ul>
+            </div>
+        </header>
+        <main>
+            <div>
+                <h2 style=" float:right; "> <a href="#" style="color:white;"><i class="fas fa-plus-circle"></i></a></h2>
+            </div>
+            <section>
+
+                <h2>
+                   Nombre del tema
+                </h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 1%">#</th>
+                            <th>Nombre del Subtema</th>
+                            <th width="1%"></th>
+                            <th width="1%"></th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        <tr>
+                            <td>1</td>
+                            <td><a href="#">Elementos de la natualeza</a></td>
+                            <td>
+                                <a href=""><i class="fas fa-edit"></i></a>
+                            </td>
+                            <td>
+                                <a href=""><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+
+            </section>
+
+        </main>
+    </body>
+    </html>
+
