@@ -5,7 +5,7 @@
 }
 @inject DocenteService service
 
-<html>
+
 <head>
     <meta charset="utf-8" />
     <link href="~/Content/estilos.css" rel="stylesheet" />
@@ -13,7 +13,7 @@
     <link href="~/Content/OtrosColores.css" rel="stylesheet" />
     <!-- Para usar iconos con FontAwesome  -->
     <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="jquery-3.5.0.min"></script>
     <script src="util.js"></script>
@@ -34,14 +34,13 @@
         <ul>
             <li><a asp-action="Docentes" asp-controller="Docentes"><i class="fa fa-address-card"></i>Docentes</a></li>
             <li><a asp-action="Alumnos" asp-controller="Alumnos"><i class="fa fa-address-card"></i>Alumnos</a></li>
-            <li><a asp-action="Cursos" asp-controller="Cursos"><i class="fa fa-address-card"></i>Cursos</a></li>
 
         </ul>
 
     </nav>
     <header>
         <a href="#" class="left"><i class="fa fa-bars"></i></a>
-        <h1  style="color:white; width:auto; border-bottom:none; text-align:center;"><b>ITESRC</b> Manuales Electronicos</h1>
+        <h1 style="color:white; width:auto; border-bottom:none; text-align:center;"><b>ITESRC</b> Manuales Electronicos</h1>
         <div class="dropdown">
             <a href="#" class="right">
                 <i class="fa fa-user"></i>
@@ -54,7 +53,7 @@
     </header>
     <main>
         <div>
-            <h2 style=" float:right; "> <a href="javascript:showModal('modalAgregar')"  style="color:white;"><i class="fas fa-user-plus"></i></a></h2>
+            <h2 style=" float:right; "> <a href="javascript:showModal('modalAgregar')" style="color:white;"><i class="fas fa-user-plus"></i></a></h2>
         </div>
         <section>
 
@@ -83,10 +82,10 @@
                             <td class="center">@item.Nombre</td>
                             <td class="center">@item.IdCarreraNavigation.Nombre</td>
                             <td>
-                                <a href="javascript:editar('@item.Id')"><i class="fas fa-user-edit" ></i></a>
+                                <a href="javascript:editar(@item.Id)"><i class="fas fa-user-edit"></i></a>
                             </td>
                             <td>
-                                <a href="javascript:eliminar('@item.Id')"><i class="fa fa-trash" ></i></a>
+                                <a href="javascript:eliminar(@item.Id)"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     }
@@ -96,97 +95,109 @@
 
             <div class="modal" id="modalAgregar">
                 <section>
-                    <h2>Agregar Docente</h2>
+                    <h2>Agregar Alumno</h2>
 
                     <form class="formAjax" method="post" action="~/Docentes/Agregar">
                         <label class="col-2">Nombre:</label>
-                        <input class="col-10" asp-for="Docente.Nombre" type="text" required="required" />
+                        <input class="col-10" type="text" required="required" asp-for="Docente.Nombre" />
+
 
                         <label class="col-2">Número de control:</label>
-                        <input class="col-10" asp-for="Docente.NumeroDeControl" type="text" maxlength="15" required="required" />
+                        <input class="col-10" type="text" maxlength="15" asp-for="Docente.NumeroDeControl" required="required" />
+
+
 
                         <label class="col-2">Carrera:</label>
                         <select class="col-10" required="required" asp-for="Docente.IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))">
-                            <option value="">Seleccione una carrera</option>
+                            <option value="">Seleccione</option>
                         </select>
+
+
 
                         <label class="col-12 error"></label>
 
-                        <input type="button" asp-action="Docentes"  class="cancel" value="Cancelar" />
+                        <input type="button" class="cancel" value="Cancelar" />
+                        <a href="Alumnos/Alumnos"></a>
                         <input type="submit" value="Agregar" />
                     </form>
                 </section>
             </div>
-            <div  id="modalEditar" class="modal">
+            <div id="modalEditar" class="modal">
                 <section>
-                    <h2>Editar Docente</h2>
+                    <h2>Editar Alumno</h2>
 
-                    <form method="post" asp-action="EditarDocentes" asp-controller="Docentes">
+                    <form class="formAjax" method="post" action="~/Docentes/EditarDocentes">
+                        <input id="editId" type="hidden" asp-for="Docente.Id" />
+
                         <label class="col-2">Nombre:</label>
-                        <input class="col-10" asp-for="Docente.Nombre" type="text" required="required" />
+                        <input id="editNombre" class="col-10" type="text" asp-for="Docente.Nombre" required="required" />
 
+                        @*<label class="col-2">Número de control:</label>*@
+                        <input id="editNumeroControl" class="col-10" type="hidden" maxlength="15" asp-for="Docente.NumeroDeControl" required="required" />
 
-                        <label class="col-2">Número de control:</label>
-                        <input   class="col-10" type="text" maxlength="15" asp-for="Docente.NumeroDeControl" required="required" />
 
 
                         <label class="col-2">Carrera:</label>
-                        <select class="col-10" required="required" asp-for="Docente.IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))">
-                            <option value="">Seleccione una carrera</option>
+                        <select id="editIdCarrera" class="col-10" required="required" asp-for="Docente.IdCarrera" asp-items="@(new SelectList(service.GeTcarreritas(),"Id", "Nombre"))">
+                            <option value="">Seleccione</option>
                         </select>
 
                         <label class="col-12 error"></label>
 
-                        <input type="button" asp-action="Docentes" asp-controller="Docentes" class="cancel" value="Cancelar" />
+                        <input type="button" class="cancel" value="Cancelar" />
                         <input type="submit" value="Aceptar" />
                     </form>
+                </section>
 
-                    <script>
-                        function editar(id) {
-                            $.post('@Url.Action("GetDocente", "Docentes")', { "id": id }, function (data, status) {
+                <script>
+		function editar(id) {
+			$.post('@Url.Action("GetDocente", "Docentes")', { "id": id }, function (data, status) {
 				if (data != false) {
 
-                    var x = $("#modalEditar form");
-                    x.find("#editId").val(data.id);
+					var x = $("#modalEditar form");
+					x.find("#editId").val(data.id);
 					x.find("#editNombre").val(data.nombre);
-					x.find("#editNumeroDeControl").val(data.numeroDeControl);
+					x.find("#editNumeroControl").val(data.numeroDeControl);
 
 					x.find('#editIdCarrera option[value="' + data.idCarrera + '"]').attr('selected', true)
 					showModal("modalEditar");
 				}
 			});
 		}
-                    </script>
-                </section>
+                </script>
             </div>
-            <div class="modal" id="ModalEliminar">
+            <div id="modalEliminar" class="modal">
                 <section>
                     <h2>Confirme la eliminación</h2>
 
                     <form class="formAjax" method="post" action="~/Docentes/Eliminar">
+                        <input id="deleteId" type="hidden" name="Id" />
                         <p>¿Esta seguro de eliminar?</p>
 
 
                         <label class="col-12 error"></label>
 
-                        <input type="button" value="No" class="cancel" />
+                        <a href="~/Docentes/Docentes">
+                            <input type="button" value="No" class="cancel" />
+
+                        </a>
                         <input type="submit" value="Si" />
+
                     </form>
 
-                    <script>
-                        function eliminar(id) {
-                            $("#deleteId").val(id);
-                            showModal("modalEliminar");
-                        }
-                    </script>
                 </section>
+                <script>
+                    function eliminar(id) {
+                        $("#deleteId").val(id);
+                        showModal("modalEliminar");
 
-        </div>
+                    }
+
+                </script>
+            </div>
+
         </section>
 
     </main>
 </body>
-</html>
-
-
 

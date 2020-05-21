@@ -82,6 +82,8 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         {
            
             JsonResult json = null;
+
+
             try
             {
                AlumnosRepository alu = new AlumnosRepository();
@@ -168,7 +170,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
                 //  }
             }
 
-            catch(Exception )
+            catch(Exception)
             {
                 json = Json("Ah ocurrido un error, porfavor actualice la pagina y vuelva a intntarlo,a si el error persiste comuniquese con soporte tecnico");
             }

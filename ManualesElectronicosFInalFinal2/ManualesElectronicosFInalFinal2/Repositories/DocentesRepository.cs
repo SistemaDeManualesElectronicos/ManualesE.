@@ -12,8 +12,8 @@ namespace ManualesElectronicosFInalFinal2.Repositories
 {
     public class DocentesRepository : Repository<Docentes>
     {
-      
 
+      
         public IEnumerable<Docentes> GetDocentesxNombre()
         {
             
@@ -45,7 +45,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             {
                 if (!NumeroDeControl.IsMatch(docente.NumeroDeControl))
                 {
-                    errores.Add("El patron de numero de control esta incorrecto");
+                    errores.Add("El patron de numero de control esta incorrecto, solo deben ser numeros enteros");
                 }
             }
            

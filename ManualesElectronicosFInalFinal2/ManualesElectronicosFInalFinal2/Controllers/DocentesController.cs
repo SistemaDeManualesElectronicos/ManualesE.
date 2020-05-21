@@ -12,6 +12,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 {
     public class DocentesController : Controller
     {
+      
         DocentesRepository doc;
         public IActionResult Docentes()
         {
@@ -146,37 +147,40 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             List<string> errores = doc.ValidarDocentes(d.Docente);
 
 
-            if (d.Docente != null)
-            {
-
+         
                 try
                 {
-                    {
-                        if (errores.Count() == 0)
-                        {
 
-                            doc.Update(d.Docente);
-                            json = Json(true);
-                        }
+                if (errores.Count() == 0)
+                {
+                    if (d != null)
+                    {
+
+
+
+                        doc.Update(d.Docente);
+                        json = Json(true);
+                    }
+
+                    else
+                    {
+                        json = Json("El docente no existe o ya ha sido eliminado.");
+                    }
+                }
                         for (int i = 0; i < errores.Count; i++)
                         {
                             json = Json(errores);
                         }
 
-                    }
+                    
                 }
 
-                catch (Exception ex)
+                catch (Exception )
                 {
-                    json = Json(ex.Message);
+                    json = Json("El docente no existe o fue eliminado anteriormente");
                 }
                 return json;
 
-            }
-            else
-            {
-                return json;
-            }
         }
 
     }
