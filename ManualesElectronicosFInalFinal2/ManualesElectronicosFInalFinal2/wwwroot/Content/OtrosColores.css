@@ -12,9 +12,9 @@ main h1 {
     
 }
 
-.menu ul li {
+/*.menu ul li {
     border-bottom: 1px solid #434550;
-}
+}*/
 
 
 .menu {
@@ -76,7 +76,7 @@ form label, .pagination a {
 /* divider-color #E17493 */
 
 .menu ul li {
-    border-top: 1px solid #434550;
+    /*border-top: 1px solid #434550;*/
 }
 header i:hover{
     color: #008F63;
