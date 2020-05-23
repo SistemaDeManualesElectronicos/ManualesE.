@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ManualesElectronicosFInalFinal2.Models
+namespace ManualesElectronicosFInalFinal2.models
 {
     public partial class Carrera
     {

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace ManualesElectronicosFInalFinal2.Models
+namespace ManualesElectronicosFInalFinal2.models
 {
     public partial class itesrcne_manualesContext : DbContext
     {
@@ -19,6 +19,7 @@ namespace ManualesElectronicosFInalFinal2.Models
         public virtual DbSet<Carrera> Carrera { get; set; }
         public virtual DbSet<Curso> Curso { get; set; }
         public virtual DbSet<Docentes> Docentes { get; set; }
+        public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<Subtemas> Subtemas { get; set; }
         public virtual DbSet<Temas> Temas { get; set; }
 
@@ -123,6 +124,19 @@ namespace ManualesElectronicosFInalFinal2.Models
                     .WithMany(p => p.Docentes)
                     .HasForeignKey(d => d.IdCarrera)
                     .HasConstraintName("FkCarrera");
+            });
+
+            modelBuilder.Entity<Login>(entity =>
+            {
+                entity.ToTable("login");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Nombre).HasColumnType("varchar(45)");
+
+                entity.Property(e => e.Password).HasColumnType("varchar(45)");
             });
 
             modelBuilder.Entity<Subtemas>(entity =>

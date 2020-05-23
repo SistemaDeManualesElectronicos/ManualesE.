@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ManualesElectronicosFInalFinal2.Models
+namespace ManualesElectronicosFInalFinal2.models
 {
     public partial class Curso
     {
@@ -12,9 +12,5 @@ namespace ManualesElectronicosFInalFinal2.Models
         public DateTime? FechaFinal { get; set; }
         public int? IdDocente { get; set; }
         public int? IdTemas { get; set; }
-
-        
-    
-
     }
 }
