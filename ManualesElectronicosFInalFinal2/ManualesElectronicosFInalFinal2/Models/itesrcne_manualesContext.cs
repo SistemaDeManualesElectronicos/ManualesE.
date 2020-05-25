@@ -28,7 +28,7 @@ namespace ManualesElectronicosFInalFinal2.models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySql("server= 204.93.216.11; database= itesrcne_manuales; password=manualesbd#20; user=itesrcne_manual");
+                optionsBuilder.UseMySql("server=204.93.216.11; database=itesrcne_manuales; password=manualesbd#20; user=itesrcne_manual");
             }
         }
 

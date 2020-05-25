@@ -1,4 +1,5 @@
-﻿using ManualesElectronicosFInalFinal2.Models;
+﻿using ManualesElectronicosFInalFinal2.models;
+using ManualesElectronicosFInalFinal2.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,8 @@ namespace ManualesElectronicosFInalFinal2.Repositories
         public IEnumerable<Curso> GetAllxNombre()
         {
 
-            var data = Context.Curso.OrderBy(x => x.Nombre);
-            return data;
+            return  Context.Curso.OrderBy(x => x.Nombre);
+             
         }//p
 
         public Curso GetCursoById(int id)
@@ -35,9 +36,14 @@ namespace ManualesElectronicosFInalFinal2.Repositories
                 listaerrores.Add("El nombre debe ser minimo 4 letras ");
                 
             }
-            if (curso.FechaInicio.Value < DateTime.Now)
+            if (curso.FechaInicio < DateTime.Now)
             {
                 listaerrores.Add("La Fecha inicio debe debe ser mayor a la de hoy ");
+
+            }
+            if (curso.FechaInicio > curso.FechaFinal)
+            {
+                listaerrores.Add("La Fecha inicio no puede ser despues de fecha final ");
 
             }
             if (curso.FechaFinal.Value < DateTime.Now && curso.FechaFinal.Value < curso.FechaInicio)

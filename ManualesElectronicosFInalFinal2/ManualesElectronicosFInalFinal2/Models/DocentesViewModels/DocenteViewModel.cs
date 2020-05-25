@@ -1,4 +1,5 @@
-﻿using ManualesElectronicosFInalFinal2.Repositories;
+﻿using ManualesElectronicosFInalFinal2.models;
+using ManualesElectronicosFInalFinal2.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;

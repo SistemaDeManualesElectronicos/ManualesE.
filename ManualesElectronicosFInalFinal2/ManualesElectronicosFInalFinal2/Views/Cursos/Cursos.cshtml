@@ -68,10 +68,10 @@
                         </h1>
                     </div>
                     <div class="des">
-                        <p>@item.FechaInicio</p>
-                        <p>@item.FechaFinal</p>
-                        <a href="javascript:showModal('modalEditar')" style="margin-left:5px;"><i class="fas fa-edit"></i></a>
-                        <a href="javascript:showModal('modalEliminar')"><i class="fa fa-trash"></i></a>
+                        <p> @item.FechaInicio.Value.Day/@item.FechaInicio.Value.Month/@item.FechaInicio.Value.Year </p>
+                        <p> @item.FechaFinal.Value.Day/@item.FechaFinal.Value.Month/@item.FechaFinal.Value.Year </p>
+                        <a href="javascript:editar(@item.Id)" style="margin-left:5px;"><i class="fas fa-edit"></i></a>
+                        <a href="javascript:eliminar(@item.Id)"><i class="fa fa-trash"></i></a>
                         <button>Temas</button>
                     </div>
                 </div>
@@ -82,12 +82,12 @@
             <section>
                 <h2>Agregar Curso</h2>
 
-                <form class="formAjax" method="post">
+                <form class="formAjax" method="post"  action="~/Cursos/Agregar" >
                     <label class="col-2">Nombre:</label>
                     <input class="col-10" required asp-for="Curso.Nombre" />
 
                     <label class="col-2">Fecha Inicio:</label>
-                    <input class="col-10" type="date" required asp-for="Curso.FechaInicio" />
+                    <input class="col-10"  type="date" required asp-for="Curso.FechaInicio" />
 
                     <label class="col-2">Fecha final:</label>
                     <input class="col-10" input type="date" required asp-for="Curso.FechaFinal" />
@@ -103,19 +103,20 @@
                 </form>
             </section>
         </div>
-        <div class="modal" id="modalEditar">
+        <div id="modalEditar" class="modal" >
             <section>
                 <h2>Editar Curso</h2>
 
-                <form class="formAjax" method="post">
-                    <label class="col-2">Nombre:</label>
-                    <input class="col-10" required asp-for="Curso.Nombre" />
+                <form class="formAjax" method="post" action="~/Cursos/EditarCurso">
+                    <input id="editId" type="hidden" asp-for="Curso.Id" />
+                    <label  class="col-2">Nombre:</label>
+                    <input id="editNombre" class="col-10"  required asp-for="Curso.Nombre" />
 
-                    <label class="col-2">Fecha Inicio:</label>
-                    <input class="col-10" type="date" required asp-for="Curso.FechaInicio" />
+                    <label  class="col-2">Fecha Inicio:</label>
+                    <input     id="editInicio"   type="date"  asp-for="Curso.FechaInicio"   class="col-10"  required   />
 
-                    <label class="col-2">Fecha final:</label>
-                    <input class="col-10" input type="date" required asp-for="Curso.FechaFinal" />
+                    <label  class="col-2">Fecha final:</label>
+                    <input type="date" id="editFinal" class="col-10" required asp-for="Curso.FechaFinal" />
 
 
 
@@ -127,25 +128,57 @@
                     <input type="submit" value="Agregar" />
                 </form>
             </section>
+            <script>
+                function editar(id) {
+
+
+			$.post('@Url.Action("GetCurso", "Cursos")', { "id": id }, function (data, status) {
+				if (data != false) {
+                    //function f(jsondate) { var newDate = dateFormat(jsondate, "mm/dd/yyyy"); return new Date; }
+                 //   data.day = new Date().toISOString().split('T')[0];
+                   // data.day = data.day.toISOString().split('T')[0];
+                    data.fechaFinal = new Date().toISOString().split('T')[0];
+                    var x = $("#modalEditar form");
+                    //data.day = new Date();
+					x.find("#editId").val(data.id);
+                    x.find("#editNombre").val(data.nombre);
+                    x.find("#editInicio").val(data.inicio);
+                    x.find("#editFinal").val(data.final);
+					//x.find('#editIdCarrera option[value="' + data.idCarrera + '"]').attr('selected', true)
+					showModal("modalEditar");
+				}
+			});
+		}
+            </script>
         </div>
-        <div class="modal" id="modalEliminar">
+        <div  id="modalEliminar" class="modal">
             <section>
                 <h2>Confirme la eliminación</h2>
 
-                <form class="formAjax" method="post">
+                <form class="formAjax" method="post" action="~/Cursos/Eliminar">
                     <input id="deleteId" type="hidden" name="Id" />
                     <p>¿Esta seguro de eliminar?</p>
 
 
                     <label class="col-12 error"></label>
 
-                    <input type="button" value="No" class="cancel" />
+                    <a href="~/Cursos/Cursos">
+                        <input type="button" value="No" class="cancel" />
+
+                    </a>
+
                     <input type="submit" value="Si" />
                 </form>
+                <script>
+                    function eliminar(id) {
+                        $("#deleteId").val(id);
+                        showModal("modalEliminar");
 
-      
+                    }
+
+                </script>
             </section>
-
+       
         </div>
     </main>
 

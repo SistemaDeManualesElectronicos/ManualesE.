@@ -146,8 +146,6 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
             try
             {
-                //if (errores.Count() == 0)
-                //        {
                 if (errores.Count() == 0)
                 {
                     if (e != null)

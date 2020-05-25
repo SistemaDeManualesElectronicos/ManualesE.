@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using ManualesElectronicosFInalFinal2.Models;
@@ -52,7 +54,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
 
         }
-
+        [HttpPost]
         public JsonResult Eliminar(int Id)
         {
             JsonResult json = null;
@@ -60,7 +62,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             try
             {
                 CursoRepository cucu = new CursoRepository();
-                var r = cucu.GetById(Id);
+                var r = cucu.GetCursoById(Id);
                 if (r != null)
                 {
                     cucu.Delete(r);
@@ -79,13 +81,14 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
         }
 
-
         public JsonResult GetCurso(int id)
         {
             JsonResult json = null;
             CursoRepository cu = new CursoRepository();
             var alu = cu.GetById(id);
 
+            var inicio = alu.FechaInicio.GetValueOrDefault().ToString("yyyy-MM-dd");
+            var final = alu.FechaFinal.GetValueOrDefault().ToString("yyyy-MM-dd");
             if (alu == null)
             {
                 json = Json(false);
@@ -97,6 +100,8 @@ namespace ManualesElectronicosFInalFinal2.Controllers
                     {
                         alu.Id,
                         alu.Nombre,
+                        inicio,
+                        final,
                         alu.FechaInicio,
                         alu.FechaFinal
                     }
@@ -108,38 +113,41 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
         }
         [HttpPost]
+
         public JsonResult EditarCurso(ViewModelCurso c)
         {
-            //fgdfdgf
             JsonResult json = null;
+            CursoRepository cucu = new CursoRepository();
+            c.Curso.Nombre = c.Curso.Nombre.ToUpper();
+            List<string> errores = cucu.ValidarCurso(c.Curso);
 
-            cucu = new CursoRepository();
-                List<string> errores = cucu.ValidarCurso(c.Curso);
-
-
-
-                if(errores.Count() == 0)
+            try
+            {
+                if (errores.Count() == 0)
                 {
-                    var Datos = cucu.GetCursoById(c.Curso.Id);
-
-                    Datos.Nombre = c.Curso.Nombre;
-                    Datos.Clave = c.Curso.Clave;
-                    Datos.FechaInicio = c.Curso.FechaInicio;
-                    Datos.FechaFinal = c.Curso.FechaFinal;
-                    cucu.Update(Datos);
-                Json(true);
-                }
-
-                else
-                {
-                    for (int i = 0; i < errores.Count(); i++)
+                    if (c != null)
                     {
-                    Json(errores);
+                     //   var Datos = cucu.GetCursoById(c.Curso.Id);
+
+                        c.Curso.Nombre = c.Curso.Nombre.ToUpper();
+                        cucu.Update(c.Curso);
+                        json = Json(true);
                     }
-
-
+                    else
+                    {
+                        json = Json("El Curso no existe o ya ha sido eliminado.");
+                    }
                 }
 
+                for (int i = 0; i < errores.Count; i++)
+                {
+                    json = Json(errores);
+                }
+            }
+            catch (Exception)
+            {
+                json = Json("Ah ocurrido un error, porfavor actualice la pagina y vuelva a intntarlo,a si el error persiste comuniquese con soporte tecnico");
+            }
 
             return json;
 

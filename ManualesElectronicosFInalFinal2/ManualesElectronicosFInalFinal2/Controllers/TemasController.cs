@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ManualesElectronicosFInalFinal2.models;
 using ManualesElectronicosFInalFinal2.Models;
 using ManualesElectronicosFInalFinal2.Repositories;
 using Microsoft.AspNetCore.Mvc;
