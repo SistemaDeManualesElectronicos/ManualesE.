@@ -69,7 +69,7 @@
                     </div>
                     <div class="des">
                         <p> @item.FechaInicio.Value.Day/@item.FechaInicio.Value.Month/@item.FechaInicio.Value.Year </p>
-                        <p> @item.FechaFinal.Value.Day/@item.FechaFinal.Value.Month/@item.FechaFinal.Value.Year </p>
+                        @*<p> @item.FechaFinal.Value.Day/@item.FechaFinal.Value.Month/@item.FechaFinal.Value.Year </p>*@
                         <a href="javascript:editar(@item.Id)" style="margin-left:5px;"><i class="fas fa-edit"></i></a>
                         <a href="javascript:eliminar(@item.Id)"><i class="fa fa-trash"></i></a>
                         <button>Temas</button>
@@ -82,15 +82,17 @@
             <section>
                 <h2>Agregar Curso</h2>
 
-                <form class="formAjax" method="post"  action="~/Cursos/Agregar" >
+                <form class="formAjax" method="post" action="~/Cursos/Agregar">
                     <label class="col-2">Nombre:</label>
                     <input class="col-10" required asp-for="Curso.Nombre" />
 
-                    <label class="col-2">Fecha Inicio:</label>
-                    <input class="col-10"  type="date" required asp-for="Curso.FechaInicio" />
+                    <label class="col-2">Clave Curso:</label>
+                    <input class="col-10" input type="text" required asp-for="Curso.Clave" />
 
-                    <label class="col-2">Fecha final:</label>
-                    <input class="col-10" input type="date" required asp-for="Curso.FechaFinal" />
+                    <label class="col-2">Fecha Inicio:</label>
+                    <input class="col-10" type="date" required asp-for="Curso.FechaInicio" />
+
+
 
 
 
@@ -109,14 +111,16 @@
 
                 <form class="formAjax" method="post" action="~/Cursos/EditarCurso">
                     <input id="editId" type="hidden" asp-for="Curso.Id" />
-                    <label  class="col-2">Nombre:</label>
-                    <input id="editNombre" class="col-10"  required asp-for="Curso.Nombre" />
+                    <label class="col-2">Nombre:</label>
+                    <input id="editNombre" class="col-10" required asp-for="Curso.Nombre" />
 
-                    <label  class="col-2">Fecha Inicio:</label>
-                    <input     id="editInicio"   type="date"  asp-for="Curso.FechaInicio"   class="col-10"  required   />
+                    <label class="col-2">Clave:</label>
+                    <input type="text" class="col-10"  required asp-for="Curso.Clave"  disabled/>
 
-                    <label  class="col-2">Fecha final:</label>
-                    <input type="date" id="editFinal" class="col-10" required asp-for="Curso.FechaFinal" />
+                    <label class="col-2">Fecha Inicio:</label>
+                    <input id="editInicio" type="date" asp-for="Curso.FechaInicio" class="col-10" required />
+
+
 
 
 

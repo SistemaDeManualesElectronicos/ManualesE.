@@ -58,15 +58,23 @@
                     {
                         <h2 type="button" class="collapsible">
                             @item.Encabezado
-                            <a href="javascript:showModal('modalEditar')"  style="margin-left:5px;"><i class="fas fa-edit"></i></a>
-                            <a href="javascript:showModal('modalEliminar')" ><i class="fa fa-trash"></i></a>
+                            <a href="javascript:showModal('modalEditar')" style="margin-left:5px;"><i class="fas fa-edit"></i></a>
+                            <a href="javascript:showModal('modalEliminar')"><i class="fa fa-trash"></i></a>
                         </h2>
 
+                       
+                           
+                        
                         <div class="content">
-                            <p><a href="#">Subtema</a></p>
-                            <p><a href="#">Subtema</a></p>
-                            <p><a href="#">Subtema</a></p>
+                            <div class="subtemas">
+                                <a href="#">Subtema</a>
+                                <a href="javascript:showModal('modalEditarSub')" style="margin-left:5px; float:right;"><i class="fas fa-edit"></i></a>
+                                <a href="javascript:showModal('modalEliminarSub')" style="float: right;"><i class="fa fa-trash"></i></a>
+                                <a href="javascript:showModal('modalAgregarSub')" style="float: right;"><i class="fas fa-plus-circle"></i></a>
+                            </div>
+
                         </div>
+
                     }
                 </div>
 
@@ -86,7 +94,7 @@
             </div>
             <div class="modal" id="modalEditar">
                 <section>
-                    <h2>Agregar Tema</h2>
+                    <h2>Editar Tema</h2>
 
                     <form class="formAjax" method="post">
                         <label class="col-2">Nombre:</label>
@@ -111,6 +119,52 @@
 
                         <input type="button" value="No" class="cancel" />
                         <input type="submit" value="Si" />
+                    </form>
+                </section>
+            </div>
+
+
+
+            <div class="modal" id="modalEditarSub">
+                <section>
+                    <h2>Editar Subtema</h2>
+
+                    <form class="formAjax" method="post">
+                        <label class="col-2">Nombre:</label>
+                        <input class="col-10" type="text" required="required" />
+                        <label class="col-12 error"></label>
+
+                        <input type="button" class="cancel" value="Cancelar" />
+                        <input type="submit" value="Agregar" />
+                    </form>
+                </section>
+            </div>
+            <div class="modal" id="modalEliminarSub">
+                <section>
+                    <h2>Confirme la eliminación</h2>
+
+                    <form class="formAjax" method="post">
+                        <input id="deleteId" type="hidden" name="Id" />
+                        <p>¿Esta seguro de eliminar?</p>
+
+
+                        <label class="col-12 error"></label>
+
+                        <input type="button" value="No" class="cancel" />
+                        <input type="submit" value="Si" />
+                    </form>
+                </section>
+            </div>
+            <div class="modal" id="modalAgregarSub">
+                <section>
+                    <h2>Agregar Subtema</h2>
+
+                    <form class="formAjax" method="post">
+                        <label class="col-2">Nombre:</label>
+                        <input class="col-10" type="text" required="required" />
+                        <label class="col-12 error"></label>
+                        <input type="button"  class="cancel" value="Cancelar" />
+                        <input type="submit" value="Agregar" />
                     </form>
                 </section>
             </div>
