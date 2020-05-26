@@ -117,7 +117,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         {
             JsonResult json = null;
             TemasRepository tem = new TemasRepository();
-            t.Temas.Encabezado = t.Temas.Encabezado.ToUpper();
+            
             List<string> errores = tem.Validacion(t.Temas);
 
             try

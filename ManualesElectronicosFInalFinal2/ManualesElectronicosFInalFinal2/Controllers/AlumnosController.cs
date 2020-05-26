@@ -141,7 +141,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         {
             JsonResult json = null;
             AlumnosRepository al = new AlumnosRepository();
-            e.Alumno.Nombre = e.Alumno.Nombre.ToUpper();
+           
             List<string> errores = al.ValidarAlumnos(e.Alumno);
 
             try

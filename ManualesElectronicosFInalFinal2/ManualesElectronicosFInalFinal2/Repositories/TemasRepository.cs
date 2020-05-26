@@ -26,6 +26,11 @@ namespace ManualesElectronicosFInalFinal2.Repositories
         {
             List<string> errores = new List<string>();
             Regex NombreConCaracteresEspeciales = new Regex(@"^([A-Za-zÁÉÍÓÚñáéíóúÑ]){1,29}?$");
+
+            if (t.Encabezado != null)
+
+            {
+
             if (string.IsNullOrEmpty(t.Encabezado))
             {
                 errores.Add("el nombre del tema no puede estar vacio");
@@ -34,12 +39,17 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             {
                 if (!NombreConCaracteresEspeciales.IsMatch(t.Encabezado))
                 {
-                    errores.Add("el encabezado es muy corto o no debe de llevar caracteres especiales");
+                    errores.Add("el encabezado es muy largo o no debe de llevar caracteres especiales");
                 }
             }
 
-          
-           
+            }
+            else
+            {
+                errores.Add("El nombre del alumno no puede ir vacio o tener espacios en blanco");
+
+            }
+
             return errores;
       
         }

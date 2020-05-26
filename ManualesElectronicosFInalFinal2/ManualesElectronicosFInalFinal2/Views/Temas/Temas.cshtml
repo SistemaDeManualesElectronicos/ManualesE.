@@ -99,16 +99,35 @@
             <section>
                 <h2>Editar Tema</h2>
 
-                <form class="formAjax" method="post" action="~/Temas/Eliminar">
+                <form class="formAjax" method="post" action="~/Temas/Editar">
+                    <input id="editId" type="hidden" asp-for="Temas.Id" />
                     <label class="col-2">Nombre:</label>
-                    <input class="col-10" type="text" required="required" />
+                    <input id="editNombre" class="col-10" type="text" asp-for="Temas.Encabezado"required="required" />
                     <label class="col-12 error"></label>
                     <a href="~/Temas/Temas">
                         <input type="button" asp-action="Temas" class="cancel" value="Cancelar" />
                     </a>
 
-                        <input type="submit" value="Agregar" />
+                    <input type="submit" value="Agregar" />
                 </form>
+                <script>
+                function editar(id) {
+
+
+			$.post('@Url.Action("GetTemas", "Temas")', { "id": id }, function (data, status) {
+				if (data != false) {
+                
+                
+                    var x = $("#modalEditar form");
+                   
+					x.find("#editId").val(data.id);
+                    x.find("#editNombre").val(data.encabezado);
+           
+					showModal("modalEditar");
+				}
+			});
+		}
+                </script>
             </section>
         </div>
         <div  id="modalEliminar"class="modal">
@@ -125,8 +144,16 @@
                     <a href="~/Temas/Temas">
                         <input type="button" value="No" class="cancel" />
                     </a>
-                        <input type="submit" value="Si" />
+                    <input type="submit" value="Si" />
                 </form>
+                <script>
+                    function eliminar(id) {
+                        $("#deleteId").val(id);
+                        showModal("modalEliminar");
+
+                    }
+
+                </script>
             </section>
         </div>
 
