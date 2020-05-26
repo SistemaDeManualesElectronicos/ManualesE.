@@ -57,24 +57,25 @@
             <!--cards -->
             @foreach (var item in Model.Cursos)
             {
-                <div class="card">
+            <div class="card">
 
-                    <div class="image">
-                        <img src="https://c4.wallpaperflare.com/wallpaper/246/739/689/digital-digital-art-artwork-illustration-abstract-hd-wallpaper-preview.jpg" />
-                    </div>
-                    <div class="title">
-                        <h1>
-                            @item.Nombre
-                        </h1>
-                    </div>
-                    <div class="des">
-                        <p> @item.FechaInicio.Value.Day/@item.FechaInicio.Value.Month/@item.FechaInicio.Value.Year </p>
-                        @*<p> @item.FechaFinal.Value.Day/@item.FechaFinal.Value.Month/@item.FechaFinal.Value.Year </p>*@
-                        <a href="javascript:editar(@item.Id)" style="margin-left:5px;"><i class="fas fa-edit"></i></a>
-                        <a href="javascript:eliminar(@item.Id)"><i class="fa fa-trash"></i></a>
-                        <button>Temas</button>
-                    </div>
+                <div class="image">
+                    <img src="https://c4.wallpaperflare.com/wallpaper/246/739/689/digital-digital-art-artwork-illustration-abstract-hd-wallpaper-preview.jpg" />
                 </div>
+                <div class="title">
+                    <h1>
+                        @item.Nombre
+                    </h1>
+                </div>
+                <div class="des">
+                    <p> @item.FechaInicio.Value.Day/@item.FechaInicio.Value.Month/@item.FechaInicio.Value.Year </p>
+                    @*<p> @item.FechaFinal.Value.Day/@item.FechaFinal.Value.Month/@item.FechaFinal.Value.Year </p>*@
+                    <a href="javascript:editar(@item.Id)" style="margin-left:5px;"><i class="fas fa-edit"></i></a>
+                    <a href="javascript:eliminar(@item.Id)"><i class="fa fa-trash"></i></a>
+                    <div><a href="#" style="color:whitesmoke; font-size:large;">Ver Temas</a></div>
+                </div>
+              
+            </div>
             }
 
         </div>
