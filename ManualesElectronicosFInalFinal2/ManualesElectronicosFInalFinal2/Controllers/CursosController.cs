@@ -32,6 +32,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
                 CursoRepository cu = new CursoRepository();
                 List<string> errores = cu.ValidarCurso(c.Curso  );
 
+            try { 
             if (errores.Count() == 0)
             {
 
@@ -49,6 +50,12 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
             }
 
+        }
+
+            catch (Exception )
+            {
+                json = Json("Ah ocurrido un error, porfavor actualice la pagina y vuelva a intntarlo, si el error persiste comuniquese con soporte tecnico");
+    }
             return json;
          
 

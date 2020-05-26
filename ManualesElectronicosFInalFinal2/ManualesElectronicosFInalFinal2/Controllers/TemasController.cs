@@ -12,10 +12,13 @@ namespace ManualesElectronicosFInalFinal2.Controllers
     public class TemasController : Controller
     {
         public TemasRepository temas;
+     
         public IActionResult Temas()
         {
             temas = new TemasRepository();
-            return View(temas.GetTemascxNombre());
+            ViewModelTemas tem = new ViewModelTemas();
+            tem.Tema = temas.GetTemascxNombre();
+            return View(tem);
         }
 
 
@@ -25,96 +28,127 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         }
 
         [HttpPost]
-        public IActionResult Agregar(Temas t)
+        public JsonResult Agregar(ViewModelTemas t)
         {
-            if (ModelState.IsValid)
+
+            TemasRepository tem = new TemasRepository();
+            JsonResult json = null;
+            List<string> errores = tem.Validacion(t.Temas);
+            try
             {
-                temas = new TemasRepository();
-                List<string> errores = temas.Validacion(t);
                 if (errores.Count() == 0)
                 {
-                    temas.Insert(t);
-                   return RedirectToAction("Temas");
+                    t.Temas.Encabezado = t.Temas.Encabezado.ToUpper();
+
+                    //nuevo.Alumno.Contraseña = EncriptarLaContraseñaConverter.Encriptar(nuevo.Alumno.NumeroControl);
+                    tem.Insert(t.Temas);
+                    json = Json(true);
+                }
+
+                for (int i = 0; i < errores.Count; i++)
+                {
+                    json = Json(errores);
+                }
+            }
+            catch (Exception)
+            {
+                json = Json("Ah ocurrido un error, porfavor actualice la pagina y vuelva a intntarlo, si el error persiste comuniquese con soporte tecnico");
+            }
+            return json;
+
+        }
+
+
+        [HttpPost]
+        public JsonResult Eliminar(int id)
+        {
+            JsonResult json = null;
+            try
+            {
+                TemasRepository tem = new TemasRepository();
+                var r = tem.GetById(id);
+                if (r != null)
+                {
+                    tem.Delete(r);
+                    json = Json(true);
                 }
                 else
                 {
-                    for (int i = 0; i < errores.Count(); i++)
+                    json = Json("El curso no existe o ya ha sido eliminado.");
+                }
+            }
+            catch (Exception)
+            {
+                json = Json("Ah ocurrido un error, porfavor actualice la pagina y vuelva a intntarlo, si el error persiste comuniquese con soporte tecnico");
+            }
+
+
+            return json;
+        }
+        public JsonResult GetTemas(int id)
+        {
+            JsonResult json = null;
+            TemasRepository tem = new TemasRepository();
+            var r = tem.GetById(id);
+            if (r == null)
+            {
+                json = Json(false);
+            }
+            else
+            {
+                json = Json(
+                    new
                     {
-                        ModelState.AddModelError("", errores[i]);
+                        r.Id,
+                        r.Encabezado
+
+
+
 
                     }
-                    return View();
-                }
-
+                    );
             }
+            return json;
 
-            else
-            {
-                return View();
-            }
-            
         }
-
-        public IActionResult Eliminar(Temas d)
-        {
-            temas = new TemasRepository();
-            List<string> errores = temas.Validacion(d);
-            var datos = temas.GetTemabyId(d.Id);
-            return View(datos);
-        }
-
 
         [HttpPost]
-        public IActionResult Eliminar(int id)
+         public JsonResult Editar(ViewModelTemas t)
         {
-           temas = new TemasRepository();
+            JsonResult json = null;
+            TemasRepository tem = new TemasRepository();
+            t.Temas.Encabezado = t.Temas.Encabezado.ToUpper();
+            List<string> errores = tem.Validacion(t.Temas);
 
-            var clase = temas.GetTemabyId(id);
-            temas.Delete(clase);
-            return RedirectToAction("Temas");
-        }
-
-      
-        public IActionResult EditarTemass(int id)
-        {
-           temas = new TemasRepository();
-            var datos = temas.GetTemabyId(id);
-            return View(datos);
-        }
-
-        
-        [HttpPost]
-        public IActionResult EditarTemass(Temas d)
-        {
-
-            if (ModelState.IsValid)
+            try
             {
-                temas = new TemasRepository();
-                List<string> errores = temas.Validacion(d);
-                for (int i = 0; i < errores.Count(); i++)
-                {
-                    ModelState.AddModelError("", errores[i]);
-                }
-
                 if (errores.Count() == 0)
                 {
-
-
-
-                    var Datos = temas.GetTemabyId(d.Id);
-                    Datos.Encabezado = d.Encabezado;
-                   
-                    temas.Update(Datos);
-                    return RedirectToAction("Temas");
+                    if (t != null)
+                    {
+                        t.Temas.Encabezado = t.Temas.Encabezado.ToUpper();
+                        tem.Update(t.Temas);
+                        json = Json(true);
+                    }
+                    else
+                    {
+                        json = Json("El Curso no existe o ya ha sido eliminado.");
+                    }
                 }
 
-            }
-            else
-            {
 
-                return View(d);
+                for (int i = 0; i < errores.Count; i++)
+                {
+                    json = Json(errores);
+                }
+                //  }
             }
-            return View(d);
+
+            catch (Exception)
+            {
+                json = Json("Ah ocurrido un error, porfavor actualice la pagina y vuelva a intntarlo,a si el error persiste comuniquese con soporte tecnico");
+            }
+            return json;
 
         }
     }
