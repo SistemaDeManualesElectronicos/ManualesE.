@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ManualesElectronicosFInalFinal2.Models
 {
-    public class ViewModelTemas
+    public class ViewModelSubtemas
     {
-        public Temas Temas { get; set; }
-        public Subtemas Subtemas { get; set; }
+
+        public  Subtemas Subtemas { get; set; }
+
         public IEnumerable<Subtemas> Subtema { get; set; }
-        public IEnumerable<Temas> Tema { get; set; }
     }
 }

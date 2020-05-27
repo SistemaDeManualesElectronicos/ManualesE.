@@ -12,12 +12,15 @@ namespace ManualesElectronicosFInalFinal2.Controllers
     public class TemasController : Controller
     {
         public TemasRepository temas;
-     
+        public SubtemasRepository sub;
         public IActionResult Temas()
         {
             temas = new TemasRepository();
             ViewModelTemas tem = new ViewModelTemas();
+            ViewModelSubtemas su = new ViewModelSubtemas();
+            //su.Subtema = sub.GetSubemascxNombre();
             tem.Tema = temas.GetTemascxNombre();
+          
             return View(tem);
         }
 
@@ -114,7 +117,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
         [HttpPost]
          public JsonResult Editar(ViewModelTemas t)
-        {
+          {
             JsonResult json = null;
             TemasRepository tem = new TemasRepository();
             
@@ -132,7 +135,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
                     }
                     else
                     {
-                        json = Json("El Curso no existe o ya ha sido eliminado.");
+                        json = Json("El Tema no existe o ya ha sido eliminado.");
                     }
                 }
 
