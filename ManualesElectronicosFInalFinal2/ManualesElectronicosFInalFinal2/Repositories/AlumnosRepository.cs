@@ -31,7 +31,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
         public List<string> ValidarAlumnos(Alumnos alumnos)
         {
             List<string> listaerrores = new List<string>();
-            Regex NumeroDeControlA = new Regex(@"[1][0-9]{2}[A-Z]{1}[0]{1}[0-9]{3}");
+            Regex NumeroDeControlA = new Regex(@"[0-1][0-9]{2}[A-Z]{1}[0]{1}[0-9]{3}");
             if (alumnos.Nombre != null )
             {
                 if (alumnos.NumeroControl != null)
@@ -41,7 +41,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
                     if (string.IsNullOrWhiteSpace(alumnos.Nombre))
 
                     {
-                        listaerrores.Add("El nombre del alumno no puede ir vacio o tener espacios en blanco");
+                        listaerrores.Add("El nombre del alumno no puede ir vacio, tener espacios en blanco ni numeros");
                     }
 
                 //    if (string.IsNullOrWhiteSpace(alumnos.NumeroControl))
@@ -83,13 +83,22 @@ namespace ManualesElectronicosFInalFinal2.Repositories
                         }
                     }
                   string num = alumnos.NumeroControl.ToString().Substring(5,3);///  1 6 1 G 0 2 4 5
-                    string numaño = alumnos.NumeroControl.ToString().Substring(2, 1);
+                    string ins = alumnos.NumeroControl.ToString().Substring(2, 1);
                     string letraCarrera = alumnos.NumeroControl.ToString().Substring(3, 1);
+                    string numaño = alumnos.NumeroControl.ToString().Substring(0, 2);
+
+                    
+                    
+                    if (int.Parse( numaño) < 14  ||  int.Parse(numaño) > int.Parse(  DateTime.Now.ToString("yy")) )
+                    {
+                        listaerrores.Add("Fecha de numero de control debe ser no debe ser abajo de 2014(14)");
+                    }
+
                     if (num.Contains("000"))
                     {
                         listaerrores.Add("Numero de control no puede tener 000");
                     }
-                    if (!numaño.Contains("1"))
+                    if (!ins.Contains("1"))
                     {
                         listaerrores.Add("Numero de control incorrecto, debe pertenecer a esta institución para ello debe colocar el numero (1) en el tercer digito del numero de control");
                     }
@@ -142,7 +151,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             }
             if (!NombreConCaracteresEspecialess.IsMatch(alumnos.Nombre.ToString())) //validar que escriba apellidos
             {
-                listaerrores.Add("Verifique que haya escrito el nombre completo correctamente y no haya caracteres especiales");
+                listaerrores.Add("Verifique que haya escrito el nombre completo correctamente, sin espacios, caracteres especiales ni doble espacios");
                
             }
             if (alumnos.Nombre.Length > 45)
