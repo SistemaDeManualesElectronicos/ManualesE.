@@ -20,6 +20,11 @@ namespace ManualesElectronicosFInalFinal2.Repositories
         {
             return Context.Subtemas.OrderBy(x => x.Nombre);
         }
+        public IEnumerable<string> GetNombresSubtemas()
+        {
+            var data = GetAll().OrderBy(x => x.Nombre).Select(x => x.Nombre);
+            return data;
+        }
         //public SubtemasRepository(itesrcne_manualesContext context)
         //{
         //    Context = context;
@@ -31,7 +36,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
         //    this.environment = environment;
         //    ruta = environment.WebRootPath;
         //}
-       
+
 
         public List<string> Validacion(Subtemas s)
         {

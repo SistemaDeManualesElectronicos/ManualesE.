@@ -44,11 +44,11 @@ namespace ManualesElectronicosFInalFinal2.Repositories
                         listaerrores.Add("El nombre del alumno no puede ir vacio o tener espacios en blanco");
                     }
 
-                    if (string.IsNullOrWhiteSpace(alumnos.NumeroControl))
+                //    if (string.IsNullOrWhiteSpace(alumnos.NumeroControl))
 
-                    {
-                        listaerrores.Add("El Numero de control no puede ir vacio o tener espacios en blanco");
-                    }
+                  //  {
+                    //    listaerrores.Add("El Numero de control no puede ir vacio o tener espacios en blanco");
+                    //}
 
                     if (!NombreConCaracteresEspecialess.IsMatch(alumnos.Nombre.ToString())) //validar que escriba apellidos
                     {
@@ -62,7 +62,6 @@ namespace ManualesElectronicosFInalFinal2.Repositories
                         listaerrores.Add("El limite para el nombre es de 45");
 
                     }
-
 
                     if (Context.Alumnos.Any(x => x.Nombre == alumnos.Nombre && x.NumeroControl == alumnos.NumeroControl && x.Id != alumnos.Id))  //Validar si ya existe nombre de un alumno. IIDD
                     {
@@ -83,19 +82,31 @@ namespace ManualesElectronicosFInalFinal2.Repositories
 
                         }
                     }
-                  string num = alumnos.NumeroControl.ToString().Substring(5,3);
-
+                  string num = alumnos.NumeroControl.ToString().Substring(5,3);///  1 6 1 G 0 2 4 5
+                    string numaño = alumnos.NumeroControl.ToString().Substring(2, 1);
+                    string letraCarrera = alumnos.NumeroControl.ToString().Substring(3, 1);
                     if (num.Contains("000"))
                     {
                         listaerrores.Add("Numero de control no puede tener 000");
                     }
-                
+                    if (!numaño.Contains("1"))
+                    {
+                        listaerrores.Add("Numero de control incorrecto, debe pertenecer a esta institución para ello debe colocar el numero (1) en el tercer digito del numero de control");
+                    }
+
+                    if (!letraCarrera.Contains("G") && !letraCarrera.Contains("T") && !letraCarrera.Contains("D") && !letraCarrera.Contains("M") && !letraCarrera.Contains("P") && !letraCarrera.Contains("A"))
+                    {
+                        listaerrores.Add("Esta carrera no existe");
+                    }
 
                     if (alumnos.NumeroControl.Length > 8 || alumnos.NumeroControl.Length < 8)
                     {
                         listaerrores.Add("Numero de control incorrecto. El Numero de contorl tiene 8 caracteres");
                     }
-
+                    if (context.Alumnos.Any(x => x.NumeroControl != alumnos.NumeroControl && x.Id == alumnos.Id))
+                    {
+                        listaerrores.Add("Error en el numero de control, Numero de control diferente");
+                    }
 
                     if (Context.Alumnos.Any(x => x.NumeroControl == alumnos.NumeroControl && x.Id != alumnos.Id))  //Validar si ya existe numero de control
                     {
