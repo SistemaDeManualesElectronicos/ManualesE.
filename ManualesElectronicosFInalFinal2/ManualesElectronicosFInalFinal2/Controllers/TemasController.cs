@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ManualesElectronicosFInalFinal2.models;
 using ManualesElectronicosFInalFinal2.Models;
+using ManualesElectronicosFInalFinal2.Models.DocentesViewModels;
 using ManualesElectronicosFInalFinal2.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,12 +19,14 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             temas = new TemasRepository();
             sub = new SubtemasRepository();
             ViewModelTemas tem = new ViewModelTemas();
-            ViewModelSubtemas su = new ViewModelSubtemas();
+            SubtemasViewModel su = new SubtemasViewModel();
+            NavigationTemasSubtemas na = new NavigationTemasSubtemas();
             //su.Subtema = sub.GetSubemascxNombre();
             tem.Tema = temas.GetTemascxNombre();
             su.Subtema = sub.GetSubemascxNombre();
-        //    su.Subtema = sub.GetSubemascxNombre();
-            ViewBag.TemasBag = tem;
+            //    su.Subtema = sub.GetSubemascxNombre();
+       
+         //   ViewBag.SubBag = su.Subtemas.Nombre;
            // ViewBag.SubtemasBag = su.Subtemas.Nombre;
             return View(tem);
         }

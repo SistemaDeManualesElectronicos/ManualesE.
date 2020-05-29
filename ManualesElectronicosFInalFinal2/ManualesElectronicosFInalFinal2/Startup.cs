@@ -18,6 +18,7 @@ namespace ManualesElectronicosFInalFinal2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<DocenteService>();
+            services.AddScoped<TemasServices>();
             services.AddMvc();
         }
 

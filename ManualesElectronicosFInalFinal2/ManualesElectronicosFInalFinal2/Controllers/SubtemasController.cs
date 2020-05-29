@@ -89,7 +89,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             return json;
         }
 
-        public JsonResult GetUbtemas(int id)
+        public JsonResult GetSubtemas(int id)
         {
             JsonResult json = null;
             SubtemasRepository sub = new SubtemasRepository();
