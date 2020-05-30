@@ -1,128 +1,132 @@
 ﻿@model ManualesElectronicosFInalFinal2.Models.ViewModelTemas
-@inject TemasServices service
+@*@inject TemasServices service*@
 @*@inject ManualesElectronicosFInalFinal2.Services.TemasServices servicio*@
 
-@{
-    ViewData["Title"] = "Temas";
-    Layout = "~/Views/Shared/Layout.cshtml";
-}
-<html>
-<head>
-    <meta charset="utf-8" />
-    <link href="~/Content/estilos.css" rel="stylesheet" />
-    <link href="~/Content/grid.css" rel="stylesheet" />
-    <link href="~/Content/StyleSheet.css" rel="stylesheet" />
-    <link href="~/Content/OtrosColores.css" rel="stylesheet" />
-    <!-- Para usar iconos con FontAwesome  -->
-    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
-    <link href="~/Content/sidebar.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <script src="jquery-3.5.0.min"></script>
-    <script src="util.js"></script>
+    @{
+        ViewData["Title"] = "Temas";
+        Layout = "~/Views/Shared/Layout.cshtml";
+    }
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <link href="~/Content/estilos.css" rel="stylesheet" />
+        <link href="~/Content/grid.css" rel="stylesheet" />
+        <link href="~/Content/StyleSheet.css" rel="stylesheet" />
+        <link href="~/Content/OtrosColores.css" rel="stylesheet" />
+        <!-- Para usar iconos con FontAwesome  -->
+        <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+        <link href="~/Content/sidebar.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <script src="jquery-3.5.0.min"></script>
+        <script src="util.js"></script>
 
 
-    <title>Temas</title>
-</head>
-<body>
+        <title>Temas</title>
+    </head>
+    <body>
 
-    <nav class="menu" id="sidebar">
-        <div>
-        </div>
-        <ul>
-            <li><a asp-action="Docentes" asp-controller="Docentes"><i class="fa fa-address-card"></i>Docentes</a></li>
-            <li><a asp-action="Alumnos" asp-controller="Alumnos"><i class="fa fa-address-card"></i>Alumnos</a></li>
-            <li><a asp-action="Cursos" asp-controller="Cursos"><i class="fa fa-address-card"></i>Cursos</a></li>
-
-        </ul>
-
-    </nav>
-    <header>
-        <a href="#" class="toggle-btn"><i class="fa fa-bars"></i></a>
-        <h1 style="color:white; width:auto; border-bottom:none; text-align:center;"><b>ITESRC</b> Manuales Electronicos</h1>
-        <div class="dropdown">
-            <a href="#" class="right">
-                <i class="fa fa-user"></i>
-            </a>
-            <ul>
-                <li><a style="text-decoration: none; color:black;" href="#"><i class="fa fa-key"></i>Cambiar Contraseña</a></li>
-                <li><a style="text-decoration: none; color:black;" href="#"><i class="fa fa-sign-out-alt"></i> Cerrar Sesión</a></li>
-            </ul>
-        </div>
-    </header>
-    <main>
-        <div>
-            <h2 style=" float:right;  margin-top:15px; "> <a href="javascript:showModal('modalAgregar')" style="color:white;"><i class="fas fa-plus-circle"></i></a></h2>
-        </div>
-        <section>
-
+        <nav class="menu" id="sidebar">
             <div>
-                @foreach (var item in Model.Tema)
-                {
-                   ViewBag.asd = item.Id;
-                    <h2 type="button" class="collapsible"  ViewBag.asd = item.Id; on    >
-                        @item.Encabezado
-                        <a  @item.Id id="IdT"  ></a> 
-                        <a href="javascript:editar(@item.Id)" style="margin-left:5px;"><i class="fas fa-edit"></i></a>
-                        <a href="javascript:eliminar(@item.Id)"><i class="fa fa-trash"></i></a>
-                    </h2>
+            </div>
+            <ul>
+                <li><a asp-action="Docentes" asp-controller="Docentes"><i class="fa fa-address-card"></i>Docentes</a></li>
+                <li><a asp-action="Alumnos" asp-controller="Alumnos"><i class="fa fa-address-card"></i>Alumnos</a></li>
+                <li><a asp-action="Cursos" asp-controller="Cursos"><i class="fa fa-address-card"></i>Cursos</a></li>
+
+            </ul>
+
+        </nav>
+        <header>
+            <a href="#" class="toggle-btn"><i class="fa fa-bars"></i></a>
+            <h1 style="color:white; width:auto; border-bottom:none; text-align:center;"><b>ITESRC</b> Manuales Electronicos</h1>
+            <div class="dropdown">
+                <a href="#" class="right">
+                    <i class="fa fa-user"></i>
+                </a>
+                <ul>
+                    <li><a style="text-decoration: none; color:black;" href="#"><i class="fa fa-key"></i>Cambiar Contraseña</a></li>
+                    <li><a style="text-decoration: none; color:black;" href="#"><i class="fa fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+                </ul>
+            </div>
+        </header>
+        <main>
+            <div>
+                <h2 style=" float:right;  margin-top:15px; "> <a href="javascript:showModal('modalAgregar')" style="color:white;"><i class="fas fa-plus-circle"></i></a></h2>
+            </div>
+            <section>
+
+                <div>
+                    @foreach (var item in Model.Tema)
+                    {
+                        IEnumerable<Subtemas> lista = ViewBag.SubBag;
+
+                        // var a = ViewBag.SubBag;
+                        //ViewBag.asd = item.Id;
+                        <h2 type="button" class="collapsible" ViewBag.asd=item.Id; on>
+                            @item.Encabezado
+                            <a @item.Id id="IdT"></a>
+                            <a href="javascript:editar(@item.Id)" style="margin-left:5px;"><i class="fas fa-edit"></i></a>
+                            <a href="javascript:eliminar(@item.Id)"><i class="fa fa-trash"></i></a>
+                        </h2>
+
+                        //service.GetNombreSubtemas()
 
 
+                        <div class="content">
+                            @foreach (var itemm in lista)
+                            {
 
-
-                    <div class="content">
-                        @foreach (var itemm in service.GetNombreSubtemas())
-                        {
-                           
                                 <div class="subtemas">
-                                    <a href="#">Subtema</a>
-                                    @itemm
-                                    <a href="javascript:editarsub(@item.Id)" style="margin-left:5px; float:right;"><i class="fas fa-edit"></i></a>
-                                    <a href="javascript:Eliminarr(@item.Id)" style="float: right;"><i class="fa fa-trash"></i></a>
+                                    <a href="#"></a>
+                                    @itemm.Nombre
+                                    <a href="javascript:editarr(@itemm.Id)" style="margin-left:5px; float:right;"><i class="fas fa-edit"></i></a>
+                                    <a href="javascript:eliminarr(@itemm.Id)" style="float: right;"><i class="fa fa-trash"></i></a>
                                     <a href="javascript:showModal('modalAgregarr')" style="float: right;"><i class="fas fa-plus-circle"></i></a>
 
                                 </div>
-                                
+
                             }
                         </div>
-                    
-                }
-            </div>
+
+                    }
+                </div>
 
 
-        </section>
-        <div class="modal" id="modalAgregar">
-            <section>
-                <h2>Agregar Tema</h2>
-
-                <form class="formAjax" method="post" action="~/Temas/Agregar">
-                    <label class="col-2">Nombre:</label>
-                    <input class="col-10" type="text" asp-for="Temas.Encabezado" required="required" />
-                    <label class="col-12 error"></label>
-
-                    <a href="~/Temas/Temas">
-                        <input type="button" value="Cancelar" />
-                    </a>
-                    <input type="submit" value="Agregar" />
-                </form>
             </section>
-        </div>
-        <div class="modal" id="modalEditar">
-            <section>
-                <h2>Editar Tema</h2>
+            <div class="modal" id="modalAgregar">
+                <section>
+                    <h2>Agregar Tema</h2>
 
-                <form class="formAjax" method="post" action="~/Temas/Editar">
-                    <input id="editId" type="hidden" asp-for="Temas.Id" />
-                    <label class="col-2">Nombre:</label>
-                    <input id="editNombre" class="col-10" type="text" asp-for="Temas.Encabezado" required="required" />
-                    <label class="col-12 error"></label>
-                    <a href="~/Temas/Temas">
-                        <input type="button" asp-action="Temas" class="cancel" value="Cancelar" />
-                    </a>
+                    <form class="formAjax" method="post" action="~/Temas/Agregar">
+                        <label class="col-2">Nombre:</label>
+                        <input class="col-10" type="text" asp-for="Temas.Encabezado" required="required" />
+                        <label class="col-12 error"></label>
 
-                    <input type="submit" value="Agregar" />
-                </form>
-                <script>
+                        <a href="~/Temas/Temas">
+                            <input type="button" value="Cancelar" />
+                        </a>
+                        <input type="submit" value="Agregar" />
+                    </form>
+                </section>
+            </div>
+            <div class="modal" id="modalEditar">
+                <section>
+                    <h2>Editar Tema</h2>
+
+                    <form class="formAjax" method="post" action="~/Temas/Editar">
+                        <input id="editId" type="hidden" asp-for="Temas.Id" />
+                        <label class="col-2">Nombre:</label>
+                        <input id="editNombre" class="col-10" type="text" asp-for="Temas.Encabezado" required="required" />
+                        <label class="col-12 error"></label>
+                        <a href="~/Temas/Temas">
+                            <input type="button" asp-action="Temas" class="cancel" value="Cancelar" />
+                        </a>
+
+                        <input type="submit" value="Agregar" />
+                    </form>
+                    <script>
                 function editar(id) {
 
 
@@ -139,115 +143,115 @@
 				}
 			});
 		}
-                </script>
-            </section>
-        </div>
-        <div id="modalEliminar" class="modal">
-            <section>
-                <h2>Confirme la eliminación</h2>
+                    </script>
+                </section>
+            </div>
+            <div id="modalEliminar" class="modal">
+                <section>
+                    <h2>Confirme la eliminación</h2>
 
-                <form class="formAjax" method="post" action="~/Temas/Eliminar">
-                    <input id="deleteId" type="hidden" name="Id" />
-                    <p>¿Esta seguro de eliminar?</p>
+                    <form class="formAjax" method="post" action="~/Temas/Eliminar">
+                        <input id="deleteId" type="hidden" name="Id" />
+                        <p>¿Esta seguro de eliminar?</p>
 
 
-                    <label class="col-12 error"></label>
+                        <label class="col-12 error"></label>
 
-                    <a href="~/Temas/Temas">
-                        <input type="button" value="No" class="cancel" />
-                    </a>
-                    <input type="submit" value="Si" />
-                </form>
-                <script>
-                    function eliminar(id) {
-                        $("#deleteId").val(id);
-                        showModal("modalEliminar");
+                        <a href="~/Temas/Temas">
+                            <input type="button" value="No" class="cancel" />
+                        </a>
+                        <input type="submit" value="Si" />
+                    </form>
+                    <script>
+                        function eliminar(id) {
+                            $("#deleteId").val(id);
+                            showModal("modalEliminar");
 
-                    }
+                        }
 
-                </script>
-            </section>
-        </div>
+                    </script>
+                </section>
+            </div>
 
-        
-        <div class="modal" id="modalAgregarr">
-            <section>
-                <h2>Agregar Subtema</h2>
-                
-                <form class="formAjax" method="post" action="~/Subtemas/Agregar">
-                    <label class="col-2"   >Nombre:</label>
-                    <input id="IdT" type="hidden" value="@ViewBag.asd" asp-for="Subtemas.IdTemas" />
-                    <input class="col-10" type="text" asp-for="Subtemas.Nombre" required="required" />
-                    <label class="col-12 error"></label>
-                    <a href="~/Temas/Temas">
-                        <input type="button" value="Cancelar" />
-                    </a>
-                    <input type="submit" value="Agregar" />
-                </form>
-            </section>
-        </div>
-        <div class="modal" id="modalEditarSub">
-            <section>
-                <h2>Editar Subtema</h2>
-                <input id="editIds" type="hidden" asp-for="Subtemas.Id" />
-                <form class="formAjax" method="post">
-                    <label class="col-2">Nombre:</label>
-                    <input id="editNombres" class="col-10" asp-for="Subtemas.Nombre" type="text" required="required" />
-                    <label class="col-12 error"></label>
 
-                    <input type="button" class="cancel" value="Cancelar" />
-                    <input type="submit" value="Agregar" />
-                </form>
-                <script>
-                    function editars(id) {
+            <div class="modal" id="modalAgregarr">
+                <section>
+                    <h2>Agregar Subtema</h2>
+
+                    <form class="formAjax" method="post" action="~/Subtemas/Agregar">
+                        <label class="col-2">Nombre:</label>
+                        <input id="IdT" type="hidden" value="@ViewBag.asd" asp-for="Subtemas.IdTemas" />
+                        <input class="col-10" type="text" asp-for="Subtemas.Nombre" required="required" />
+                        <label class="col-12 error"></label>
+                        <a href="~/Temas/Temas">
+                            <input type="button" value="Cancelar" />
+                        </a>
+                        <input type="submit" value="Agregar" />
+                    </form>
+                </section>
+            </div>
+            <div class="modal" id="modalEditarr">
+                <section>
+                    <h2>Editar Subtema</h2>
+                    <input id="editId" type="hidden" asp-for="Subtemas.Id" />
+                    <form class="formAjax" method="post">
+                        <label class="col-2">Nombre:</label>
+                        <input id="editNombre" class="col-10" asp-for="Subtemas.Nombre" type="text" required="required" />
+                        <label class="col-12 error"></label>
+
+                        <input type="button" class="cancel" value="Cancelar" />
+                        <input type="submit" value="Agregar" />
+                    </form>
+                    <script>
+                    function editarr(id) {
 
 
                 $.post('@Url.Action("GetSubtemas", "Subtemas")', { "id": id }, function (data, status) {
                     if (data != false) {
 
 
-                        var x = $("#modalEditarsub form");
+                        var x = $("#modalEditarr form");
 
                         x.find("#editId").val(data.id);
                         x.find("#editNombre").val(data.Nombre);
 
-                        showModal("modalEditarsub");
+                        showModal("modalEditarr");
                     }
                 });
             }
-                </script>
-            </section>
-        </div>
-        <div id="modalEliminarr" class="modal">
-            <section>
-                <h2>Confirme la eliminación</h2>
+                    </script>
+                </section>
+            </div>
+            <div id="modalEliminarr" class="modal">
+                <section>
+                    <h2>Confirme la eliminación</h2>
 
-                <form class="formAjax" method="post" action="~/Subtemas/Eliminar">
-                    <input id="deleteIdd" type="hidden" name="Id" />
-                    <p>¿Esta seguro de eliminar?</p>
-
-
-                    <label class="col-12 error"></label>
-                    <a href="~/Temas/Temas">
-                        <input type="button" value="No" class="cancel" />
-                    </a>  <input type="submit" value="Si" />
-                </form>
-                <script>
-                    function eliminarr(id) {
-                        $("#deleteIdd").val(id);
-                        showModal("modalEliminar");
-
-                    }
-
-                </script>
-            </section>
-        </div>
-
-    </main>
-    <script src="~/main.js">
+                    <form class="formAjax" method="post" action="~/Subtemas/Eliminar">
+                        <input id="deleteIdd" type="hidden" name="Id" />
+                        <p>¿Esta seguro de eliminar?</p>
 
 
-    </script>
-    <script src="~/temas.js"></script>
-</body>
+                        <label class="col-12 error"></label>
+                        <a href="~/Temas/Temas">
+                            <input type="button" value="No" class="cancel" />
+                        </a>  <input type="submit" value="Si" />
+                    </form>
+                    <script>
+                        function eliminarr(id) {
+                            $("#deleteIdd").val(id);
+                            showModal("modalEliminarr");
+
+                        }
+
+                    </script>
+                </section>
+            </div>
+
+        </main>
+        <script src="~/main.js">
+
+
+        </script>
+        <script src="~/temas.js"></script>
+    </body>
 </html>

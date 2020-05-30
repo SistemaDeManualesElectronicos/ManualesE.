@@ -20,6 +20,17 @@ namespace ManualesElectronicosFInalFinal2.Repositories
         {
             return Context.Subtemas.OrderBy(x => x.Nombre);
         }
+
+        public List<Subtemas> listas()
+        {
+            List < Subtemas > listas = new List<Subtemas>();
+            return listas;
+        }
+        public Subtemas GetSubtemaById(int id)
+        {
+            return Context.Subtemas.FirstOrDefault(x => x.Id == id);
+
+        }
         public IEnumerable<string> GetNombresSubtemas()
         {
             var data = GetAll().OrderBy(x => x.Nombre).Select(x => x.Nombre);

@@ -14,6 +14,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
     {
         public TemasRepository temas;
         public SubtemasRepository sub;
+        List<Subtemas> lista = new List<Subtemas>();
         public IActionResult Temas()
         {
             temas = new TemasRepository();
@@ -25,9 +26,9 @@ namespace ManualesElectronicosFInalFinal2.Controllers
             tem.Tema = temas.GetTemascxNombre();
             su.Subtema = sub.GetSubemascxNombre();
             //    su.Subtema = sub.GetSubemascxNombre();
+           lista = new List<Subtemas>();
+            ViewBag.SubBag = sub.GetSubemascxNombre();
        
-         //   ViewBag.SubBag = su.Subtemas.Nombre;
-           // ViewBag.SubtemasBag = su.Subtemas.Nombre;
             return View(tem);
         }
 
