@@ -10,7 +10,7 @@ namespace ManualesElectronicosFInalFinal2.models
         public string Clave { get; set; }
         public string Nombre { get; set; }
       //  [Display(Name = "editNombre")]
-        [DisplayFormat(DataFormatString = "{0:yyy-MM-dd}", ApplyFormatInEditMode = true)]
+          [DisplayFormat(DataFormatString = "{0:yyy-MM-dd}", ApplyFormatInEditMode = true)]
           public DateTime? FechaInicio { get; set; }
  
         public DateTime inicio
