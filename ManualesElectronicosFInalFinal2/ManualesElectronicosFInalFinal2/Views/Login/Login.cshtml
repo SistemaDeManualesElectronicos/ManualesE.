@@ -1,0 +1,34 @@
+﻿@model Login
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <title>Login</title>
+
+    <link href="~/Content/login.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+
+        <h1><b>ITESRC</b> Manuales Electronicos</h1>
+
+    </header>
+    <div class="inicio">
+        <div class="content">
+            <form method="post" asp-action="Login">
+                <h1>Iniciar Sesión</h1>
+                <input asp-for="Nombre" type="text" name="user" placeholder="Número de control"><br>
+                <input asp-for="Password" type="password" name="pass" placeholder="Contraseña"><br>
+                <input class="btn" type="submit" value="Iniciar">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
