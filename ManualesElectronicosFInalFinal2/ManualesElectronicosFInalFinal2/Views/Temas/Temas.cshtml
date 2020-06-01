@@ -193,10 +193,11 @@
             <div class="modal" id="modalEditarr">
                 <section>
                     <h2>Editar Subtema</h2>
-                    <input id="editId" type="hidden" asp-for="Subtemas.Id" />
-                    <form class="formAjax" method="post">
+                    
+                    <form class="formAjax" method="post" action="~/Subtemas/Editar">
+                        <input id="editId" type="hidden" asp-for="Subtemas.Id" />
                         <label class="col-2">Nombre:</label>
-                        <input id="editNombre" class="col-10" asp-for="Subtemas.Nombre" type="text" required="required" />
+                        <input id="editNombre" class="col-10" type="text" asp-for="Subtemas.Nombre"  required="required" />
                         <label class="col-12 error"></label>
 
                         <input type="button" class="cancel" value="Cancelar" />
@@ -213,7 +214,7 @@
                         var x = $("#modalEditarr form");
 
                         x.find("#editId").val(data.id);
-                        x.find("#editNombre").val(data.Nombre);
+                        x.find("#editNombre").val(data.nombre);
 
                         showModal("modalEditarr");
                     }
