@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ManualesElectronicosFInalFinal2.models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,6 +19,9 @@ namespace ManualesElectronicosFInalFinal2.Models.DocentesViewModels
         public string ReferenciasApa { get; set; }
         public string ListadeRecursos { get; set; }
         public IFormFile Foto { get; set; }
+
+        public Subtemas Subtemas { get; set; }
+        public IEnumerable<Subtemas> Subtema { get; set; }
     }
 }
 

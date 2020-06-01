@@ -12,7 +12,9 @@ namespace ManualesElectronicosFInalFinal2.models
 
         public int Id { get; set; }
         public string Encabezado { get; set; }
-
+       
         public ICollection<Subtemas> Subtemas { get; set; }
+
+     
     }
 }

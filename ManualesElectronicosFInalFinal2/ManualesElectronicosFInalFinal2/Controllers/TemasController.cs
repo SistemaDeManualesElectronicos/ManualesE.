@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ManualesElectronicosFInalFinal2.models;
 using ManualesElectronicosFInalFinal2.Models;
+using ManualesElectronicosFInalFinal2.Models.DocentesViewModels;
 using ManualesElectronicosFInalFinal2.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,12 +13,22 @@ namespace ManualesElectronicosFInalFinal2.Controllers
     public class TemasController : Controller
     {
         public TemasRepository temas;
-     
+        public SubtemasRepository sub;
+        List<Subtemas> lista = new List<Subtemas>();
         public IActionResult Temas()
         {
             temas = new TemasRepository();
+            sub = new SubtemasRepository();
             ViewModelTemas tem = new ViewModelTemas();
+            SubtemasViewModel su = new SubtemasViewModel();
+            NavigationTemasSubtemas na = new NavigationTemasSubtemas();
+            //su.Subtema = sub.GetSubemascxNombre();
             tem.Tema = temas.GetTemascxNombre();
+            su.Subtema = sub.GetSubemascxNombre();
+            //    su.Subtema = sub.GetSubemascxNombre();
+           lista = new List<Subtemas>();
+            ViewBag.SubBag = sub.GetSubemascxNombre();
+       
             return View(tem);
         }
 
@@ -114,7 +125,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
         [HttpPost]
          public JsonResult Editar(ViewModelTemas t)
-        {
+          {
             JsonResult json = null;
             TemasRepository tem = new TemasRepository();
             
@@ -132,7 +143,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
                     }
                     else
                     {
-                        json = Json("El Curso no existe o ya ha sido eliminado.");
+                        json = Json("El Tema no existe o ya ha sido eliminado.");
                     }
                 }
 

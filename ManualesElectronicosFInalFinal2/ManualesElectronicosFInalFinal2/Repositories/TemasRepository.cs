@@ -16,6 +16,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
             return Context.Temas.OrderBy(x => x.Encabezado);
         }
 
+        
         public Temas GetTemabyId(int id)
         {
             return Context.Temas.FirstOrDefault(x=>x.Id == id);

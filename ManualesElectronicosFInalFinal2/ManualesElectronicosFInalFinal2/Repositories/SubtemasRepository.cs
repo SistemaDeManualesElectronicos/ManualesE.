@@ -16,20 +16,49 @@ namespace ManualesElectronicosFInalFinal2.Repositories
         private IHostingEnvironment environment;
 
         public string ruta { get; set; }
-
-        public SubtemasRepository(itesrcne_manualesContext context)
+        public IEnumerable<Subtemas> GetSubemascxNombre()
         {
-            Context = context;
+            return Context.Subtemas.OrderBy(x => x.Nombre);
         }
 
-        public SubtemasRepository(itesrcne_manualesContext context, IHostingEnvironment environment)
+        public List<Subtemas> listas()
         {
-            Context = context;
-            this.environment = environment;
-            ruta = environment.WebRootPath;
+            List < Subtemas > listas = new List<Subtemas>();
+            return listas;
+        }
+        public Subtemas GetSubtemaById(int id)
+        {
+            return Context.Subtemas.FirstOrDefault(x => x.Id == id);
+
+        }
+        public IEnumerable<string> GetNombresSubtemas()
+        {
+            var data = GetAll().OrderBy(x => x.Nombre).Select(x => x.Nombre);
+            return data;
+        }
+        //public SubtemasRepository(itesrcne_manualesContext context)
+        //{
+        //    Context = context;
+        //}
+
+        //public SubtemasRepository(itesrcne_manualesContext context, IHostingEnvironment environment)
+        //{
+        //    Context = context;
+        //    this.environment = environment;
+        //    ruta = environment.WebRootPath;
+        //}
+
+
+        public List<string> Validacion(Subtemas s)
+        {
+            List<string> errores = new List<string>();
+
+            return errores;
+
         }
 
-        public void AgregarImagen(IFormFile foto, string carpeta, int id, string ruta)
+
+            public void AgregarImagen(IFormFile foto, string carpeta, int id, string ruta)
         {
             if (foto != null)
             {
