@@ -249,7 +249,7 @@ section h2 {
 }
 
 section {
-	overflow: hidden;
+	/*overflow: hidden;*/
 	clear: both;
 	border: 1px solid #34495e;
 	margin: 10px auto;
@@ -637,4 +637,30 @@ header ul {
 
 .menu ul li a {
 	color: whitesmoke;
+}
+
+.mainsubtema {
+	margin-top: 100px;
+	border-radius: 5px;
+	padding: 0;
+	border: none;
+}
+
+	.mainsubtema section {
+		background-color: fuchsia;
+		border: 0;
+		margin: 0;
+		padding: 0;
+		border:none;
+	}
+	.mainsubtema div {
+		border: 1px solid #34495e;
+		border-top: 1px solid lightgray;
+	}
+	.mainsubtema form label, table tbody tr:hover, a:not(.active):hover {
+		background-color:transparent;
+	}
+.scrollable {
+	height: 100px; /* or any value */
+	overflow-y: auto;
 }

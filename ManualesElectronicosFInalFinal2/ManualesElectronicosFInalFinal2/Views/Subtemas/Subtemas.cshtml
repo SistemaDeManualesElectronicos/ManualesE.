@@ -18,7 +18,7 @@
         <script src="util.js"></script>
 
 
-        <title>Temas</title>
+        <title>Subtemas</title>
     </head>
     <body>
         <nav class="menu" id="sidebar">
@@ -45,80 +45,86 @@
                 </ul>
             </div>
         </header>
-        <main style="margin:10px; margin-top:20px;">
-            <div>
+        <main class="mainsubtemas" style="margin-top:50px;">
+            <section style=" background-color:whitesmoke;border:none; border-radius: 5px;padding:0;">
 
-            </div>
-            <section style="background-color: darkblue;border-radius: 5px;">
-
-                <h2 style="text-align:left; ">
-                    Nombre del Subtema <a href="#" style="color:white;"><i class="fas fa-plus-circle"></i></a>
+                <h2 style="text-align: center;background-color: #1CA7D0; border-radius: 5px;">
+                    Nombre del Subtema <a href="#" style="color:white;"><i class="fas fa-plus"></i>Agregar</a>
                 </h2>
-
-                <section>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th style="width: 1%">#</th>
-                                <th>Nombre</th>
-                                <th>Fecha</th>
-                                <th width="1%"></th>
-                                <th width="1%"></th>
-
-
-
-                            </tr>
-                        </thead>
-                        <tbody>
-
-
-                            <tr>
-                                <td>1</td>
-                                <td><a href="#">Imagen.png</a></td>
-                                <td>15/02/20</td>
-                                <td>
-                                    <a href=""><i class="fas fa-edit"></i></a>
-                                </td>
-                                <td>
-                                    <a href=""><i class="fa fa-trash"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td><a href="#">Imagen.png</a></td>
-                                <td>15/02/20</td>
-                                <td>
-                                    <a href=""><i class="fas fa-edit"></i></a>
-                                </td>
-                                <td>
-                                    <a href=""><i class="fa fa-trash"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td><a href="#">Imagen.png</a></td>
-                                <td>15/02/20</td>
-                                <td>
-                                    <a href=""><i class="fas fa-edit"></i></a>
-                                </td>
-                                <td>
-                                    <a href=""><i class="fa fa-trash"></i></a>
-                                </td>
-                            </tr>
-
-
-                        </tbody>
-                    </table>
-                </section>
-                <div style="position:relative;">
-                    <h2 style="text-align:left;">
-                        <i class="fas fa-bars"></i>
-                        Lista Recursos <a href="#" style="color:white;"><i class="fas fa-bars"></i>Referencias</a>
-                    </h2>
+                <div>
+                    <label>Nombre</label>
+                    <label style=" margin-left:65%;">Fecha</label>
                 </div>
+                <section style="border:none; padding:0; border-radius:5px;">
+                    <div class="scrollable">
+                        <table>
+                            <thead>
+                                <tr>
+
+                                    <th width="70%"></th>
+                                    <th></th>
+                                    <th width="1%"></th>
+                                    <th width="1%"></th>
+
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                                <tr>
+
+                                    <td><a href="#"><i class="far fa-file-image"></i>Imagen.png</a></td>
+                                    <td>15/02/20</td>
+                                    <td>
+                                        <a href=""><i class="fas fa-edit"></i></a>
+                                    </td>
+                                    <td>
+                                        <a href=""><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td><a href="#"><i class="far fa-file-image"></i>Imagen.png</a></td>
+                                    <td>15/02/20</td>
+                                    <td>
+                                        <a href=""><i class="fas fa-edit"></i></a>
+                                    </td>
+                                    <td>
+                                        <a href=""><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td><a href="#"><i class="far fa-file-image"></i>Imagen.png</a></td>
+                                    <td>15/02/20</td>
+                                    <td>
+                                        <a href=""><i class="fas fa-edit"></i></a>
+                                    </td>
+                                    <td>
+                                        <a href=""><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                   
+                    <footer style="  border-radius: 5px;">
+
+                        <h2 style="text-align:left;background-color: #1CA7D0; border-radius: 5px;">
+                            <i class="fas fa-bars"></i>
+                            Lista Recursos <a href="#" style="color:white;"><i class="fas fa-bars"></i>Referencias</a>
+                        </h2>
+                    </footer>
+                </section>
+                
             </section>
 
-
+            
         </main>
         <script src="~/main.js"></script>
         <script src="~/temas.js"></script>
