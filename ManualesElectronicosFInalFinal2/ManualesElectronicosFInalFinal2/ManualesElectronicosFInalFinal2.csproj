@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\Content\StyleSheet.css" />
+    <None Include="wwwroot\Content\menu.css" />
     <None Include="wwwroot\images\add.png" />
     <None Include="wwwroot\images\delete.png" />
     <None Include="wwwroot\images\list.png" />
