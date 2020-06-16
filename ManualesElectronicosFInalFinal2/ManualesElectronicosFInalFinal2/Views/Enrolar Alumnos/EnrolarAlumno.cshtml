@@ -52,14 +52,14 @@
             </ul>
         </div>
     </header>
-    <main >
+    <main id="contenido">
         <div>
             <h2 style=" float:right; margin-top:15px; "> <a href="javascript:showModal('modalAgregar')" style="color:white;"><i class="fas fa-user-plus"></i></a></h2>
         </div>
         <section>
 
             <h2>
-                Lista Alumnos
+                Lista Alumnos 
                 <input type="search" placeholder="Filtro..." />
             </h2>
             <table>
@@ -93,7 +93,59 @@
 
                 </tbody>
             </table>
-            </section>
+
+            <div class="modal" id="modalAgregar">
+                <section>
+                    <h2>Agregar Alumno</h2>
+
+                    <form class="formAjax" method="post">
+                        <label class="col-2">Nombre:</label>
+                        <input class="col-10" type="text" />
+
+
+                        <label class="col-2">Número de control:</label>
+                        <input class="col-10" type="text" />
+
+                        <label class="col-2">Carrera:</label>
+                        <select class="col-10" required="required">
+                            <option value="">Seleccione</option>
+                        </select>
+                        <label class="col-2">Fecha Inicio:</label>
+                        <input class="col-10" type="datetime" />
+                        <label class="col-2">Fecha Final:</label>
+                        <input class="col-10" type="datetime" />
+
+                        <label class="col-12 error"></label>
+
+                        <input type="button" class="cancel" value="Cancelar" />
+                        <a href="Alumnos/Alumnos"></a>
+                        <input type="submit" value="Agregar" />
+                    </form>
+                </section>
+            </div>
+            <div id="modalEliminar" class="modal">
+                <section>
+                    <h2>Confirme la eliminación</h2>
+
+                    <form class="formAjax" method="post">
+                        <input id="deleteId" type="hidden" name="Id" />
+                        <p>¿Esta seguro de eliminar?</p>
+
+
+                        <label class="col-12 error"></label>
+
+                        <a href="#">
+                            <input type="button" value="No" class="cancel" />
+
+                        </a>
+                        <input type="submit" value="Si" />
+
+                    </form>
+
+                </section>
+            </div>
+        </section>
+
     </main>
     <script src="~/main.js">
 
