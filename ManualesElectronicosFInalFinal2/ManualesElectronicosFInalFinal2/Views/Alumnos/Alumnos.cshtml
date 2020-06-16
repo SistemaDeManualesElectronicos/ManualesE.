@@ -20,17 +20,17 @@
         <script src="jquery-3.5.0.min"></script>
         <script src="util.js"></script>
         <title>Alumnos</title>
-
-
     </head>
 <body>
     <nav class="menu" id="sidebar">
         <div>
         </div>
         <ul>
-            <li><a asp-action="Docentes" asp-controller="Docentes"><i class="fa fa-address-card"></i>Docentes</a></li>
-            <li><a asp-action="Alumnos" asp-controller="Alumnos"><i class="fa fa-address-card"></i>Alumnos</a></li>
-            <li><a asp-action="Cursos" asp-controller="Cursos"><i class="fa fa-address-card"></i>Cursos</a></li>
+            <li><a asp-action="Docentes" asp-controller="Docentes"><i class="fa fa-address-card"></i>Administrar Docentes</a></li>
+            <li><a asp-action="Alumnos" asp-controller="Alumnos"><i class="fa fa-address-card"></i>Administrar Alumnos</a></li>
+            <li><a asp-action="Cursos" asp-controller="Cursos"><i class="fas fa-book"></i>Administrar Cursos</a></li>
+            <li><a ><i class="fas fa-book"></i>Compartir Cursos</a></li>
+            <li><a ><i class="fa fa-address-card"></i>Enrrolar Alumnos</a></li>
 
         </ul>
 
@@ -64,10 +64,11 @@
 
                         <th width="10%" class="center">Numero de control</th>
 
-                        <th width="65%" class="center">Nombre Del Docente</th>
+                        <th width="65%" class="center">Nombre Del Alumno</th>
 
-                        <th width="15%">Carrera</th>
-
+                        <th width="15%" class="center">Carrera</th>
+                        <th width="1%" class="center"></th>
+                        <th width="1%"class="center"></th>
                     </tr>
                 </thead>
                 <tbody>
