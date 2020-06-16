@@ -15,14 +15,13 @@
     <link href="~/Content/OtrosColores.css" rel="stylesheet" />
     <!-- Para usar iconos con FontAwesome  -->
     <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-
     <link href="~/Content/sidebar.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="jquery-3.5.0.min"></script>
     <script src="util.js"></script>
 
 
-    <title>Temas</title>
+    <title>Enrolar Alumnos</title>
 </head>
 <body>
 
@@ -67,9 +66,7 @@
                     <tr>
 
                         <th width="10%" class="center">Nombre</th>
-
                         <th width="65%" class="center">Curso</th>
-
                         <th width="15%" class="center">Carrera</th>
                         <th width="1%"></th>
                         <th width="1%"></th>
@@ -101,24 +98,21 @@
                     <form class="formAjax" method="post">
                         <label class="col-2">Nombre:</label>
                         <input class="col-10" type="text" />
-
-
                         <label class="col-2">Número de control:</label>
                         <input class="col-10" type="text" />
-
                         <label class="col-2">Carrera:</label>
                         <select class="col-10" required="required">
                             <option value="">Seleccione</option>
                         </select>
                         <label class="col-2">Fecha Inicio:</label>
-                        <input class="col-10" type="datetime" />
+                        <input class="col-10" type="datetime-local" />
                         <label class="col-2">Fecha Final:</label>
-                        <input class="col-10" type="datetime" />
+                        <input class="col-10" type="datetime-local" />
 
                         <label class="col-12 error"></label>
 
                         <input type="button" class="cancel" value="Cancelar" />
-                        <a href="Alumnos/Alumnos"></a>
+                        <a href="#"></a>
                         <input type="submit" value="Agregar" />
                     </form>
                 </section>
@@ -147,10 +141,7 @@
         </section>
 
     </main>
-    <script src="~/main.js">
-
-
-    </script>
+    <script src="~/main.js"> </script>
     <script src="~/temas.js"></script>
 </body>
 </html>
