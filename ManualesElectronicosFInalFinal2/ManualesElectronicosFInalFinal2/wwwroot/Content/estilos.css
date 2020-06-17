@@ -93,6 +93,7 @@ header {
 		width: 26px;
 		margin: 0 10px;
 		text-decoration:none;
+		margin-top:5px;
 	}
 	
 	header h1 {
@@ -663,4 +664,9 @@ header ul {
 .scrollable {
 	height: 100px; /* or any value */
 	overflow-y: auto;
+}
+#contenido {
+	transition: margin-left .4s;
+	padding: 1rem;
+	margin-left:300px;
 }
