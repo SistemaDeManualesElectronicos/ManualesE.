@@ -25,7 +25,16 @@ namespace ManualesElectronicosFInalFinal2.Controllers
 
 //cv
         }
+        public IActionResult EnrolarAlumno()
+        {
+            alu = new AlumnosRepository();
+            ViewModelAlumnos nom = new ViewModelAlumnos();
+            nom.Alumnos = alu.GetAlumnosxNombre();
 
+            return View(nom);
+
+            //cv
+        }
         //public IActionResult Agregar()
         //{dff
         //    return View();
