@@ -1,4 +1,4 @@
-﻿using ManualesElectronicosFInalFinal2.models;
+﻿using ManualesElectronicosFInalFinal2.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +19,21 @@ namespace ManualesElectronicosFInalFinal2.Repositories
 
             }
         }
+
+
+        public void LoginAlumnos(int Id, string NumeroDeControl)
+        {
+
+            var result = context.Login.Any(x => x.Id == Id && x.Password == NumeroDeControl);
+            if(result)
+            {
+
+            }
+         
+
+        }
+
+
+
     }
 }

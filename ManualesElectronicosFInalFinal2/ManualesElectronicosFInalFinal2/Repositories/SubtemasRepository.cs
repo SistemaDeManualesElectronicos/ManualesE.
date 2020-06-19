@@ -1,5 +1,4 @@
-﻿using ManualesElectronicosFInalFinal2.models;
-using ManualesElectronicosFInalFinal2.Models;
+﻿using ManualesElectronicosFInalFinal2.Models;
 using ManualesElectronicosFInalFinal2.Models.DocentesViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,7 +12,7 @@ namespace ManualesElectronicosFInalFinal2.Repositories
 {
     public class SubtemasRepository: Repository<Subtemas>
     {
-        private IHostingEnvironment environment;
+        private IHostingEnvironment Environment;
 
         public string ruta { get; set; }
         public IEnumerable<Subtemas> GetSubemascxNombre()

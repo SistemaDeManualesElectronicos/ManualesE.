@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ManualesElectronicosFInalFinal2.models
+namespace ManualesElectronicosFInalFinal2.Models
 {
     public partial class Temas
     {
@@ -12,9 +12,7 @@ namespace ManualesElectronicosFInalFinal2.models
 
         public int Id { get; set; }
         public string Encabezado { get; set; }
-       
-        public ICollection<Subtemas> Subtemas { get; set; }
 
-     
+        public ICollection<Subtemas> Subtemas { get; set; }
     }
 }

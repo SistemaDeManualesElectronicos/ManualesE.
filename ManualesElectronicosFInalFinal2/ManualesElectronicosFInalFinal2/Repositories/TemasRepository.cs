@@ -1,5 +1,4 @@
-﻿using ManualesElectronicosFInalFinal2.models;
-using ManualesElectronicosFInalFinal2.Models;
+﻿using ManualesElectronicosFInalFinal2.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

@@ -1,7 +1,7 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace ManualesElectronicosFInalFinal2.models
+namespace ManualesElectronicosFInalFinal2.Models
 {
     public partial class Subtemas
     {

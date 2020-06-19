@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace ManualesElectronicosFInalFinal2.models
+namespace ManualesElectronicosFInalFinal2.Models
 {
     public partial class itesrcne_manualesContext : DbContext
     {
@@ -41,6 +41,9 @@ namespace ManualesElectronicosFInalFinal2.models
                 entity.HasIndex(e => e.IdCarrera)
                     .HasName("fkCarrera_idx");
 
+                entity.HasIndex(e => e.IdCurso)
+                    .HasName("fkAlumno_idx");
+
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
                     .HasColumnType("int(11)");
@@ -52,6 +55,8 @@ namespace ManualesElectronicosFInalFinal2.models
                     .HasDefaultValueSql("'b\\'0\\''");
 
                 entity.Property(e => e.IdCarrera).HasColumnType("int(11)");
+
+                entity.Property(e => e.IdCurso).HasColumnType("int(11)");
 
                 entity.Property(e => e.Nombre).HasColumnType("varchar(45)");
 
@@ -78,6 +83,9 @@ namespace ManualesElectronicosFInalFinal2.models
             {
                 entity.ToTable("curso");
 
+                entity.HasIndex(e => e.IdAlumno)
+                    .HasName("FKCurso_idx");
+
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
                     .HasColumnType("int(11)");
@@ -88,6 +96,10 @@ namespace ManualesElectronicosFInalFinal2.models
 
                 entity.Property(e => e.FechaInicio).HasColumnType("date");
 
+                entity.Property(e => e.IdAlumno)
+                    .HasColumnName("idAlumno")
+                    .HasColumnType("int(11)");
+
                 entity.Property(e => e.IdDocente)
                     .HasColumnName("idDocente")
                     .HasColumnType("int(11)");
@@ -97,6 +109,11 @@ namespace ManualesElectronicosFInalFinal2.models
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.Nombre).HasColumnType("varchar(45)");
+
+                entity.HasOne(d => d.IdAlumnoNavigation)
+                    .WithMany(p => p.Curso)
+                    .HasForeignKey(d => d.IdAlumno)
+                    .HasConstraintName("FKCurso");
             });
 
             modelBuilder.Entity<Docentes>(entity =>

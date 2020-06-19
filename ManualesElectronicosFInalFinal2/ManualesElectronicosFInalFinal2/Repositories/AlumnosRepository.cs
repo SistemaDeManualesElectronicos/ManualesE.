@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using ManualesElectronicosFInalFinal2.Models;
 using Microsoft.EntityFrameworkCore;
-using ManualesElectronicosFInalFinal2.models;
 
 namespace ManualesElectronicosFInalFinal2.Repositories
 {
