@@ -59,20 +59,18 @@
             </div>
             <section>
 
-                <div>
+                <div   >
                     @foreach (var item in Model.Tema)
                     {
                         IEnumerable<Subtemas> lista = ViewBag.SubBag;
-
-                        // var a = ViewBag.SubBag;
-                        //ViewBag.asd = item.Id;
-                        <h2 type="button" class="collapsible" ViewBag.asd=item.Id; on>
+                      
+                        <h2 type="button" class="collapsible" id="@item.Id" onclick="@item.Id" >
                             @item.Encabezado
-                            <a @item.Id id="IdT"></a>
+                            @item.Id
                             <a href="javascript:editar(@item.Id)" style="margin-left:5px;"><i class="fas fa-edit"></i></a>
                             <a href="javascript:eliminar(@item.Id)"><i class="fa fa-trash"></i></a>
                         </h2>
-
+                        ViewBag.idd = item.Id;
                         //service.GetNombreSubtemas()
 
 
@@ -83,6 +81,7 @@
                                 <div class="subtemas">
                                     <a href="#"></a>
                                     @itemm.Nombre
+                                    @item.Id
                                     <a href="javascript:editarr(@itemm.Id)" style="margin-left:5px; float:right;"><i class="fas fa-edit"></i></a>
                                     <a href="javascript:eliminarr(@itemm.Id)" style="float: right;"><i class="fa fa-trash"></i></a>
                                     <a href="javascript:showModal('modalAgregarr')" style="float: right;"><i class="fas fa-plus-circle"></i></a>
@@ -182,7 +181,7 @@
 
                     <form class="formAjax" method="post" action="~/Subtemas/Agregar">
                         <label class="col-2">Nombre:</label>
-                        <input id="IdT" type="hidden" value="@ViewBag.asd" asp-for="Subtemas.IdTemas" />
+                        <input   value="@ViewBag.idd"  asp-for="Subtemas.IdTemas" />
                         <input class="col-10" type="text" asp-for="Subtemas.Nombre" required="required" />
                         <label class="col-12 error"></label>
                         <a href="~/Temas/Temas">

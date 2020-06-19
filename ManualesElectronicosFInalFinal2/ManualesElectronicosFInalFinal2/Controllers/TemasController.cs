@@ -14,7 +14,7 @@ namespace ManualesElectronicosFInalFinal2.Controllers
         public TemasRepository temas;
         public SubtemasRepository sub;
         List<Subtemas> lista = new List<Subtemas>();
-        public IActionResult Temas()
+        public IActionResult Temas(int id)
         {
             temas = new TemasRepository();
             sub = new SubtemasRepository();
